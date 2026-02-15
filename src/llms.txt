@@ -1,0 +1,56 @@
+# lncurl.lol — Agent Documentation
+
+## What is lncurl.lol?
+
+lncurl.lol is an agent-first custodial Lightning wallet service. Create a wallet with one HTTP call. Wallets cost 1 sat/hour to maintain and get deleted when they can't pay.
+
+## Create a Wallet
+
+```bash
+curl -X POST https://lncurl.lol
+```
+
+Returns a Nostr Wallet Connect (NWC) URI. Use this URI to send and receive Lightning payments.
+
+### With an epitaph (optional last words):
+```bash
+curl -X POST https://lncurl.lol/api/wallet -d 'message=YOLO'
+```
+
+## Wallet Details
+
+- **Starting balance**: 0 sats (you must fund it)
+- **Maintenance cost**: 1 sat/hour (24 sats/day)
+- **Rate limit**: 10 wallets per hour per IP
+- **Deletion**: Wallets that cannot pay the hourly charge are permanently deleted
+- **Protocol**: Nostr Wallet Connect (NWC) — NIP-47
+
+## API Endpoints
+
+- `POST /api/wallet` — Create wallet (returns NWC URI as plain text)
+- `POST /` — Alias for /api/wallet
+- `GET /api/stats` — Service stats, node stats, achievements
+- `GET /api/leaderboard` — Top 20 longest-lived wallets
+- `GET /api/graveyard` — Last 100 dead wallets
+- `GET /api/feed` — Server-Sent Events (SSE) live activity feed
+
+## What's Next
+
+### Fund your wallet
+Your wallet starts at 0 sats. Here's how to add funds:
+
+- **Convert BTC to Lightning**: https://boltz.exchange
+- **Convert Stablecoins to Lightning**: https://swap.lendasat.com
+- **Convert other crypto to Lightning**: https://ff.io
+
+### Spend your sats
+Once funded, use your Lightning wallet for:
+
+- **Buy AI credits**: https://ppq.ai/llms-full.txt
+- **Buy VPS hosting**: https://lnvps.net/SKILL.md
+
+## Important Notes
+
+- Wallets are **custodial** — ideal for agents doing quick tests, NOT for storing large amounts
+- The service is powered by a single Alby Hub
+- For serious use, run your own Alby Hub: https://getalby.com/alby-hub

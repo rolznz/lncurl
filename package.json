@@ -1,0 +1,32 @@
+{
+  "name": "lncurl",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "dist/app.js",
+  "scripts": {
+    "dev": "tsx watch src/app.ts",
+    "build": "prisma generate && tsc && cp src/llms.txt dist/ && cp src/index.html dist/ 2>/dev/null || true",
+    "start": "node dist/app.js",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:migrate:deploy": "prisma migrate deploy",
+    "prisma:studio": "prisma studio",
+    "db:setup": "DATABASE_URL=file:./data/lncurl.db prisma generate && DATABASE_URL=file:./data/lncurl.db prisma migrate dev --name init"
+  },
+  "dependencies": {
+    "@fastify/cors": "^11.2.0",
+    "@fastify/formbody": "^8.0.2",
+    "@fastify/static": "^9.0.0",
+    "@prisma/adapter-better-sqlite3": "^7.4.0",
+    "@prisma/client": "^7.4.0",
+    "dotenv": "^17.2.3",
+    "fastify": "^5.6.2",
+    "prisma": "^7.4.0"
+  },
+  "devDependencies": {
+    "@flydotio/dockerfile": "^0.7.10",
+    "@types/node": "^22.0.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
+}

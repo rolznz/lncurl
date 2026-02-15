@@ -1,0 +1,7 @@
+.roo
+node_modules
+.env
+dist
+.agents/skills
+src/generated
+data/lncurl.db

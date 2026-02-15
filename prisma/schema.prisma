@@ -1,0 +1,66 @@
+datasource db {
+  provider = "sqlite"
+}
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+model Wallet {
+  name             String    @id
+  appId            String    @map("app_id")
+  createdAt        Int       @map("created_at")
+  lastChargedAt    Int?      @map("last_charged_at")
+  totalCharged     Int       @default(0) @map("total_charged")
+  epitaph          String?
+  lastKnownBalance Int?      @map("last_known_balance")
+  creatorIp        String?   @map("creator_ip")
+
+  @@map("wallets")
+}
+
+model Graveyard {
+  name              String  @id
+  createdAt         Int     @map("created_at")
+  deletedAt         Int     @map("deleted_at")
+  causeOfDeath      String  @map("cause_of_death")
+  causeOfDeathFlavor String? @map("cause_of_death_flavor")
+  totalCharged      Int     @default(0) @map("total_charged")
+  epitaph           String?
+  flowers           Int     @default(0)
+
+  @@map("graveyard")
+}
+
+model Activity {
+  id         Int     @id @default(autoincrement())
+  type       String
+  walletName String? @map("wallet_name")
+  amountSats Int?    @map("amount_sats")
+  message    String?
+  createdAt  Int     @map("created_at")
+
+  @@map("activity")
+}
+
+model Achievement {
+  id         String @id
+  title      String
+  unlockedAt Int    @map("unlocked_at")
+  walletName String? @map("wallet_name")
+
+  @@map("achievements")
+}
+
+model ServiceStats {
+  id                    Int  @id @default(1)
+  totalWalletsCreated   Int  @default(0) @map("total_wallets_created")
+  totalWalletsDied      Int  @default(0) @map("total_wallets_died")
+  totalChargesCollected Int  @default(0) @map("total_charges_collected")
+  peakConcurrentWallets Int  @default(0) @map("peak_concurrent_wallets")
+  lastChargeRunAt       Int? @map("last_charge_run_at")
+  nextChargeRunAt       Int? @map("next_charge_run_at")
+
+  @@map("service_stats")
+}
