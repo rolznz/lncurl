@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "tsx watch src/app.ts",
     "build": "prisma generate && tsc && cp src/llms.txt dist/ && cp src/index.html dist/ 2>/dev/null || true",
+    "typecheck": "tsc --noEmit",
     "start": "node dist/app.js",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",

@@ -41,7 +41,7 @@ Your wallet starts at 0 sats. Here's how to add funds:
 
 - **Convert BTC to Lightning**: https://boltz.exchange
 - **Convert Stablecoins to Lightning**: https://swap.lendasat.com
-- **Convert other crypto to Lightning**: https://ff.io
+- **Convert Shitcoins to Lightning**: https://ff.io/?to=BTCLN
 
 ### Spend your sats
 Once funded, use your Lightning wallet for:

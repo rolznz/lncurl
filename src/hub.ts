@@ -56,7 +56,7 @@ export async function createApp() {
 
   const newApp = (await newAppResponse.json()) as {
     pairingUri: string;
-    id: string;
+    id: number;
     name: string;
   };
 
@@ -77,18 +77,15 @@ export async function listApps() {
   }
 
   return (await response.json()) as {
-    apps: { id: string; name: string }[];
+    apps: { id: number; name: string }[];
   };
 }
 
-export async function deleteApp(appId: string): Promise<void> {
-  const response = await fetch(
-    new URL(`/api/apps/${appId}`, getAlbyHubUrl()),
-    {
-      method: "DELETE",
-      headers: getHeaders(),
-    },
-  );
+export async function deleteApp(appId: number): Promise<void> {
+  const response = await fetch(new URL(`/api/apps/${appId}`, getAlbyHubUrl()), {
+    method: "DELETE",
+    headers: getHeaders(),
+  });
 
   if (!response.ok) {
     throw new Error("Failed to delete app: " + (await response.text()));
@@ -96,7 +93,7 @@ export async function deleteApp(appId: string): Promise<void> {
 }
 
 export async function transferFromApp(
-  appId: string,
+  appId: number,
   amountSat: number,
 ): Promise<void> {
   const response = await fetch(new URL("/api/transfers", getAlbyHubUrl()), {
@@ -109,21 +106,16 @@ export async function transferFromApp(
   });
 
   if (!response.ok) {
-    throw new Error(
-      "Failed to transfer from app: " + (await response.text()),
-    );
+    throw new Error("Failed to transfer from app: " + (await response.text()));
   }
 }
 
 export async function getAppBalance(
-  appId: string,
+  appId: number,
 ): Promise<{ balance: number }> {
-  const response = await fetch(
-    new URL(`/api/apps/${appId}`, getAlbyHubUrl()),
-    {
-      headers: getHeaders(),
-    },
-  );
+  const response = await fetch(new URL(`/api/apps/${appId}`, getAlbyHubUrl()), {
+    headers: getHeaders(),
+  });
 
   if (!response.ok) {
     throw new Error("Failed to get app balance: " + (await response.text()));
@@ -134,7 +126,7 @@ export async function getAppBalance(
 }
 
 export async function createLightningAddress(
-  appId: string,
+  appId: number,
   address: string,
 ): Promise<void> {
   const response = await fetch(
@@ -168,29 +160,43 @@ export async function listChannels() {
   }
 
   return (await response.json()) as {
-    channels: {
-      localBalance: number;
-      remoteBalance: number;
-      id: string;
-      active: boolean;
-      public: boolean;
-    }[];
-  };
+    localBalance: number;
+    remoteBalance: number;
+    id: string;
+    active: boolean;
+    public: boolean;
+  }[];
 }
 
 export async function getNodeInfo() {
-  const response = await fetch(new URL("/api/node", getAlbyHubUrl()), {
-    headers: getHeaders(),
-  });
+  const [infoRes, connRes, channelsRes] = await Promise.all([
+    fetch(new URL("/api/info", getAlbyHubUrl()), { headers: getHeaders() }),
+    fetch(new URL("/api/node/connection-info", getAlbyHubUrl()), {
+      headers: getHeaders(),
+    }),
+    fetch(new URL("/api/channels", getAlbyHubUrl()), {
+      headers: getHeaders(),
+    }),
+  ]);
 
-  if (!response.ok) {
-    throw new Error("Failed to get node info: " + (await response.text()));
+  if (!infoRes.ok) {
+    throw new Error("Failed to get node info: " + (await infoRes.text()));
+  }
+  if (!connRes.ok) {
+    throw new Error("Failed to get connection info: " + (await connRes.text()));
+  }
+  if (!channelsRes.ok) {
+    throw new Error("Failed to list channels: " + (await channelsRes.text()));
   }
 
-  return (await response.json()) as {
-    alias: string;
-    pubkey: string;
-    channelCount: number;
+  const info = (await infoRes.json()) as { nodeAlias: string };
+  const conn = (await connRes.json()) as { pubkey: string };
+  const channels = (await channelsRes.json()) as unknown[];
+
+  return {
+    alias: info.nodeAlias,
+    pubkey: conn.pubkey,
+    channelCount: channels.length,
   };
 }
 
@@ -203,7 +209,15 @@ export async function getNodeBalance() {
     throw new Error("Failed to get node balance: " + (await response.text()));
   }
 
-  return (await response.json()) as {
-    totalBalance: number;
+  const data = (await response.json()) as {
+    lightning: { totalSpendable: number; totalReceivable: number };
+    onchain: { total: number };
+  };
+
+  // AlbyHub returns millisats for lightning — convert to sats
+  return {
+    totalSpendable: Math.floor((data.lightning?.totalSpendable ?? 0) / 1000),
+    totalReceivable: Math.floor((data.lightning?.totalReceivable ?? 0) / 1000),
+    onchainTotal: data.onchain?.total ?? 0,
   };
 }

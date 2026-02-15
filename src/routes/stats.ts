@@ -1,7 +1,8 @@
 import type { FastifyInstance } from "fastify";
 import { prisma } from "../db.js";
 import { getTitle, formatAge } from "../titles.js";
-import { getTPS, getVPS, getLiquidity, getTotalBalance } from "../node-stats.js";
+import { getTPS, getVPS, getLiquidity, getBalances } from "../node-stats.js";
+import { getNodeInfo } from "../hub.js";
 
 export async function statsRoutes(fastify: FastifyInstance) {
   // GET /api/stats
@@ -25,7 +26,17 @@ export async function statsRoutes(fastify: FastifyInstance) {
     const tps = getTPS();
     const vps = getVPS();
     const liquidity = await getLiquidity();
-    const totalBalance = await getTotalBalance();
+    const { totalSpendable, onchainTotal } = await getBalances();
+
+    let nodeAlias: string | null = null;
+    let nodePubkey: string | null = null;
+    try {
+      const nodeInfo = await getNodeInfo();
+      nodeAlias = nodeInfo.alias;
+      nodePubkey = nodeInfo.pubkey;
+    } catch {
+      // Hub API unavailable
+    }
 
     return {
       stats: {
@@ -50,8 +61,18 @@ export async function statsRoutes(fastify: FastifyInstance) {
       tps,
       vps,
       liquidity,
-      totalBalance,
+      totalSpendable,
+      onchainBalance: onchainTotal,
       routing: { totalForwarded: 0, forwardsCount: 0 }, // TODO: populate when Hub API supports it
+      nodeAlias,
+      nodePubkey,
+      communityFundAddresses: {
+        channels: process.env.COMMUNITY_FUND_ADDRESS_CHANNELS || null,
+        hosting: process.env.COMMUNITY_FUND_ADDRESS_HOSTING || null,
+      },
+      bountyAddresses: {
+        l402: process.env.BOUNTY_ADDRESS_L402 || null,
+      },
     };
   });
 

@@ -67,7 +67,7 @@ export function Home() {
       </section>
 
       <section>
-        <FundingBars />
+        <FundingBars stats={stats} />
       </section>
     </div>
   );

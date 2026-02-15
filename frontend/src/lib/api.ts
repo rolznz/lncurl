@@ -32,8 +32,13 @@ export interface Stats {
   tps: number;
   vps: number;
   liquidity: { available: number; used: number; channels: number };
-  totalBalance: number;
+  totalSpendable: number;
+  onchainBalance: number;
   routing: { totalForwarded: number; forwardsCount: number };
+  nodeAlias: string | null;
+  nodePubkey: string | null;
+  communityFundAddresses: { channels: string | null; hosting: string | null } | null;
+  bountyAddresses: { l402: string | null } | null;
 }
 
 export async function fetchStats(): Promise<Stats> {

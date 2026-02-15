@@ -18,7 +18,7 @@ export function WalletQR({ uri }: WalletQRProps) {
           <QRCodeSVG value={uri} size={200} />
         </div>
         <p className="text-sm text-muted-foreground text-center">
-          Scan with Alby Extension or Alby Go
+          Scan with <a href="https://getalby.com/alby-go" target="_blank" rel="noopener noreferrer" className="text-terminal hover:underline">Alby Go</a>
         </p>
       </CardContent>
     </Card>

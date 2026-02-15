@@ -23,10 +23,24 @@ export async function walletRoutes(fastify: FastifyInstance) {
       ? sanitizeEpitaph(body.message)
       : getRandomEpitaph();
 
-    const name = await generateWalletName();
-
     const newApp = await createApp();
-    await createLightningAddress(newApp.id, name);
+
+    // Try names until one is accepted by getalby.com
+    let name: string | null = null;
+    for (let attempt = 0; attempt < 10; attempt++) {
+      const candidate = await generateWalletName(attempt);
+      try {
+        await createLightningAddress(newApp.id, candidate);
+        name = candidate;
+        break;
+      } catch {
+        // Name likely taken on getalby.com, try another
+      }
+    }
+    if (!name) {
+      reply.status(503).send("Could not reserve a lightning address. Try again.");
+      return;
+    }
 
     const now = Math.floor(Date.now() / 1000);
 

@@ -9,7 +9,7 @@ generator client {
 
 model Wallet {
   name             String    @id
-  appId            String    @map("app_id")
+  appId            Int       @map("app_id")
   createdAt        Int       @map("created_at")
   lastChargedAt    Int?      @map("last_charged_at")
   totalCharged     Int       @default(0) @map("total_charged")

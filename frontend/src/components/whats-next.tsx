@@ -1,9 +1,21 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const fundLinks = [
-  { label: "BTC to Lightning", url: "https://boltz.exchange", site: "boltz.exchange" },
-  { label: "Stablecoins to Lightning", url: "https://swap.lendasat.com", site: "swap.lendasat.com" },
-  { label: "Other crypto to Lightning", url: "https://ff.io", site: "ff.io" },
+  {
+    label: "BTC to Lightning",
+    url: "https://boltz.exchange",
+    site: "boltz.exchange",
+  },
+  {
+    label: "Stablecoins to Lightning",
+    url: "https://swap.lendasat.com",
+    site: "swap.lendasat.com",
+  },
+  {
+    label: "Shitcoins to Lightning",
+    url: "https://ff.io/?to=BTCLN",
+    site: "ff.io",
+  },
 ];
 
 const spendLinks = [
@@ -21,7 +33,9 @@ export function WhatsNext() {
       </CardHeader>
       <CardContent className="space-y-4 text-sm">
         <div>
-          <h4 className="font-semibold text-foreground mb-2">Fund your wallet</h4>
+          <h4 className="font-semibold text-foreground mb-2">
+            Fund your wallet
+          </h4>
           <ul className="space-y-1">
             {fundLinks.map((l) => (
               <li key={l.url} className="flex items-center gap-2">
@@ -39,7 +53,9 @@ export function WhatsNext() {
           </ul>
         </div>
         <div>
-          <h4 className="font-semibold text-foreground mb-2">Spend your sats</h4>
+          <h4 className="font-semibold text-foreground mb-2">
+            Spend your sats
+          </h4>
           <ul className="space-y-1">
             {spendLinks.map((l) => (
               <li key={l.url} className="flex items-center gap-2">

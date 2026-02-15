@@ -1,5 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
+import { Zap } from "lucide-react";
+import type { Stats } from "@/lib/api";
 
 interface FundItem {
   label: string;
@@ -8,19 +10,6 @@ interface FundItem {
   address?: string;
 }
 
-const communityFunds: FundItem[] = [
-  { label: "Channel Fund", current: 0, target: 500000, address: "lncurl-channels@getalby.com" },
-  { label: "Hosting Costs", current: 0, target: 2400, address: "lncurl-hosting@getalby.com" },
-];
-
-const bounties: FundItem[] = [
-  { label: "Leave Flowers", current: 0, target: 50000 },
-  { label: "ASCII Animations", current: 0, target: 100000 },
-  { label: "Sound Effects", current: 0, target: 100000 },
-  { label: "Death Notifs", current: 0, target: 150000 },
-  { label: "L402 Rate Bypass", current: 0, target: 210000 },
-];
-
 function FundBar({ item }: { item: FundItem }) {
   const pct = Math.min(100, Math.round((item.current / item.target) * 100));
   return (
@@ -28,18 +17,55 @@ function FundBar({ item }: { item: FundItem }) {
       <div className="flex justify-between text-xs">
         <span className="text-foreground">{item.label}</span>
         <span className="text-muted-foreground font-mono">
-          {(item.current / 1000).toFixed(1)}K / {(item.target / 1000).toFixed(0)}K sats
+          {(item.current / 1000).toFixed(1)}K /{" "}
+          {(item.target / 1000).toFixed(0)}K sats
         </span>
       </div>
       <Progress value={pct} className="h-2" />
       {item.address && (
-        <div className="text-xs text-terminal font-mono">{item.address}</div>
+        <a
+          href={`https://www.lnurlpay.com/${item.address}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1 text-xs text-terminal font-mono hover:underline cursor-pointer"
+        >
+          <Zap className="h-3 w-3" />
+          {item.address}
+        </a>
       )}
     </div>
   );
 }
 
-export function FundingBars() {
+interface FundingBarsProps {
+  stats: Stats | null;
+}
+
+export function FundingBars({ stats }: FundingBarsProps) {
+  const communityFunds: FundItem[] = [
+    {
+      label: "Channel Fund",
+      current: 0,
+      target: 100_000,
+      address: stats?.communityFundAddresses?.channels || undefined,
+    },
+    {
+      label: "Hosting Costs",
+      current: 0,
+      target: 120_000,
+      address: stats?.communityFundAddresses?.hosting || undefined,
+    },
+  ];
+
+  const bounties: FundItem[] = [
+    {
+      label: "L402 Rate Bypass",
+      current: 0,
+      target: 210_000,
+      address: stats?.bountyAddresses?.l402 || undefined,
+    },
+  ];
+
   return (
     <div className="space-y-4">
       <Card>
@@ -66,7 +92,8 @@ export function FundingBars() {
             <FundBar key={f.label} item={f} />
           ))}
           <p className="text-xs text-muted-foreground mt-2">
-            Each feature has its own wallet. Pay into it. We build when it's funded.
+            Each feature has its own wallet. Pay into it. We build when it's
+            funded.
           </p>
         </CardContent>
       </Card>

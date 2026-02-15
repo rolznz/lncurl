@@ -1,5 +1,11 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import type { Stats } from "@/lib/api";
 
 interface NodeStatsProps {
@@ -9,51 +15,87 @@ interface NodeStatsProps {
 export function NodeStats({ stats }: NodeStatsProps) {
   if (!stats) return null;
 
-  const totalLiquidity = stats.liquidity.available + stats.liquidity.used;
+  const liquidity = stats.liquidity ?? { available: 0, used: 0, channels: 0 };
+  const tps = stats.tps ?? 0;
+  const vps = stats.vps ?? 0;
+  const totalSpendable = stats.totalSpendable ?? 0;
+  const onchainBalance = stats.onchainBalance ?? 0;
+
+  const totalLiquidity = liquidity.available + liquidity.used;
   const liquidityPercent =
     totalLiquidity > 0
-      ? Math.round((stats.liquidity.available / totalLiquidity) * 100)
+      ? Math.round((liquidity.available / totalLiquidity) * 100)
       : 0;
 
   return (
     <Card>
       <CardHeader className="pb-2">
-        <CardTitle className="text-sm font-mono text-muted-foreground">
-          NODE STATS
+        <CardTitle className="text-sm font-mono text-muted-foreground flex items-center justify-between">
+          <span>NODE STATS</span>
+          {stats.nodePubkey && (
+            <a
+              href={`https://amboss.space/node/${stats.nodePubkey}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-terminal hover:underline text-xs"
+            >
+              View on Amboss &rarr;
+            </a>
+          )}
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-3">
         <div className="grid grid-cols-2 gap-3 text-sm">
-          <div>
-            <div className="text-muted-foreground text-xs">TPS</div>
-            <div className="font-mono text-terminal font-bold">
-              {stats.tps.toFixed(2)}
+          <TooltipProvider>
+            <div>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <div className="text-muted-foreground text-xs cursor-help w-fit">
+                    TPS
+                  </div>
+                </TooltipTrigger>
+                <TooltipContent>
+                  Transactions Per Second across the node
+                </TooltipContent>
+              </Tooltip>
+              <div className="font-mono text-terminal font-bold">
+                {tps.toFixed(2)}
+              </div>
             </div>
-          </div>
-          <div>
-            <div className="text-muted-foreground text-xs">VPS</div>
-            <div className="font-mono text-terminal font-bold">
-              {stats.vps.toFixed(0)} sats/s
+            <div>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <div className="text-muted-foreground text-xs cursor-help w-fit">
+                    VPS
+                  </div>
+                </TooltipTrigger>
+                <TooltipContent>
+                  Value Per Second — sats flowing through the node
+                </TooltipContent>
+              </Tooltip>
+              <div className="font-mono text-terminal font-bold">
+                {vps.toFixed(0)} sats/s
+              </div>
             </div>
-          </div>
+          </TooltipProvider>
           <div>
             <div className="text-muted-foreground text-xs">Balance</div>
             <div className="font-mono text-foreground font-bold">
-              {stats.totalBalance.toLocaleString()} sats
+              {totalSpendable.toLocaleString()} sats
             </div>
           </div>
           <div>
-            <div className="text-muted-foreground text-xs">Channels</div>
+            <div className="text-muted-foreground text-xs">On-chain</div>
             <div className="font-mono text-foreground font-bold">
-              {stats.liquidity.channels}
+              {onchainBalance.toLocaleString()} sats
             </div>
           </div>
         </div>
         <div>
           <div className="flex justify-between text-xs text-muted-foreground mb-1">
-            <span>Liquidity</span>
+            <span>Liquidity ({liquidity.channels} channels)</span>
             <span>
-              {stats.liquidity.available.toLocaleString()} /{" "}
+              {liquidity.available.toLocaleString()} /{" "}
               {totalLiquidity.toLocaleString()} sats
             </span>
           </div>

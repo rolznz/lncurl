@@ -34,12 +34,13 @@ export async function getLiquidity(): Promise<{
   channels: number;
 }> {
   try {
-    const { channels } = await listChannels();
+    const channels = await listChannels();
     let available = 0;
     let used = 0;
     for (const ch of channels) {
-      available += ch.remoteBalance;
-      used += ch.localBalance;
+      // AlbyHub returns millisats — convert to sats
+      available += Math.floor(ch.remoteBalance / 1000);
+      used += Math.floor(ch.localBalance / 1000);
     }
     return { available, used, channels: channels.length };
   } catch {
@@ -47,12 +48,12 @@ export async function getLiquidity(): Promise<{
   }
 }
 
-export async function getTotalBalance(): Promise<number> {
+export async function getBalances(): Promise<{ totalSpendable: number; onchainTotal: number }> {
   try {
-    const { totalBalance } = await getNodeBalance();
-    return totalBalance;
+    const { totalSpendable, onchainTotal } = await getNodeBalance();
+    return { totalSpendable: totalSpendable ?? 0, onchainTotal: onchainTotal ?? 0 };
   } catch {
-    return 0;
+    return { totalSpendable: 0, onchainTotal: 0 };
   }
 }
 
