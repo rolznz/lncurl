@@ -45,8 +45,9 @@ export function NodeStats({ stats }: NodeStatsProps) {
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-3">
+        <div />
         <div className="grid grid-cols-2 gap-3 text-sm">
-          <TooltipProvider>
+          {/* <TooltipProvider>
             <div>
               <Tooltip>
                 <TooltipTrigger asChild>
@@ -77,15 +78,19 @@ export function NodeStats({ stats }: NodeStatsProps) {
                 {vps.toFixed(0)} sats/s
               </div>
             </div>
-          </TooltipProvider>
+          </TooltipProvider> */}
           <div>
-            <div className="text-muted-foreground text-xs">Balance</div>
+            <div className="text-muted-foreground text-xs">
+              Lightning balance
+            </div>
             <div className="font-mono text-foreground font-bold">
               {totalSpendable.toLocaleString()} sats
             </div>
           </div>
-          <div>
-            <div className="text-muted-foreground text-xs">On-chain</div>
+          <div className="text-end">
+            <div className="text-muted-foreground text-xs">
+              On-chain balance
+            </div>
             <div className="font-mono text-foreground font-bold">
               {onchainBalance.toLocaleString()} sats
             </div>
