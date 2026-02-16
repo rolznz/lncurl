@@ -43,7 +43,7 @@ export async function walletRoutes(fastify: FastifyInstance) {
     }
 
     // Best-effort: rename the Hub app to match the wallet name
-    await updateAppName(newApp.id, name);
+    await updateAppName(newApp.pairingPublicKey, name);
 
     const now = Math.floor(Date.now() / 1000);
 
@@ -51,6 +51,7 @@ export async function walletRoutes(fastify: FastifyInstance) {
       data: {
         name,
         appId: newApp.id,
+        appPubkey: newApp.pairingPublicKey,
         createdAt: now,
         epitaph,
         lastKnownBalance: 0,

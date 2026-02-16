@@ -56,6 +56,7 @@ export async function createApp() {
 
   const newApp = (await newAppResponse.json()) as {
     pairingUri: string;
+    pairingPublicKey: string;
     id: number;
     name: string;
   };
@@ -82,12 +83,12 @@ export async function listApps() {
 }
 
 export async function updateAppName(
-  appId: number,
+  appPubkey: string,
   name: string,
 ): Promise<void> {
   try {
     const response = await fetch(
-      new URL(`/api/apps/${appId}`, getAlbyHubUrl()),
+      new URL(`/api/apps/${appPubkey}`, getAlbyHubUrl()),
       {
         method: "PATCH",
         headers: getHeaders(),
@@ -95,20 +96,21 @@ export async function updateAppName(
       },
     );
     if (!response.ok) {
-      console.error(
-        `Failed to update app name: ${await response.text()}`,
-      );
+      console.error(`Failed to update app name: ${await response.text()}`);
     }
   } catch (err) {
     console.error("Failed to update app name:", err);
   }
 }
 
-export async function deleteApp(appId: number): Promise<void> {
-  const response = await fetch(new URL(`/api/apps/${appId}`, getAlbyHubUrl()), {
-    method: "DELETE",
-    headers: getHeaders(),
-  });
+export async function deleteApp(appPubkey: string): Promise<void> {
+  const response = await fetch(
+    new URL(`/api/apps/${appPubkey}`, getAlbyHubUrl()),
+    {
+      method: "DELETE",
+      headers: getHeaders(),
+    },
+  );
 
   if (!response.ok) {
     throw new Error("Failed to delete app: " + (await response.text()));
@@ -134,11 +136,14 @@ export async function transferFromApp(
 }
 
 export async function getAppBalance(
-  appId: number,
+  appPubkey: string,
 ): Promise<{ balance: number }> {
-  const response = await fetch(new URL(`/api/apps/${appId}`, getAlbyHubUrl()), {
-    headers: getHeaders(),
-  });
+  const response = await fetch(
+    new URL(`/api/apps/${appPubkey}`, getAlbyHubUrl()),
+    {
+      headers: getHeaders(),
+    },
+  );
 
   if (!response.ok) {
     throw new Error("Failed to get app balance: " + (await response.text()));

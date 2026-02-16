@@ -230,7 +230,11 @@ function generateRawName(): string {
   const { adjectives, nouns } = categories[category];
   const adj = randomItem(adjectives);
   const noun = randomItem(nouns);
-  return `lncurl_${adj}_${noun}`;
+  let rawName = `lncurl_${adj}_${noun}`;
+  if (process.env.DEV === "true") {
+    rawName = "dev_" + rawName;
+  }
+  return rawName;
 }
 
 export async function generateWalletName(attempt: number): Promise<string> {

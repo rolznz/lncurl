@@ -42,7 +42,7 @@ async function runChargeLoop() {
     // Check balance first to decide if the wallet should die
     let balance: number;
     try {
-      const appInfo = await getAppBalance(wallet.appId);
+      const appInfo = await getAppBalance(wallet.appPubkey);
       balance = appInfo.balance;
     } catch (err) {
       console.error(
@@ -83,9 +83,9 @@ async function runChargeLoop() {
       await prisma.wallet.delete({ where: { name: wallet.name } });
 
       try {
-        await deleteApp(wallet.appId);
+        await deleteApp(wallet.appPubkey);
       } catch (e) {
-        console.error(`[charge-loop] Failed to delete app ${wallet.appId}:`, e);
+        console.error(`[charge-loop] Failed to delete app ${wallet.appPubkey}:`, e);
       }
 
       await emitActivity(
