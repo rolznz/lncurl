@@ -1,11 +1,11 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+// import {
+//   Tooltip,
+//   TooltipContent,
+//   TooltipProvider,
+//   TooltipTrigger,
+// } from "@/components/ui/tooltip";
 import type { Stats } from "@/lib/api";
 
 interface NodeStatsProps {
@@ -16,8 +16,8 @@ export function NodeStats({ stats }: NodeStatsProps) {
   if (!stats) return null;
 
   const liquidity = stats.liquidity ?? { available: 0, used: 0, channels: 0 };
-  const tps = stats.tps ?? 0;
-  const vps = stats.vps ?? 0;
+  //const tps = stats.tps ?? 0;
+  //const vps = stats.vps ?? 0;
   const totalSpendable = stats.totalSpendable ?? 0;
   const onchainBalance = stats.onchainBalance ?? 0;
 
