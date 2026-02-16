@@ -18,6 +18,7 @@
     "@fastify/cors": "^11.2.0",
     "@fastify/formbody": "^8.0.2",
     "@fastify/static": "^9.0.0",
+    "@getalby/sdk": "^7.0.0",
     "@prisma/adapter-better-sqlite3": "^7.4.0",
     "@prisma/client": "^7.4.0",
     "dotenv": "^17.2.3",

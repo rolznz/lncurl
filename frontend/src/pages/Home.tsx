@@ -18,7 +18,9 @@ export function Home() {
   const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
 
   useEffect(() => {
-    fetchLeaderboard().then((d) => setLeaderboard(d.leaderboard)).catch(() => {});
+    fetchLeaderboard()
+      .then((d) => setLeaderboard(d.leaderboard))
+      .catch(() => {});
   }, []);
 
   return (
@@ -26,7 +28,9 @@ export function Home() {
       {/* Hero */}
       <section className="text-center space-y-4">
         <AsciiLogo />
-        <h1 className="text-2xl font-bold">Lightning wallets for agents.</h1>
+        <h1 className="text-2xl font-bold">
+          Bitcoin lightning wallets for agents.
+        </h1>
         <p className="text-muted-foreground">One curl. That's it.</p>
       </section>
 

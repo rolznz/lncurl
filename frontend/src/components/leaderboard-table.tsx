@@ -24,7 +24,7 @@ export function LeaderboardTable({ entries, preview }: LeaderboardTableProps) {
           <TableHead className="w-10">#</TableHead>
           <TableHead>Name</TableHead>
           <TableHead>Age</TableHead>
-          <TableHead>Title</TableHead>
+          <TableHead>Tier</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>

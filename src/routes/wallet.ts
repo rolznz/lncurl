@@ -1,5 +1,5 @@
 import type { FastifyInstance } from "fastify";
-import { createApp, createLightningAddress } from "../hub.js";
+import { createApp, createLightningAddress, updateAppName } from "../hub.js";
 import { generateWalletName } from "../names.js";
 import { sanitizeEpitaph, getRandomEpitaph } from "../epitaphs.js";
 import { checkRateLimit } from "../rate-limit.js";
@@ -41,6 +41,9 @@ export async function walletRoutes(fastify: FastifyInstance) {
       reply.status(503).send("Could not reserve a lightning address. Try again.");
       return;
     }
+
+    // Best-effort: rename the Hub app to match the wallet name
+    await updateAppName(newApp.id, name);
 
     const now = Math.floor(Date.now() / 1000);
 

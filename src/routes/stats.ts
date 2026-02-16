@@ -3,6 +3,7 @@ import { prisma } from "../db.js";
 import { getTitle, formatAge } from "../titles.js";
 import { getTPS, getVPS, getLiquidity, getBalances } from "../node-stats.js";
 import { getNodeInfo } from "../hub.js";
+import { getFundBalances } from "../nwc-balances.js";
 
 export async function statsRoutes(fastify: FastifyInstance) {
   // GET /api/stats
@@ -66,13 +67,7 @@ export async function statsRoutes(fastify: FastifyInstance) {
       routing: { totalForwarded: 0, forwardsCount: 0 }, // TODO: populate when Hub API supports it
       nodeAlias,
       nodePubkey,
-      communityFundAddresses: {
-        channels: process.env.COMMUNITY_FUND_ADDRESS_CHANNELS || null,
-        hosting: process.env.COMMUNITY_FUND_ADDRESS_HOSTING || null,
-      },
-      bountyAddresses: {
-        l402: process.env.BOUNTY_ADDRESS_L402 || null,
-      },
+      ...(await getFundBalances()),
     };
   });
 

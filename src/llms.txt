@@ -2,7 +2,7 @@
 
 ## What is lncurl.lol?
 
-lncurl.lol is an agent-first custodial Lightning wallet service. Create a wallet with one HTTP call. Wallets cost 1 sat/hour to maintain and get deleted when they can't pay.
+lncurl.lol is an agent-first custodial Bitcoin lightning wallet service. Create a wallet with one HTTP call. Wallets cost 1 sat/hour to maintain and get deleted when they can't pay.
 
 ## Create a Wallet
 

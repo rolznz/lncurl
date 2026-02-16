@@ -13,6 +13,14 @@ export async function createWallet(message?: string): Promise<string> {
   return res.text();
 }
 
+export interface FundEntry {
+  key: string;
+  label: string;
+  lud16: string | null;
+  balanceSats: number;
+  targetSats: number;
+}
+
 export interface Stats {
   stats: {
     totalWalletsCreated: number;
@@ -37,8 +45,8 @@ export interface Stats {
   routing: { totalForwarded: number; forwardsCount: number };
   nodeAlias: string | null;
   nodePubkey: string | null;
-  communityFundAddresses: { channels: string | null; hosting: string | null } | null;
-  bountyAddresses: { l402: string | null } | null;
+  communityFunds: FundEntry[];
+  bounties: FundEntry[];
 }
 
 export async function fetchStats(): Promise<Stats> {

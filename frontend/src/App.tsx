@@ -3,6 +3,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { Home } from "@/pages/Home";
 import { Leaderboard } from "@/pages/Leaderboard";
 import { Graveyard } from "@/pages/Graveyard";
+import { About } from "@/pages/About";
 import { NotFound } from "@/pages/NotFound";
 
 function Nav() {
@@ -28,6 +29,12 @@ function Nav() {
           >
             Graveyard
           </Link>
+          <Link
+            to="/about"
+            className="hover:text-foreground transition-colors"
+          >
+            About
+          </Link>
         </div>
       </div>
     </nav>
@@ -39,7 +46,7 @@ function Footer() {
     <footer className="border-t border-border mt-12 py-6 text-center text-sm text-muted-foreground">
       Powered by{" "}
       <a
-        href="https://github.com/getAlby/hub"
+        href="https://getalby.com/alby-hub"
         target="_blank"
         rel="noopener noreferrer"
         className="text-terminal hover:underline"
@@ -70,6 +77,7 @@ export default function App() {
               <Route path="/" element={<Home />} />
               <Route path="/leaderboard" element={<Leaderboard />} />
               <Route path="/graveyard" element={<Graveyard />} />
+              <Route path="/about" element={<About />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>

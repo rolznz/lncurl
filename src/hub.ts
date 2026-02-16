@@ -81,6 +81,29 @@ export async function listApps() {
   };
 }
 
+export async function updateAppName(
+  appId: number,
+  name: string,
+): Promise<void> {
+  try {
+    const response = await fetch(
+      new URL(`/api/apps/${appId}`, getAlbyHubUrl()),
+      {
+        method: "PATCH",
+        headers: getHeaders(),
+        body: JSON.stringify({ name }),
+      },
+    );
+    if (!response.ok) {
+      console.error(
+        `Failed to update app name: ${await response.text()}`,
+      );
+    }
+  } catch (err) {
+    console.error("Failed to update app name:", err);
+  }
+}
+
 export async function deleteApp(appId: number): Promise<void> {
   const response = await fetch(new URL(`/api/apps/${appId}`, getAlbyHubUrl()), {
     method: "DELETE",
