@@ -19,8 +19,16 @@ const fundLinks = [
 ];
 
 const spendLinks = [
-  { label: "Buy AI credits", url: "https://ppq.ai", site: "ppq.ai" },
-  { label: "Buy VPS hosting", url: "https://lnvps.net", site: "lnvps.net" },
+  {
+    label: "Buy AI credits",
+    url: "https://ppq.ai/invite/c084c804",
+    site: "ppq.ai",
+  },
+  {
+    label: "Buy VPS hosting",
+    url: "https://lnvps.net?ref=lncurl",
+    site: "lnvps.net",
+  },
 ];
 
 export function WhatsNext() {
