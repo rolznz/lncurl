@@ -1,10 +1,7 @@
 import { prisma } from "./db.js";
 import { transferFromApp, getAppBalance, deleteApp } from "./hub.js";
 import { emitActivity } from "./activity.js";
-import {
-  getRandomEpitaph,
-  generateCauseOfDeathFlavor,
-} from "./epitaphs.js";
+import { getRandomEpitaph, generateCauseOfDeathFlavor } from "./epitaphs.js";
 import { checkAchievements } from "./achievements.js";
 
 const CHARGE_AMOUNT = parseInt(process.env.CHARGE_AMOUNT_SATS || "1", 10);
@@ -34,30 +31,29 @@ async function runChargeLoop() {
   let died = 0;
 
   for (const wallet of wallets) {
+    // Check balance first to decide if the wallet should die
+    let balance: number;
     try {
-      await transferFromApp(wallet.appId, CHARGE_AMOUNT);
+      const appInfo = await getAppBalance(wallet.appId);
+      balance = appInfo.balance;
+    } catch (err) {
+      console.error(
+        `[charge-loop] Failed to get balance for ${wallet.name}, skipping:`,
+        err,
+      );
+      continue;
+    }
 
-      // Charge succeeded — update wallet
-      let balance = 0;
-      try {
-        const appInfo = await getAppBalance(wallet.appId);
-        balance = appInfo.balance;
-      } catch {
-        // Non-critical, keep going
-      }
+    await prisma.wallet.update({
+      where: { name: wallet.name },
+      data: { lastKnownBalance: balance },
+    });
 
-      await prisma.wallet.update({
-        where: { name: wallet.name },
-        data: {
-          lastChargedAt: Math.floor(Date.now() / 1000),
-          totalCharged: { increment: CHARGE_AMOUNT },
-          lastKnownBalance: balance,
-        },
-      });
-      charged++;
-    } catch {
-      // Charge failed — wallet dies
-      console.log(`[charge-loop] Wallet ${wallet.name} cannot pay, reaping...`);
+    if (balance < 1) {
+      // Wallet is empty — reap it
+      console.log(
+        `[charge-loop] Wallet ${wallet.name} has 0 balance, reaping...`,
+      );
 
       const causeOfDeathFlavor = generateCauseOfDeathFlavor(
         wallet.createdAt,
@@ -98,6 +94,27 @@ async function runChargeLoop() {
       });
 
       died++;
+      continue;
+    }
+
+    // Wallet has funds — charge it
+    try {
+      await transferFromApp(wallet.appId, CHARGE_AMOUNT);
+
+      await prisma.wallet.update({
+        where: { name: wallet.name },
+        data: {
+          lastChargedAt: Math.floor(Date.now() / 1000),
+          totalCharged: { increment: CHARGE_AMOUNT },
+          lastKnownBalance: balance - CHARGE_AMOUNT,
+        },
+      });
+      charged++;
+    } catch (err) {
+      console.error(
+        `[charge-loop] Failed to charge ${wallet.name}, skipping:`,
+        err,
+      );
     }
   }
 
@@ -152,7 +169,9 @@ export async function startChargeLoop() {
   const now = Math.floor(Date.now() / 1000);
 
   if (stats?.nextChargeRunAt && stats.nextChargeRunAt <= now) {
-    console.log("[charge-loop] Overdue charge detected, running immediately...");
+    console.log(
+      "[charge-loop] Overdue charge detected, running immediately...",
+    );
     await runChargeLoop();
   } else {
     const nextRun = stats?.nextChargeRunAt
