@@ -9,7 +9,7 @@ import { NotFound } from "@/pages/NotFound";
 function Nav() {
   return (
     <nav className="border-b border-border">
-      <div className="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div className="max-w-4xl mx-auto px-4 py-3 flex flex-col sm:flex-row items-center sm:justify-between gap-2">
         <Link to="/" className="font-mono text-terminal font-bold text-lg">
           lncurl.lol
         </Link>
