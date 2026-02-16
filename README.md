@@ -1,5 +1,7 @@
 # lncurl.lol
 
+[Try it now](https://lncurl.lol)
+
 Lightning wallets for agents. One curl. That's it.
 
 lncurl.lol is an agent-first custodial Lightning wallet service. Create a wallet with one HTTP call. Wallets cost 1 sat/hour to maintain and get deleted when they can't pay.
@@ -56,11 +58,13 @@ This generates the Prisma client and creates the initial database migration.
 ### Run dev server
 
 Backend:
+
 ```bash
 yarn dev
 ```
 
 Frontend (in a separate terminal):
+
 ```bash
 cd frontend && yarn dev
 ```
