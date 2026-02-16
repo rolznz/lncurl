@@ -1,13 +1,19 @@
+# fly.toml app configuration file generated for lncurl on 2026-02-16T17:50:53+07:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
 app = 'lncurl'
 primary_region = 'fra'
 
 [build]
 
 [env]
-  # TEMPORARY BASE URL:
-  BASE_URL = "https://lncurl.fly.dev"
-  #BASE_URL = "https://lncurl.lol"
-  DATABASE_URL = "file:/data/lncurl.db"
+  DATABASE_URL = 'file:/data/lncurl.db'
+
+[[mounts]]
+  source = 'lncurl_data'
+  destination = '/data'
 
 [http_service]
   internal_port = 3000
@@ -17,10 +23,7 @@ primary_region = 'fra'
   min_machines_running = 1
   processes = ['app']
 
-[mounts]
-  source = "lncurl_data"
-  destination = "/data"
-
 [[vm]]
   memory = '512mb'
   cpus = 1
+  memory_mb = 512
