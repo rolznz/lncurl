@@ -9,6 +9,7 @@ const CHARGE_INTERVAL_MS = parseInt(
   process.env.CHARGE_INTERVAL_MS || "3600000",
   10,
 );
+const GRACE_PERIOD_SECS = 3600; // 1 hour grace period for new wallets
 
 let chargeTimer: ReturnType<typeof setTimeout> | null = null;
 
@@ -31,6 +32,13 @@ async function runChargeLoop() {
   let died = 0;
 
   for (const wallet of wallets) {
+    // Skip wallets still in their grace period
+    const ageSeconds = Math.floor(Date.now() / 1000) - wallet.createdAt;
+    if (ageSeconds < GRACE_PERIOD_SECS) {
+      console.log(`[charge-loop] Wallet ${wallet.name} is ${ageSeconds}s old, still in grace period, skipping`);
+      continue;
+    }
+
     // Check balance first to decide if the wallet should die
     let balance: number;
     try {

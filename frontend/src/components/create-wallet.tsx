@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { createWallet } from "@/lib/api";
 import { WalletQR } from "./wallet-qr";
 import { WhatsNext } from "./whats-next";
-import { Copy, Check, Dices } from "lucide-react";
+import { Copy, Check, Dices, Clock } from "lucide-react";
 
 const randomEpitaphs = [
   "Lived fast, died broke",
@@ -175,6 +175,16 @@ export function CreateWallet() {
 
           <WalletQR uri={result} />
           <WhatsNext />
+          <Card className="border-yellow-500/40 bg-yellow-500/10">
+            <CardContent className="p-4 text-sm text-yellow-400 flex items-start gap-2">
+              <Clock className="h-4 w-4 mt-0.5 shrink-0" />
+              <span>
+                You have <strong>1 hour</strong> to top up your wallet before
+                the first charge. After that, 1 sat is deducted every hour — if
+                your balance hits 0, the wallet dies.
+              </span>
+            </CardContent>
+          </Card>
         </div>
       )}
     </div>
