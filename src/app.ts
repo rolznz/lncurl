@@ -13,6 +13,7 @@ import { statsRoutes } from "./routes/stats.js";
 import { graveyardRoutes } from "./routes/graveyard.js";
 import { startChargeLoop } from "./charge-loop.js";
 import { initNodeStats } from "./node-stats.js";
+import { startFundBalanceLoop } from "./nwc-balances.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -74,6 +75,7 @@ if (fs.existsSync(frontendDist)) {
 const start = async () => {
   try {
     initNodeStats();
+    startFundBalanceLoop();
     await startChargeLoop();
 
     await fastify.listen({

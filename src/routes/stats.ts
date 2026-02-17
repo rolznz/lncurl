@@ -67,7 +67,7 @@ export async function statsRoutes(fastify: FastifyInstance) {
       routing: { totalForwarded: 0, forwardsCount: 0 }, // TODO: populate when Hub API supports it
       nodeAlias,
       nodePubkey,
-      ...(await getFundBalances()),
+      ...getFundBalances(),
     };
   });
 

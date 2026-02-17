@@ -92,11 +92,9 @@ function loadFundConfigs(): {
   return { communityFunds, bounties };
 }
 
-// --- Cached balance fetch ---
+// --- Background balance polling ---
 
 let cache: { communityFunds: FundEntry[]; bounties: FundEntry[] } | null = null;
-let cacheTime = 0;
-const CACHE_TTL_MS = 60_000;
 
 async function fetchBalance(nwcUrl: string): Promise<number> {
   const client = new NWCClient({ nostrWalletConnectUrl: nwcUrl });
@@ -109,45 +107,67 @@ async function fetchBalance(nwcUrl: string): Promise<number> {
   }
 }
 
-async function resolveEntry(config: FundConfig): Promise<FundEntry> {
-  let balanceSats = 0;
-  let lud16: string | null = null;
-
-  if (config.nwcUrl) {
-    lud16 = parseLud16(config.nwcUrl);
-    try {
-      balanceSats = await fetchBalance(config.nwcUrl);
-    } catch (err) {
-      console.error(`Failed to fetch balance for ${config.key}:`, err);
-    }
-  }
-
+function toEntry(config: FundConfig, balanceSats: number): FundEntry {
   return {
     key: config.key,
     label: config.label,
-    lud16,
+    lud16: config.nwcUrl ? parseLud16(config.nwcUrl) : null,
     balanceSats,
     targetSats: config.targetSats,
   };
 }
 
-export async function getFundBalances(): Promise<{
-  communityFunds: FundEntry[];
-  bounties: FundEntry[];
-}> {
-  const now = Date.now();
-  if (cache && now - cacheTime < CACHE_TTL_MS) {
-    return cache;
+function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+// Map of fund key -> last known balance
+const lastKnownBalances = new Map<string, number>();
+
+async function refreshBalances(): Promise<void> {
+  const { communityFunds, bounties } = loadFundConfigs();
+  const allConfigs = [...communityFunds, ...bounties];
+
+  for (const config of allConfigs) {
+    if (!config.nwcUrl) continue;
+    try {
+      const sats = await fetchBalance(config.nwcUrl);
+      lastKnownBalances.set(config.key, sats);
+    } catch (err) {
+      console.error(`Failed to fetch balance for ${config.key}:`, err);
+      // keep last known value (or 0 if never fetched)
+    }
   }
 
+  cache = {
+    communityFunds: communityFunds.map((c) =>
+      toEntry(c, lastKnownBalances.get(c.key) ?? 0),
+    ),
+    bounties: bounties.map((c) =>
+      toEntry(c, lastKnownBalances.get(c.key) ?? 0),
+    ),
+  };
+}
+
+export function startFundBalanceLoop(): void {
+  (async () => {
+    while (true) {
+      await refreshBalances();
+      await sleep(60_000);
+    }
+  })();
+}
+
+export function getFundBalances(): {
+  communityFunds: FundEntry[];
+  bounties: FundEntry[];
+} {
+  if (cache) return cache;
+
+  // Return defaults with 0 balances if loop hasn't completed yet
   const { communityFunds, bounties } = loadFundConfigs();
-
-  const [resolvedFunds, resolvedBounties] = await Promise.all([
-    Promise.all(communityFunds.map(resolveEntry)),
-    Promise.all(bounties.map(resolveEntry)),
-  ]);
-
-  cache = { communityFunds: resolvedFunds, bounties: resolvedBounties };
-  cacheTime = now;
-  return cache;
+  return {
+    communityFunds: communityFunds.map((c) => toEntry(c, 0)),
+    bounties: bounties.map((c) => toEntry(c, 0)),
+  };
 }
