@@ -33,8 +33,8 @@ export async function walletRoutes(fastify: FastifyInstance) {
         await createLightningAddress(newApp.id, candidate);
         name = candidate;
         break;
-      } catch {
-        // Name likely taken on getalby.com, try another
+      } catch (err) {
+        console.error(`[wallet] Failed to reserve lightning address "${candidate}" (attempt ${attempt + 1}):`, err);
       }
     }
     if (!name) {

@@ -12,6 +12,7 @@ const CHARGE_INTERVAL_MS = parseInt(
 const GRACE_PERIOD_SECS = 3600; // 1 hour grace period for new wallets
 
 let chargeTimer: ReturnType<typeof setTimeout> | null = null;
+let isRunning = false;
 
 function getNextAlignedTime(): number {
   if (CHARGE_INTERVAL_MS < 60000) {
@@ -26,6 +27,21 @@ function getNextAlignedTime(): number {
 }
 
 async function runChargeLoop() {
+  if (isRunning) {
+    console.warn("[charge-loop] Already running, skipping overlapping run");
+    return;
+  }
+  isRunning = true;
+  try {
+    await doChargeLoop();
+  } catch (err) {
+    console.error("[charge-loop] Charge run failed:", err);
+  } finally {
+    isRunning = false;
+  }
+}
+
+async function doChargeLoop() {
   console.log("[charge-loop] Starting charge run...");
   const wallets = await prisma.wallet.findMany();
   let charged = 0;

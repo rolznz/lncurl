@@ -2,6 +2,7 @@ import { activityEmitter, type ActivityEvent } from "./activity.js";
 import { listChannels, getNodeBalance } from "./hub.js";
 
 const WINDOW_MS = 60_000; // 60-second rolling window
+const STATS_CACHE_TTL_MS = 30_000; // 30-second cache for Hub API calls
 
 interface TimestampedEvent {
   time: number;
@@ -28,11 +29,19 @@ export function getVPS(): number {
   return totalSats / (WINDOW_MS / 1000);
 }
 
+type Cached<T> = { value: T; timestamp: number };
+
+let liquidityCache: Cached<{ available: number; used: number; channels: number }> | null = null;
+let balancesCache: Cached<{ totalSpendable: number; onchainTotal: number }> | null = null;
+
 export async function getLiquidity(): Promise<{
   available: number;
   used: number;
   channels: number;
 }> {
+  if (liquidityCache && Date.now() - liquidityCache.timestamp < STATS_CACHE_TTL_MS) {
+    return liquidityCache.value;
+  }
   try {
     const channels = await listChannels();
     let available = 0;
@@ -42,18 +51,27 @@ export async function getLiquidity(): Promise<{
       available += Math.floor(ch.remoteBalance / 1000);
       used += Math.floor(ch.localBalance / 1000);
     }
-    return { available, used, channels: channels.length };
-  } catch {
-    return { available: 0, used: 0, channels: 0 };
+    const value = { available, used, channels: channels.length };
+    liquidityCache = { value, timestamp: Date.now() };
+    return value;
+  } catch (err) {
+    console.error("[node-stats] Failed to fetch liquidity:", err);
+    return liquidityCache?.value ?? { available: 0, used: 0, channels: 0 };
   }
 }
 
 export async function getBalances(): Promise<{ totalSpendable: number; onchainTotal: number }> {
+  if (balancesCache && Date.now() - balancesCache.timestamp < STATS_CACHE_TTL_MS) {
+    return balancesCache.value;
+  }
   try {
     const { totalSpendable, onchainTotal } = await getNodeBalance();
-    return { totalSpendable: totalSpendable ?? 0, onchainTotal: onchainTotal ?? 0 };
-  } catch {
-    return { totalSpendable: 0, onchainTotal: 0 };
+    const value = { totalSpendable: totalSpendable ?? 0, onchainTotal: onchainTotal ?? 0 };
+    balancesCache = { value, timestamp: Date.now() };
+    return value;
+  } catch (err) {
+    console.error("[node-stats] Failed to fetch balances:", err);
+    return balancesCache?.value ?? { totalSpendable: 0, onchainTotal: 0 };
   }
 }
 

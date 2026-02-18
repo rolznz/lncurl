@@ -5,6 +5,9 @@ import { getTPS, getVPS, getLiquidity, getBalances } from "../node-stats.js";
 import { getNodeInfo } from "../hub.js";
 import { getFundBalances } from "../nwc-balances.js";
 
+let nodeAlias: string | null = null;
+let nodePubkey: string | null = null;
+
 export async function statsRoutes(fastify: FastifyInstance) {
   // GET /api/stats
   fastify.get("/api/stats", async () => {
@@ -29,14 +32,14 @@ export async function statsRoutes(fastify: FastifyInstance) {
     const liquidity = await getLiquidity();
     const { totalSpendable, onchainTotal } = await getBalances();
 
-    let nodeAlias: string | null = null;
-    let nodePubkey: string | null = null;
-    try {
-      const nodeInfo = await getNodeInfo();
-      nodeAlias = nodeInfo.alias;
-      nodePubkey = nodeInfo.pubkey;
-    } catch {
-      // Hub API unavailable
+    if (!nodeAlias || !nodePubkey) {
+      try {
+        const nodeInfo = await getNodeInfo();
+        nodeAlias = nodeInfo.alias;
+        nodePubkey = nodeInfo.pubkey;
+      } catch (err) {
+        console.error("[stats] Failed to fetch node info:", err);
+      }
     }
 
     return {

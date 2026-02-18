@@ -24,7 +24,8 @@ function parseLud16(nwcUrl: string): string | null {
       nwcUrl.replace("nostr+walletconnect://", "https://placeholder/"),
     );
     return url.searchParams.get("lud16") || null;
-  } catch {
+  } catch (err) {
+    console.error("[nwc-balances] Failed to parse lud16 from NWC URL:", err);
     return null;
   }
 }
@@ -99,9 +100,17 @@ let cache: { communityFunds: FundEntry[]; bounties: FundEntry[] } | null = null;
 async function fetchBalance(nwcUrl: string): Promise<number> {
   const client = new NWCClient({ nostrWalletConnectUrl: nwcUrl });
   try {
-    const { balance } = await client.getBalance();
+    const { balance } = await Promise.race([
+      client.getBalance(),
+      new Promise<never>((_, reject) =>
+        setTimeout(() => reject(new Error("NWC timeout")), 15_000),
+      ),
+    ]);
     // NWC returns balance in msats
     return Math.floor(balance / 1000);
+  } catch (err) {
+    console.error("[nwc-balances] Failed to fetch balance:", err);
+    throw err;
   } finally {
     client.close();
   }

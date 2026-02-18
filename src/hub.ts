@@ -4,6 +4,18 @@ function removeTrailingSlash(url: string): string {
   return url.replace(/\/$/, "");
 }
 
+function fetchWithTimeout(
+  url: URL | string,
+  opts: RequestInit,
+  timeoutMs = 10_000,
+): Promise<Response> {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  return fetch(url, { ...opts, signal: controller.signal }).finally(() =>
+    clearTimeout(timer),
+  );
+}
+
 function getHeaders() {
   return {
     Authorization: `Bearer ${process.env.AUTH_TOKEN}`,
@@ -25,7 +37,7 @@ function getAlbyHubUrl() {
 // --- Wallet operations ---
 
 export async function createApp() {
-  const newAppResponse = await fetch(new URL("/api/apps", getAlbyHubUrl()), {
+  const newAppResponse = await fetchWithTimeout(new URL("/api/apps", getAlbyHubUrl()), {
     method: "POST",
     body: JSON.stringify({
       name: APP_NAME_PREFIX + "-" + Math.floor(Date.now() / 1000),
@@ -69,7 +81,7 @@ export async function createApp() {
 }
 
 export async function listApps() {
-  const response = await fetch(new URL("/api/apps", getAlbyHubUrl()), {
+  const response = await fetchWithTimeout(new URL("/api/apps", getAlbyHubUrl()), {
     headers: getHeaders(),
   });
 
@@ -87,7 +99,7 @@ export async function updateAppName(
   name: string,
 ): Promise<void> {
   try {
-    const response = await fetch(
+    const response = await fetchWithTimeout(
       new URL(`/api/apps/${appPubkey}`, getAlbyHubUrl()),
       {
         method: "PATCH",
@@ -104,7 +116,7 @@ export async function updateAppName(
 }
 
 export async function deleteApp(appPubkey: string): Promise<void> {
-  const response = await fetch(
+  const response = await fetchWithTimeout(
     new URL(`/api/apps/${appPubkey}`, getAlbyHubUrl()),
     {
       method: "DELETE",
@@ -121,7 +133,7 @@ export async function transferFromApp(
   appId: number,
   amountSat: number,
 ): Promise<void> {
-  const response = await fetch(new URL("/api/transfers", getAlbyHubUrl()), {
+  const response = await fetchWithTimeout(new URL("/api/transfers", getAlbyHubUrl()), {
     method: "POST",
     headers: getHeaders(),
     body: JSON.stringify({
@@ -138,7 +150,7 @@ export async function transferFromApp(
 export async function getAppBalance(
   appPubkey: string,
 ): Promise<{ balance: number }> {
-  const response = await fetch(
+  const response = await fetchWithTimeout(
     new URL(`/api/apps/${appPubkey}`, getAlbyHubUrl()),
     {
       headers: getHeaders(),
@@ -157,7 +169,7 @@ export async function createLightningAddress(
   appId: number,
   address: string,
 ): Promise<void> {
-  const response = await fetch(
+  const response = await fetchWithTimeout(
     new URL("/api/lightning-addresses", getAlbyHubUrl()),
     {
       method: "POST",
@@ -179,7 +191,7 @@ export async function createLightningAddress(
 // --- Node operations ---
 
 export async function listChannels() {
-  const response = await fetch(new URL("/api/channels", getAlbyHubUrl()), {
+  const response = await fetchWithTimeout(new URL("/api/channels", getAlbyHubUrl()), {
     headers: getHeaders(),
   });
 
@@ -198,11 +210,11 @@ export async function listChannels() {
 
 export async function getNodeInfo() {
   const [infoRes, connRes, channelsRes] = await Promise.all([
-    fetch(new URL("/api/info", getAlbyHubUrl()), { headers: getHeaders() }),
-    fetch(new URL("/api/node/connection-info", getAlbyHubUrl()), {
+    fetchWithTimeout(new URL("/api/info", getAlbyHubUrl()), { headers: getHeaders() }),
+    fetchWithTimeout(new URL("/api/node/connection-info", getAlbyHubUrl()), {
       headers: getHeaders(),
     }),
-    fetch(new URL("/api/channels", getAlbyHubUrl()), {
+    fetchWithTimeout(new URL("/api/channels", getAlbyHubUrl()), {
       headers: getHeaders(),
     }),
   ]);
@@ -229,7 +241,7 @@ export async function getNodeInfo() {
 }
 
 export async function getNodeBalance() {
-  const response = await fetch(new URL("/api/balances", getAlbyHubUrl()), {
+  const response = await fetchWithTimeout(new URL("/api/balances", getAlbyHubUrl()), {
     headers: getHeaders(),
   });
 
