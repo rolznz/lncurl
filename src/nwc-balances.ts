@@ -1,4 +1,4 @@
-import { NWCClient } from "@getalby/sdk/nwc";
+import { getAppById } from "./hub.js";
 
 export interface FundEntry {
   key: string;
@@ -11,23 +11,8 @@ export interface FundEntry {
 interface FundConfig {
   key: string;
   label: string;
-  nwcUrl: string | null;
+  appId: number | null;
   targetSats: number;
-}
-
-// --- Parse lud16 from NWC URL ---
-
-function parseLud16(nwcUrl: string): string | null {
-  try {
-    // NWC URLs use nostr+walletconnect:// scheme; lud16 is appended as a query param
-    const url = new URL(
-      nwcUrl.replace("nostr+walletconnect://", "https://placeholder/"),
-    );
-    return url.searchParams.get("lud16") || null;
-  } catch (err) {
-    console.error("[nwc-balances] Failed to parse lud16 from NWC URL:", err);
-    return null;
-  }
 }
 
 // --- Build config arrays from env vars ---
@@ -36,11 +21,17 @@ function loadFundConfigs(): {
   communityFunds: FundConfig[];
   bounties: FundConfig[];
 } {
+  const parseAppId = (val: string | undefined): number | null => {
+    if (!val) return null;
+    const n = parseInt(val, 10);
+    return isNaN(n) ? null : n;
+  };
+
   const communityFunds: FundConfig[] = [
     {
       key: "channels",
       label: "Channel Fund",
-      nwcUrl: process.env.NWC_FUND_CHANNELS || null,
+      appId: parseAppId(process.env.APP_ID_FUND_CHANNELS),
       targetSats: parseInt(
         process.env.CHANNEL_FUNDING_TARGET_SATS || "500000",
         10,
@@ -49,7 +40,7 @@ function loadFundConfigs(): {
     {
       key: "hosting",
       label: "Hosting Costs",
-      nwcUrl: process.env.NWC_FUND_HOSTING || null,
+      appId: parseAppId(process.env.APP_ID_FUND_HOSTING),
       targetSats: parseInt(
         process.env.MONTHLY_COSTS_TARGET_SATS || "120000",
         10,
@@ -61,31 +52,31 @@ function loadFundConfigs(): {
     {
       key: "l402",
       label: "L402 Rate Bypass",
-      nwcUrl: process.env.NWC_BOUNTY_L402 || null,
+      appId: parseAppId(process.env.APP_ID_BOUNTY_L402),
       targetSats: 210_000,
     },
     {
       key: "topup_lendasat",
       label: "Direct Topup - Lendasat",
-      nwcUrl: process.env.NWC_BOUNTY_TOPUP_LENDASAT || null,
+      appId: parseAppId(process.env.APP_ID_BOUNTY_TOPUP_LENDASAT),
       targetSats: 250_000,
     },
     {
       key: "topup_fixedfloat",
       label: "Direct Topup - Fixed Float",
-      nwcUrl: process.env.NWC_BOUNTY_TOPUP_FIXEDFLOAT || null,
+      appId: parseAppId(process.env.APP_ID_BOUNTY_TOPUP_FIXEDFLOAT),
       targetSats: 250_000,
     },
     {
       key: "routing_rewards",
       label: "Routing Earnings Rewards",
-      nwcUrl: process.env.NWC_BOUNTY_ROUTING_REWARDS || null,
+      appId: parseAppId(process.env.APP_ID_BOUNTY_ROUTING_REWARDS),
       targetSats: 500_000,
     },
     {
       key: "nwc_app_store",
       label: "NWC App Store",
-      nwcUrl: process.env.NWC_BOUNTY_NWC_APP_STORE || null,
+      appId: parseAppId(process.env.APP_ID_BOUNTY_NWC_APP_STORE),
       targetSats: 210_000,
     },
   ];
@@ -97,31 +88,15 @@ function loadFundConfigs(): {
 
 let cache: { communityFunds: FundEntry[]; bounties: FundEntry[] } | null = null;
 
-async function fetchBalance(nwcUrl: string): Promise<number> {
-  const client = new NWCClient({ nostrWalletConnectUrl: nwcUrl });
-  try {
-    const { balance } = await Promise.race([
-      client.getBalance(),
-      new Promise<never>((_, reject) =>
-        setTimeout(() => reject(new Error("NWC timeout")), 15_000),
-      ),
-    ]);
-    // NWC returns balance in msats
-    return Math.floor(balance / 1000);
-  } catch (err) {
-    console.error("[nwc-balances] Failed to fetch balance:", err);
-    throw err;
-  } finally {
-    client.close();
-  }
-}
-
-function toEntry(config: FundConfig, balanceSats: number): FundEntry {
+function toEntry(
+  config: FundConfig,
+  data: { balanceSats: number; lud16: string | null },
+): FundEntry {
   return {
     key: config.key,
     label: config.label,
-    lud16: config.nwcUrl ? parseLud16(config.nwcUrl) : null,
-    balanceSats,
+    lud16: data.lud16,
+    balanceSats: data.balanceSats,
     targetSats: config.targetSats,
   };
 }
@@ -130,30 +105,31 @@ function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-// Map of fund key -> last known balance
-const lastKnownBalances = new Map<string, number>();
+// Map of fund key -> last known data
+const lastKnownData = new Map<string, { balanceSats: number; lud16: string | null }>();
 
 async function refreshBalances(): Promise<void> {
   const { communityFunds, bounties } = loadFundConfigs();
   const allConfigs = [...communityFunds, ...bounties];
 
   for (const config of allConfigs) {
-    if (!config.nwcUrl) continue;
+    if (config.appId === null) continue;
     try {
-      const sats = await fetchBalance(config.nwcUrl);
-      lastKnownBalances.set(config.key, sats);
+      const data = await getAppById(config.appId);
+      lastKnownData.set(config.key, data);
     } catch (err) {
-      console.error(`Failed to fetch balance for ${config.key}:`, err);
-      // keep last known value (or 0 if never fetched)
+      console.error(`[nwc-balances] Failed to fetch balance for ${config.key}:`, err);
+      // keep last known value (or default if never fetched)
     }
   }
 
+  const defaultData = { balanceSats: 0, lud16: null };
   cache = {
     communityFunds: communityFunds.map((c) =>
-      toEntry(c, lastKnownBalances.get(c.key) ?? 0),
+      toEntry(c, lastKnownData.get(c.key) ?? defaultData),
     ),
     bounties: bounties.map((c) =>
-      toEntry(c, lastKnownBalances.get(c.key) ?? 0),
+      toEntry(c, lastKnownData.get(c.key) ?? defaultData),
     ),
   };
 }
@@ -175,8 +151,9 @@ export function getFundBalances(): {
 
   // Return defaults with 0 balances if loop hasn't completed yet
   const { communityFunds, bounties } = loadFundConfigs();
+  const defaultData = { balanceSats: 0, lud16: null };
   return {
-    communityFunds: communityFunds.map((c) => toEntry(c, 0)),
-    bounties: bounties.map((c) => toEntry(c, 0)),
+    communityFunds: communityFunds.map((c) => toEntry(c, defaultData)),
+    bounties: bounties.map((c) => toEntry(c, defaultData)),
   };
 }

@@ -165,6 +165,26 @@ export async function getAppBalance(
   return app;
 }
 
+export async function getAppById(
+  appId: number,
+): Promise<{ balanceSats: number; lud16: string | null }> {
+  const response = await fetchWithTimeout(
+    new URL(`/api/v2/apps/${appId}`, getAlbyHubUrl()),
+    { headers: getHeaders() },
+  );
+  if (!response.ok) {
+    throw new Error("Failed to get app by id: " + (await response.text()));
+  }
+  const app = (await response.json()) as {
+    balance: number;
+    metadata?: { lud16?: string };
+  };
+  return {
+    balanceSats: Math.floor(app.balance / 1000),
+    lud16: app.metadata?.lud16 ?? null,
+  };
+}
+
 export async function createLightningAddress(
   appId: number,
   address: string,
