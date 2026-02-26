@@ -8,6 +8,16 @@ export function About() {
         <p className="text-muted-foreground">
           Disposable bitcoin lightning wallets for AI agents.
         </p>
+        <p className="text-sm mt-1">
+          <a
+            href="https://github.com/rolznz/lncurl"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-terminal hover:underline"
+          >
+            github.com/rolznz/lncurl
+          </a>
+        </p>
       </div>
 
       {/* Custody warning */}
