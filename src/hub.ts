@@ -37,30 +37,33 @@ function getAlbyHubUrl() {
 // --- Wallet operations ---
 
 export async function createApp() {
-  const newAppResponse = await fetchWithTimeout(new URL("/api/apps", getAlbyHubUrl()), {
-    method: "POST",
-    body: JSON.stringify({
-      name: APP_NAME_PREFIX + "-" + Math.floor(Date.now() / 1000),
-      pubkey: "",
-      budgetRenewal: "monthly",
-      maxAmount: 0,
-      scopes: [
-        "get_info",
-        "pay_invoice",
-        "get_balance",
-        "make_invoice",
-        "lookup_invoice",
-        "list_transactions",
-        "notifications",
-      ],
-      returnTo: "",
-      isolated: true,
-      metadata: {
-        app_store_app_id: "uncle-jim",
-      },
-    }),
-    headers: getHeaders(),
-  });
+  const newAppResponse = await fetchWithTimeout(
+    new URL("/api/apps", getAlbyHubUrl()),
+    {
+      method: "POST",
+      body: JSON.stringify({
+        name: APP_NAME_PREFIX + "-" + Math.floor(Date.now() / 1000),
+        pubkey: "",
+        budgetRenewal: "monthly",
+        maxAmount: 0,
+        scopes: [
+          "get_info",
+          "pay_invoice",
+          "get_balance",
+          "make_invoice",
+          "lookup_invoice",
+          "list_transactions",
+          "notifications",
+        ],
+        returnTo: "",
+        isolated: true,
+        metadata: {
+          app_store_app_id: "uncle-jim",
+        },
+      }),
+      headers: getHeaders(),
+    },
+  );
 
   if (!newAppResponse.ok) {
     throw new Error("Failed to create app: " + (await newAppResponse.text()));
@@ -81,9 +84,12 @@ export async function createApp() {
 }
 
 export async function listApps() {
-  const response = await fetchWithTimeout(new URL("/api/apps", getAlbyHubUrl()), {
-    headers: getHeaders(),
-  });
+  const response = await fetchWithTimeout(
+    new URL("/api/apps", getAlbyHubUrl()),
+    {
+      headers: getHeaders(),
+    },
+  );
 
   if (!response.ok) {
     throw new Error("Failed to list apps: " + (await response.text()));
@@ -133,14 +139,18 @@ export async function transferFromApp(
   appId: number,
   amountSat: number,
 ): Promise<void> {
-  const response = await fetchWithTimeout(new URL("/api/transfers", getAlbyHubUrl()), {
-    method: "POST",
-    headers: getHeaders(),
-    body: JSON.stringify({
-      fromAppId: appId,
-      amountSat,
-    }),
-  });
+  const response = await fetchWithTimeout(
+    new URL("/api/transfers", getAlbyHubUrl()),
+    {
+      method: "POST",
+      headers: getHeaders(),
+      body: JSON.stringify({
+        fromAppId: appId,
+        amountSat,
+        description: "LNCurl hosting fee",
+      }),
+    },
+  );
 
   if (!response.ok) {
     throw new Error("Failed to transfer from app: " + (await response.text()));
@@ -211,9 +221,12 @@ export async function createLightningAddress(
 // --- Node operations ---
 
 export async function listChannels() {
-  const response = await fetchWithTimeout(new URL("/api/channels", getAlbyHubUrl()), {
-    headers: getHeaders(),
-  });
+  const response = await fetchWithTimeout(
+    new URL("/api/channels", getAlbyHubUrl()),
+    {
+      headers: getHeaders(),
+    },
+  );
 
   if (!response.ok) {
     throw new Error("Failed to list channels: " + (await response.text()));
@@ -230,7 +243,9 @@ export async function listChannels() {
 
 export async function getNodeInfo() {
   const [infoRes, connRes, channelsRes] = await Promise.all([
-    fetchWithTimeout(new URL("/api/info", getAlbyHubUrl()), { headers: getHeaders() }),
+    fetchWithTimeout(new URL("/api/info", getAlbyHubUrl()), {
+      headers: getHeaders(),
+    }),
     fetchWithTimeout(new URL("/api/node/connection-info", getAlbyHubUrl()), {
       headers: getHeaders(),
     }),
@@ -261,9 +276,12 @@ export async function getNodeInfo() {
 }
 
 export async function getNodeBalance() {
-  const response = await fetchWithTimeout(new URL("/api/balances", getAlbyHubUrl()), {
-    headers: getHeaders(),
-  });
+  const response = await fetchWithTimeout(
+    new URL("/api/balances", getAlbyHubUrl()),
+    {
+      headers: getHeaders(),
+    },
+  );
 
   if (!response.ok) {
     throw new Error("Failed to get node balance: " + (await response.text()));
