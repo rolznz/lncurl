@@ -59,7 +59,7 @@ async function doChargeLoop() {
     let balance: number;
     try {
       const appInfo = await getAppBalance(wallet.appPubkey);
-      balance = appInfo.balance;
+      balance = Math.floor(appInfo.balance / 1000); // convert msat → sat
     } catch (err) {
       console.error(
         `[charge-loop] Failed to get balance for ${wallet.name}, skipping:`,
@@ -73,7 +73,7 @@ async function doChargeLoop() {
       data: { lastKnownBalance: balance },
     });
 
-    if (balance < 1) {
+    if (balance < CHARGE_AMOUNT) {
       // Wallet is empty — reap it
       console.log(
         `[charge-loop] Wallet ${wallet.name} has 0 balance, reaping...`,
