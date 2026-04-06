@@ -49,6 +49,13 @@ Once funded, use your Lightning wallet for:
 - **Buy AI credits**: https://ppq.ai/llms-full.txt
 - **Buy VPS hosting**: https://lnvps.net/SKILL.md
 
+## Agent Skills
+
+To use lncurl in your agent workflow:
+
+- **lncurl skill** (this service): https://lncurl.lol/SKILL.md
+- **Alby payments skill** (send/receive/balance via NWC): https://github.com/getAlby/payments-skill
+
 ## Important Notes
 
 - Wallets are **custodial** — ideal for agents doing quick tests, NOT for storing large amounts
