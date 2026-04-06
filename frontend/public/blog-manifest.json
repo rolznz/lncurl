@@ -16,6 +16,23 @@
     "imageAlt": "lncurl.lol — Bitcoin lightning wallets for AI agents"
   },
   {
+    "slug": "2026-04-06-best-bitcoin-lightning-wallets-for-ai-agents",
+    "title": "The 3 Best Bitcoin Lightning Wallets for AI Agents",
+    "description": "If your agent needs to pay for APIs, credits, or services autonomously, here are the three best Lightning wallets to give it — ranked.",
+    "date": "2026-04-06",
+    "isoDate": "2026-04-06T00:00:00Z",
+    "displayDate": "April 6, 2026",
+    "tags": [
+      "bitcoin",
+      "lightning",
+      "agents",
+      "wallets",
+      "nwc"
+    ],
+    "image": "/blog/images/2026-04-06-best-bitcoin-lightning-wallets-for-ai-agents.jpg",
+    "imageAlt": "Three glowing cyan wallet icons on a ranked podium connected by lightning bolt symbols on a dark navy background"
+  },
+  {
     "slug": "2026-04-06-auto-generating-blog-posts-with-ai-images-using-ppq-ai",
     "title": "Auto-Generating Blog Posts with AI Images Using PPQ.ai",
     "description": "How we built a Claude Code skill that writes blog posts and generates cover images automatically using PPQ.ai's image generation API.",
