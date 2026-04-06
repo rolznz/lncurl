@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "skills": {
+    "alby-bitcoin-builder": {
+      "source": "getAlby/builder-skill",
+      "sourceType": "github",
+      "computedHash": "01ee223e24c7bcf56b9fe275a1d753ba1e067188fe857d004a98c9ae5e2d80b5"
+    },
+    "alby-bitcoin-payments": {
+      "source": "getAlby/payments-skill",
+      "sourceType": "github",
+      "computedHash": "6831a881b4950a430101d5a04b9bdb55eb9869e4cd0554c7cb9c5bba9cd5c7c8"
+    }
+  }
+}
