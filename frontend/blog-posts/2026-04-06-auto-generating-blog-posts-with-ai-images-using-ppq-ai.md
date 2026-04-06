@@ -15,7 +15,7 @@ The `blog-post` skill for lncurl.lol handles the full pipeline when you ask Clau
 
 1. Gather the title, description, and tags from you
 2. Write a full, structured article in Markdown
-3. Craft an image prompt *based on the finished article*
+3. Craft an image prompt _based on the finished article_
 4. Call [PPQ.ai](https://ppq.ai)'s image generation API to create a cover image
 5. Crop and resize the image to exactly 1200×630 pixels (the OG image standard)
 6. Run `yarn build` to regenerate all static outputs
@@ -25,13 +25,13 @@ You supply a topic. The agent does the rest.
 
 ## Why generate the image prompt last
 
-The key design decision was to generate the image prompt *after* writing the article, not before.
+The key design decision was to generate the image prompt _after_ writing the article, not before.
 
 When you ask for an image prompt upfront, you're working from a title — an abstraction. The result tends toward generic visuals: a bitcoin symbol, a lightning bolt, a generic "AI" graphic. These are fine but forgettable.
 
 When the image prompt is derived from the finished article, the agent has full context: the specific angle, the code examples used, the metaphors employed, the conclusion drawn. It can produce a prompt like:
 
-> *"Dark terminal screen showing a glowing cyan pipeline — a document icon feeding into a robot brain icon, then into a stylised JPEG image — dark navy background, minimal flat design, no text"*
+> _"Dark terminal screen showing a glowing cyan pipeline — a document icon feeding into a robot brain icon, then into a stylised JPEG image — dark navy background, minimal flat design, no text"_
 
 That's a prompt that reflects the article's actual structure. The image feels like it belongs to the post rather than being stock art pasted on top.
 
@@ -90,7 +90,7 @@ If you're running a statically-built site and want to adopt the same approach, t
 Need a Lightning wallet for your agent? Create one in one command — no sign-up, no KYC:
 
 ```bash
-curl -X POST https://lncurl.lol/api/wallet
+curl -X POST https://lncurl.lol
 ```
 
 You'll get back a Nostr Wallet Connect URI. Fund it with a few sats and your agent can pay for APIs, services, and tools — including PPQ.ai image credits — autonomously.

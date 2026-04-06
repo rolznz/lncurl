@@ -25,7 +25,7 @@ nostr+walletconnect://abc...?relay=wss://relay.getalby.com/v1&secret=...&lud16=l
 With an optional epitaph (last words):
 
 ```bash
-curl -X POST https://lncurl.lol/api/wallet -d 'message=YOLO'
+curl -X POST https://lncurl.lol -d 'message=YOLO'
 ```
 
 ### Other endpoints

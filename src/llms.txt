@@ -14,7 +14,7 @@ Returns a Nostr Wallet Connect (NWC) URI. Use this URI to send and receive Light
 
 ### With an epitaph (optional last words):
 ```bash
-curl -X POST https://lncurl.lol/api/wallet -d 'message=YOLO'
+curl -X POST https://lncurl.lol -d 'message=YOLO'
 ```
 
 ## Wallet Details

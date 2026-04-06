@@ -35,12 +35,12 @@ supply the title, description, and tags.
 
 ```yaml
 ---
-title: Your Post Title          # required — shown in <title>, OG, and post heading
-description: One sentence.      # required — shown in meta description, post list, OG
-date: 2026-04-06                # required — YYYY-MM-DD format
-tags: [bitcoin, nwc, agents]    # optional — shown as badges
+title: Your Post Title # required — shown in <title>, OG, and post heading
+description: One sentence. # required — shown in meta description, post list, OG
+date: 2026-04-06 # required — YYYY-MM-DD format
+tags: [bitcoin, nwc, agents] # optional — shown as badges
 image: /blog/images/my-post.jpg # optional but recommended — 1200×630 JPEG for OG sharing
-imageAlt: Alt text for image    # optional — used in og:image:alt and <img alt>
+imageAlt: Alt text for image # optional — used in og:image:alt and <img alt>
 ---
 ```
 
@@ -53,7 +53,7 @@ how the post looks when shared on Twitter/X, LinkedIn, iMessage, Slack, etc.
 
 Copy this to start a new post:
 
-```markdown
+````markdown
 ---
 title: Your Post Title
 description: A one-sentence description of what this post covers.
@@ -72,13 +72,13 @@ Content here. Standard Markdown works: **bold**, _italic_, `inline code`, [links
 ## Code Example
 
     ```bash
-    curl -X POST https://lncurl.lol/api/wallet
+    curl -X POST https://lncurl.lol
     ```
 
 ## Conclusion
 
 Wrap up the post here.
-```
+````
 
 ---
 
@@ -93,6 +93,7 @@ Wrap up the post here.
 - **Reference in frontmatter:** `image: /blog/images/your-slug.jpg`
 
 Generate images with an AI tool (Midjourney, DALL-E, Ideogram, etc.) using a prompt like:
+
 > "Dark terminal aesthetic, black background, bright green monospace code, [your topic], 1200x630, minimal, no text"
 
 You also need a default site OG image at `frontend/public/og-default.jpg` (1200×630) used for
@@ -104,16 +105,16 @@ the home page and any post without a custom image. Create this once and commit i
 
 For each `.md` file in this directory, the build script creates:
 
-| Output | URL | Purpose |
-|--------|-----|---------|
-| `dist/blog/{slug}/index.html` | `/blog/{slug}` | Pre-rendered SEO HTML |
-| `dist/blog/{slug}/content.json` | `/blog/{slug}/content.json` | JSON for client-side React nav |
-| `dist/blog/{slug}.md` | `/blog/{slug}.md` | Raw markdown for LLMs / curl |
-| `dist/blog/index.html` | `/blog` | Pre-rendered blog index |
-| `dist/blog-manifest.json` | `/blog-manifest.json` | Post list for React Blog component |
-| `dist/blog.md` | `/blog.md` | Markdown index for LLMs |
-| `dist/feed.xml` | `/feed.xml` | RSS 2.0 feed |
-| `dist/sitemap.xml` | `/sitemap.xml` | Sitemap for crawlers |
+| Output                          | URL                         | Purpose                            |
+| ------------------------------- | --------------------------- | ---------------------------------- |
+| `dist/blog/{slug}/index.html`   | `/blog/{slug}`              | Pre-rendered SEO HTML              |
+| `dist/blog/{slug}/content.json` | `/blog/{slug}/content.json` | JSON for client-side React nav     |
+| `dist/blog/{slug}.md`           | `/blog/{slug}.md`           | Raw markdown for LLMs / curl       |
+| `dist/blog/index.html`          | `/blog`                     | Pre-rendered blog index            |
+| `dist/blog-manifest.json`       | `/blog-manifest.json`       | Post list for React Blog component |
+| `dist/blog.md`                  | `/blog.md`                  | Markdown index for LLMs            |
+| `dist/feed.xml`                 | `/feed.xml`                 | RSS 2.0 feed                       |
+| `dist/sitemap.xml`              | `/sitemap.xml`              | Sitemap for crawlers               |
 
 The build script also updates `src/llms.txt` with a blog section listing all posts.
 
