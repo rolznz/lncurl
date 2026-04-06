@@ -56,9 +56,36 @@ if (fs.existsSync(frontendDist)) {
       reply.status(404).send({ error: "Not found" });
       return;
     }
-    reply.type("text/html").send(
-      fs.readFileSync(path.join(frontendDist, "index.html"), "utf-8"),
-    );
+
+    let html = fs.readFileSync(path.join(frontendDist, "index.html"), "utf-8");
+
+    // Inject blog post OG metadata for crawlers
+    const blogMatch = request.url.match(/^\/blog\/([^/?#]+)(?:\/|$|\?|#)/);
+    if (blogMatch) {
+      const slug = blogMatch[1];
+      const contentJsonPath = path.join(frontendDist, "blog", slug, "content.json");
+      if (fs.existsSync(contentJsonPath)) {
+        try {
+          const { frontmatter: fm } = JSON.parse(fs.readFileSync(contentJsonPath, "utf-8"));
+          const postUrl = `https://lncurl.lol/blog/${slug}`;
+          const image = fm.image
+            ? `https://lncurl.lol${fm.image}`
+            : "https://lncurl.lol/og-default.jpg";
+          html = html
+            .replace(/<title>[^<]*<\/title>/, `<title>${fm.title}</title>`)
+            .replace(/(<meta name="description" content=")[^"]*(")/,  `$1${fm.description}$2`)
+            .replace(/(<meta property="og:title" content=")[^"]*(")/,  `$1${fm.title}$2`)
+            .replace(/(<meta property="og:description" content=")[^"]*(")/,  `$1${fm.description}$2`)
+            .replace(/(<meta property="og:url" content=")[^"]*(")/,  `$1${postUrl}$2`)
+            .replace(/(<meta property="og:image" content=")[^"]*(")/,  `$1${image}$2`)
+            .replace(/(<meta name="twitter:image" content=")[^"]*(")/,  `$1${image}$2`);
+        } catch {
+          // fall through and serve default html
+        }
+      }
+    }
+
+    reply.type("text/html").send(html);
   });
 } else {
   // Development fallback — serve the old index.html
