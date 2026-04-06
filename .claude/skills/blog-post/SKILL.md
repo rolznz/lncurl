@@ -11,6 +11,7 @@ You are creating a new SEO-optimised blog post. The workflow has five steps:
 ## Step 1: Gather post details
 
 Ask the user for anything not already provided:
+
 - **title** — the post title (required)
 - **description** — one sentence: appears in meta description, post list, and OG tags
 - **tags** — array of short keywords, e.g. `[bitcoin, lightning, nwc]`
@@ -26,6 +27,7 @@ date +%Y-%m-%d
 ```
 
 Slug rules: lowercase letters and hyphens only, derived from the title.
+
 - "How NWC Works" → `how-nwc-works`
 - "Why AI Agents Need Bitcoin" → `why-ai-agents-need-bitcoin`
 
@@ -36,12 +38,12 @@ Image filename: `YYYY-MM-DD-{slug}.jpg`
 
 Create `frontend/blog-posts/YYYY-MM-DD-{slug}.md`. Leave `image` and `imageAlt` as placeholders for now — you'll fill them in after generating the image.
 
-```markdown
+````markdown
 ---
-title: {title}
-description: {description}
+title: { title }
+description: { description }
 date: YYYY-MM-DD
-tags: [{tag1}, {tag2}]
+tags: [{ tag1 }, { tag2 }]
 image: /blog/images/YYYY-MM-DD-{slug}.jpg
 imageAlt: PLACEHOLDER
 ---
@@ -67,15 +69,19 @@ imageAlt: PLACEHOLDER
 Need a Lightning wallet for your agent? Create one in one command — no sign-up, no KYC:
 
 ```bash
-curl -X POST https://lncurl.lol/api/wallet
+curl -X POST https://lncurl.lol
 ```
+````
 
 You'll get back a Nostr Wallet Connect URI. Fund it with a few sats and your agent can pay for APIs, services, and tools autonomously.
-```
+
+````
 
 The CTA block above must appear at the end of every post, verbatim. It is both human-readable and agent-friendly — agents can parse the `curl` command directly to acquire a wallet.
 
 Write substantive, accurate content that matches the title. Use `bash` or `typescript` fenced code blocks where useful.
+
+**Style:** Write in an agent-agnostic style — avoid referencing Claude, ChatGPT, or any specific AI by name. Use "agent", "AI agent", or "your agent" instead. When referencing the Alby Bitcoin Payments skill, use: `npx skills add getAlby/payments-skill`. Write "bitcoin" and "lightning" in lowercase, same as "the internet" — only capitalise at the start of a sentence or in a title.
 
 ## Step 4: Generate the cover image
 
@@ -111,7 +117,7 @@ curl -s "$IMAGE_URL" -o /tmp/blog-cover-raw.jpg
 ffmpeg -y -i /tmp/blog-cover-raw.jpg \
   -vf "crop=iw:iw/1.9048,scale=1200:630" \
   frontend/public/blog/images/YYYY-MM-DD-SLUG.jpg
-```
+````
 
 Verify the output file exists. Then update the `imageAlt` frontmatter field in the markdown file with a one-sentence description of what the image shows.
 

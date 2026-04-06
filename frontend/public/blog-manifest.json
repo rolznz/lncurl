@@ -16,6 +16,23 @@
     "imageAlt": "lncurl.lol — Bitcoin lightning wallets for AI agents"
   },
   {
+    "slug": "2026-04-06-generate-ai-images-with-l402",
+    "title": "Generate AI Images with L402: Pay with Bitcoin, No Account Needed",
+    "description": "How we used L402 lightning micropayments to generate AI images without an API key or account, using the Alby CLI.",
+    "date": "2026-04-06",
+    "isoDate": "2026-04-06T00:00:00Z",
+    "displayDate": "April 6, 2026",
+    "tags": [
+      "bitcoin",
+      "lightning",
+      "l402",
+      "ai",
+      "images"
+    ],
+    "image": "/blog/images/2026-04-06-generate-ai-images-with-l402.jpg",
+    "imageAlt": "A cyan-green glowing bitcoin symbol struck by a lightning bolt, with circuit board nodes spreading outward on a dark background"
+  },
+  {
     "slug": "2026-04-06-best-bitcoin-lightning-wallets-for-ai-agents",
     "title": "The 3 Best Bitcoin Lightning Wallets for AI Agents",
     "description": "If your agent needs to pay for APIs, credits, or services autonomously, here are the three best Lightning wallets to give it — ranked.",
