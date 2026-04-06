@@ -16,6 +16,23 @@
     "imageAlt": "lncurl.lol — Bitcoin lightning wallets for AI agents"
   },
   {
+    "slug": "2026-04-06-generate-music-with-l402",
+    "title": "Generate Music with L402: Pay with Bitcoin, Get a Song",
+    "description": "How we used L402 lightning micropayments to generate an original song — no account, no API key, just sats.",
+    "date": "2026-04-06",
+    "isoDate": "2026-04-06T00:00:00Z",
+    "displayDate": "April 6, 2026",
+    "tags": [
+      "bitcoin",
+      "lightning",
+      "l402",
+      "ai",
+      "music"
+    ],
+    "image": "/blog/images/2026-04-06-generate-music-with-l402.jpg",
+    "imageAlt": "A glowing cyan-green bitcoin symbol with a sound wave cutting through it, circuit board nodes on a dark background"
+  },
+  {
     "slug": "2026-04-06-generate-ai-images-with-l402",
     "title": "Generate AI Images with L402: Pay with Bitcoin, No Account Needed",
     "description": "How we used L402 lightning micropayments to generate AI images without an API key or account, using the Alby CLI.",
