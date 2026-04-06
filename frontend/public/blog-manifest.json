@@ -1,5 +1,22 @@
 [
   {
+    "slug": "2026-04-06-register-domain-with-bitcoin",
+    "title": "Register a Domain with Bitcoin: No Account, No Credit Card",
+    "description": "How to register a domain using the L402 protocol and a lightning wallet — no sign-up, no credit card, no KYC.",
+    "date": "2026-04-06",
+    "isoDate": "2026-04-06T00:00:00Z",
+    "displayDate": "April 6, 2026",
+    "tags": [
+      "bitcoin",
+      "lightning",
+      "l402",
+      "domains",
+      "agents"
+    ],
+    "image": "/blog/images/2026-04-06-register-domain-with-bitcoin.jpg",
+    "imageAlt": "A glowing cyan-green globe connected by a lightning bolt to a DNS tree diagram, dark terminal background"
+  },
+  {
     "slug": "2026-04-06-introducing-lncurl",
     "title": "Introducing lncurl.lol — Lightning Wallets for AI Agents",
     "description": "Create a Bitcoin lightning wallet with a single HTTP call. No sign-up, no KYC, no setup. Just curl.",
