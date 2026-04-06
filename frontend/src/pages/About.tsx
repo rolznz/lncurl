@@ -32,7 +32,7 @@ export function About() {
             lncurl.lol is a <strong>custodial service</strong>. All wallets live
             on a single shared{" "}
             <a
-              href="https://getalby.com/alby-hub"
+              href="https://getalby.com/alby-hub?ref=lncurl"
               target="_blank"
               rel="noopener noreferrer"
               className="text-terminal hover:underline"
@@ -49,7 +49,7 @@ export function About() {
           <p>
             For serious use, run your own{" "}
             <a
-              href="https://getalby.com/alby-hub"
+              href="https://getalby.com/alby-hub?ref=lncurl"
               target="_blank"
               rel="noopener noreferrer"
               className="text-terminal hover:underline"

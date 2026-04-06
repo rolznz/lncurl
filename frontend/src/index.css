@@ -81,3 +81,185 @@
     font-family: "Inter", system-ui, -apple-system, sans-serif;
   }
 }
+
+/* Blog content prose styles — used in static template and React BlogPost fallback */
+.blog-content {
+  max-width: 100%;
+}
+
+.blog-post-header {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.blog-post-header h1 {
+  font-family: "JetBrains Mono", monospace;
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--foreground);
+  margin-bottom: 0.75rem;
+}
+
+.blog-post-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+  font-family: "JetBrains Mono", monospace;
+}
+
+.blog-tag {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 0.25rem;
+  padding: 0.125rem 0.5rem;
+  font-size: 0.75rem;
+  color: var(--terminal-dim);
+}
+
+.blog-hero-image {
+  width: 100%;
+  aspect-ratio: 1200 / 630;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  margin-bottom: 2rem;
+  border: 1px solid var(--border);
+}
+
+.blog-content h2 {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 2rem 0 0.75rem;
+  color: var(--foreground);
+}
+
+.blog-content h3 {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 1.5rem 0 0.5rem;
+  color: var(--foreground);
+}
+
+.blog-content h4 {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 1.25rem 0 0.5rem;
+  color: var(--foreground);
+}
+
+.blog-content p {
+  line-height: 1.75;
+  margin-bottom: 1.25rem;
+  color: var(--foreground);
+}
+
+.blog-content a {
+  color: var(--terminal);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.blog-content a:hover {
+  color: var(--foreground);
+}
+
+.blog-content ul,
+.blog-content ol {
+  margin: 0 0 1.25rem 1.5rem;
+  line-height: 1.75;
+}
+
+.blog-content li {
+  margin-bottom: 0.25rem;
+}
+
+.blog-content code {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.875em;
+  color: var(--terminal);
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 0.125em 0.375em;
+  border-radius: 0.25rem;
+}
+
+.blog-content pre {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  padding: 1.25rem;
+  overflow-x: auto;
+  margin-bottom: 1.25rem;
+}
+
+.blog-content pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--foreground);
+  font-size: 0.875rem;
+}
+
+.blog-content blockquote {
+  border-left: 2px solid var(--terminal);
+  padding-left: 1rem;
+  margin: 1.25rem 0;
+  color: var(--muted-foreground);
+  font-style: italic;
+}
+
+.blog-content hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2rem 0;
+}
+
+.blog-content img {
+  max-width: 100%;
+  border-radius: 0.5rem;
+  border: 1px solid var(--border);
+}
+
+.blog-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.25rem;
+  font-size: 0.875rem;
+}
+
+.blog-content th {
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--terminal);
+  font-family: "JetBrains Mono", monospace;
+}
+
+.blog-content td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.blog-post-footer {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.875rem;
+}
+
+.blog-post-footer a {
+  color: var(--terminal);
+  text-decoration: none;
+}
+
+.blog-post-footer a:hover {
+  text-decoration: underline;
+}

@@ -4,6 +4,8 @@ import { Home } from "@/pages/Home";
 import { Leaderboard } from "@/pages/Leaderboard";
 import { Graveyard } from "@/pages/Graveyard";
 import { About } from "@/pages/About";
+import { Blog } from "@/pages/Blog";
+import { BlogPost } from "@/pages/BlogPost";
 import { NotFound } from "@/pages/NotFound";
 
 function Nav() {
@@ -29,11 +31,11 @@ function Nav() {
           >
             Graveyard
           </Link>
-          <Link
-            to="/about"
-            className="hover:text-foreground transition-colors"
-          >
+          <Link to="/about" className="hover:text-foreground transition-colors">
             About
+          </Link>
+          <Link to="/blog" className="hover:text-foreground transition-colors">
+            Blog
           </Link>
         </div>
       </div>
@@ -46,7 +48,7 @@ function Footer() {
     <footer className="border-t border-border mt-12 py-6 text-center text-sm text-muted-foreground">
       Powered by{" "}
       <a
-        href="https://getalby.com/alby-hub"
+        href="https://getalby.com/alby-hub?ref=lncurl"
         target="_blank"
         rel="noopener noreferrer"
         className="text-terminal hover:underline"
@@ -78,6 +80,8 @@ export default function App() {
               <Route path="/leaderboard" element={<Leaderboard />} />
               <Route path="/graveyard" element={<Graveyard />} />
               <Route path="/about" element={<About />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/:slug" element={<BlogPost />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>

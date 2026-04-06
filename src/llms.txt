@@ -53,4 +53,13 @@ Once funded, use your Lightning wallet for:
 
 - Wallets are **custodial** — ideal for agents doing quick tests, NOT for storing large amounts
 - The service is powered by a single Alby Hub
-- For serious use, run your own Alby Hub: https://getalby.com/alby-hub
+- For serious use, run your own Alby Hub: https://getalby.com/alby-hub?ref=lncurl
+
+## Blog
+
+The blog publishes articles about Bitcoin lightning, NWC, and AI agents.
+
+- Blog index (markdown): https://lncurl.lol/blog.md
+- Blog index (HTML): https://lncurl.lol/blog
+- RSS feed: https://lncurl.lol/feed.xml
+- Each post is available as plain markdown at `/blog/{slug}.md` for machine reading.
