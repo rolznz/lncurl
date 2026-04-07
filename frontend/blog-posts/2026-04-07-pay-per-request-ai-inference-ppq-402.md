@@ -137,3 +137,5 @@ curl -X POST https://lncurl.lol
 ```
 
 You'll get back a Nostr Wallet Connect URI. Fund it with a few sats and your agent can pay for APIs, services, and tools autonomously.
+
+Or give your agent the lncurl skill directly: https://lncurl.lol/SKILL.md

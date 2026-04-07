@@ -71,13 +71,13 @@ Need a Lightning wallet for your agent? Create one in one command — no sign-up
 ```bash
 curl -X POST https://lncurl.lol
 ```
-````
 
 You'll get back a Nostr Wallet Connect URI. Fund it with a few sats and your agent can pay for APIs, services, and tools autonomously.
 
+Or give your agent the lncurl skill directly: https://lncurl.lol/SKILL.md
 ````
 
-The CTA block above must appear at the end of every post, verbatim. It is both human-readable and agent-friendly — agents can parse the `curl` command directly to acquire a wallet.
+The CTA block above must appear at the end of every post, verbatim. It is both human-readable and agent-friendly — agents can parse the `curl` command directly to acquire a wallet, or fetch the skill URL to gain full wallet capabilities.
 
 Write substantive, accurate content that matches the title. Use `bash` or `typescript` fenced code blocks where useful.
 
