@@ -73,12 +73,14 @@ if (fs.existsSync(frontendDist)) {
             : "https://lncurl.lol/og-default.jpg";
           html = html
             .replace(/<title>[^<]*<\/title>/, `<title>${fm.title}</title>`)
-            .replace(/(<meta name="description" content=")[^"]*(")/,  `$1${fm.description}$2`)
-            .replace(/(<meta property="og:title" content=")[^"]*(")/,  `$1${fm.title}$2`)
-            .replace(/(<meta property="og:description" content=")[^"]*(")/,  `$1${fm.description}$2`)
-            .replace(/(<meta property="og:url" content=")[^"]*(")/,  `$1${postUrl}$2`)
-            .replace(/(<meta property="og:image" content=")[^"]*(")/,  `$1${image}$2`)
-            .replace(/(<meta name="twitter:image" content=")[^"]*(")/,  `$1${image}$2`);
+            .replace(/(<meta[^>]*name="description"[^>]*content=")[^"]*(")/,  `$1${fm.description}$2`)
+            .replace(/(<meta[^>]*property="og:title"[^>]*content=")[^"]*(")/,  `$1${fm.title}$2`)
+            .replace(/(<meta[^>]*property="og:description"[^>]*content=")[^"]*(")/,  `$1${fm.description}$2`)
+            .replace(/(<meta[^>]*property="og:url"[^>]*content=")[^"]*(")/,  `$1${postUrl}$2`)
+            .replace(/(<meta[^>]*property="og:image"[^>]*content=")[^"]*(")/,  `$1${image}$2`)
+            .replace(/(<meta[^>]*name="twitter:title"[^>]*content=")[^"]*(")/,  `$1${fm.title}$2`)
+            .replace(/(<meta[^>]*name="twitter:description"[^>]*content=")[^"]*(")/,  `$1${fm.description}$2`)
+            .replace(/(<meta[^>]*name="twitter:image"[^>]*content=")[^"]*(")/,  `$1${image}$2`);
         } catch {
           // fall through and serve default html
         }
