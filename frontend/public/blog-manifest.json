@@ -1,5 +1,23 @@
 [
   {
+    "slug": "2026-04-07-pay-per-request-ai-inference-ppq-402",
+    "title": "Pay-Per-Request AI Inference with PPQ.ai and the 402 Protocol",
+    "description": "PPQ.ai now supports native 402 payments via MPP — no more credit topups needed to give your agent access to AI APIs.",
+    "date": "2026-04-07",
+    "isoDate": "2026-04-07T00:00:00Z",
+    "displayDate": "April 7, 2026",
+    "tags": [
+      "bitcoin",
+      "lightning",
+      "402",
+      "mpp",
+      "ai-agents",
+      "ppq"
+    ],
+    "image": "/blog/images/2026-04-07-pay-per-request-ai-inference-ppq-402.jpg",
+    "imageAlt": "A glowing cyan lightning bolt striking a hexagonal API node, surrounded by floating payment packets and bitcoin symbols on a dark navy background."
+  },
+  {
     "slug": "2026-04-06-register-domain-with-bitcoin",
     "title": "Register a Domain with Bitcoin: No Account, No Credit Card",
     "description": "How to register a domain using the L402 protocol and a lightning wallet — no sign-up, no credit card, no KYC.",

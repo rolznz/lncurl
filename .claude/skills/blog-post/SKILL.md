@@ -14,7 +14,7 @@ Ask the user for anything not already provided:
 
 - **title** — the post title (required)
 - **description** — one sentence: appears in meta description, post list, and OG tags
-- **tags** — array of short keywords, e.g. `[bitcoin, lightning, nwc]`
+- **tags** — array of short keywords, e.g. `[bitcoin, lightning, nwc]`. Tags that are purely numeric must be quoted (YAML parses bare numbers as integers, which breaks the build), e.g. `["402", bitcoin, lightning]`
 
 Do not ask for an image prompt — you will craft it yourself after writing the article.
 
