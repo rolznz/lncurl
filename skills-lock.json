@@ -9,7 +9,7 @@
     "alby-bitcoin-payments": {
       "source": "getAlby/payments-skill",
       "sourceType": "github",
-      "computedHash": "6831a881b4950a430101d5a04b9bdb55eb9869e4cd0554c7cb9c5bba9cd5c7c8"
+      "computedHash": "91511c50682e9c64862071987100d6f502425742d5b1a2a7d23c4ee2f2fbf5fd"
     }
   }
 }
