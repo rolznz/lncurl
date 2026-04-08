@@ -1,5 +1,23 @@
 [
   {
+    "slug": "2026-04-08-x402-bitcoin-facilitator",
+    "title": "Pay-Per-Request with Bitcoin: Testing Alby's x402 Facilitator",
+    "description": "Alby's x402 facilitator lets any x402-compatible service accept bitcoin lightning payments in seconds — here's what happened when I tested it with a 13-sat API call.",
+    "date": "2026-04-08",
+    "isoDate": "2026-04-08T00:00:00Z",
+    "displayDate": "April 8, 2026",
+    "tags": [
+      "bitcoin",
+      "lightning",
+      "x402",
+      "402",
+      "nwc",
+      "api"
+    ],
+    "image": "/blog/images/2026-04-08-x402-bitcoin-facilitator.jpg",
+    "imageAlt": "Dark navy terminal background with a glowing cyan-green lightning bolt passing through a circular HTTP request cycle diagram and a bitcoin symbol at the center"
+  },
+  {
     "slug": "2026-04-07-pay-per-request-ai-inference-ppq-402",
     "title": "Pay-Per-Request AI Inference with PPQ.ai and the 402 Protocol",
     "description": "PPQ.ai now supports native 402 payments via MPP — no more credit topups needed to give your agent access to AI APIs.",
