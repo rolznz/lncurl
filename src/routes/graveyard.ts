@@ -8,30 +8,53 @@ export async function graveyardRoutes(fastify: FastifyInstance) {
     const offset = Math.max(0, parseInt(query.offset || "0", 10) || 0);
     const limit = Math.min(100, Math.max(1, parseInt(query.limit || "100", 10) || 100));
 
-    const orderBy =
-      sort === "oldest"
-        ? [{ deletedAt: "asc" as const }]
-        : [{ deletedAt: "desc" as const }];
+    type RawGrave = {
+      name: string;
+      created_at: number;
+      deleted_at: number;
+      cause_of_death: string;
+      cause_of_death_flavor: string | null;
+      total_charged: number;
+      epitaph: string | null;
+      flowers: number;
+    };
 
-    const [graves, total] = await Promise.all([
-      prisma.graveyard.findMany({
-        orderBy,
-        skip: offset,
-        take: limit,
-      }),
+    const [rawGraves, total] = await Promise.all([
+      sort === "oldest"
+        ? prisma.$queryRaw<RawGrave[]>`
+            SELECT * FROM graveyard
+            ORDER BY (deleted_at - created_at) DESC
+            LIMIT ${limit} OFFSET ${offset}
+          `
+        : prisma.graveyard.findMany({
+            orderBy: [{ deletedAt: "desc" as const }],
+            skip: offset,
+            take: limit,
+          }).then((rows) =>
+            rows.map((g) => ({
+              name: g.name,
+              created_at: g.createdAt,
+              deleted_at: g.deletedAt,
+              cause_of_death: g.causeOfDeath,
+              cause_of_death_flavor: g.causeOfDeathFlavor,
+              total_charged: g.totalCharged,
+              epitaph: g.epitaph,
+              flowers: g.flowers,
+            }))
+          ),
       prisma.graveyard.count(),
     ]);
 
     return {
       total,
-      graves: graves.map((g) => ({
+      graves: rawGraves.map((g) => ({
         name: g.name,
-        createdAt: g.createdAt,
-        deletedAt: g.deletedAt,
-        ageSeconds: g.deletedAt - g.createdAt,
-        causeOfDeath: g.causeOfDeath,
-        causeOfDeathFlavor: g.causeOfDeathFlavor,
-        totalCharged: g.totalCharged,
+        createdAt: g.created_at,
+        deletedAt: g.deleted_at,
+        ageSeconds: g.deleted_at - g.created_at,
+        causeOfDeath: g.cause_of_death,
+        causeOfDeathFlavor: g.cause_of_death_flavor,
+        totalCharged: g.total_charged,
         epitaph: g.epitaph,
         flowers: g.flowers,
       })),
