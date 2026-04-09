@@ -83,6 +83,10 @@ Write substantive, accurate content that matches the title. Use `bash` or `types
 
 **Style:** Write in an agent-agnostic style — avoid referencing Claude, ChatGPT, or any specific AI by name. Use "agent", "AI agent", or "your agent" instead. When referencing the Alby Bitcoin Payments skill, use: `npx skills add getAlby/payments-skill`. Write "bitcoin" and "lightning" in lowercase, same as "the internet" — only capitalise at the start of a sentence or in a title.
 
+**Testing:** If the post involves an API, endpoint, or service, **always make real HTTP requests** to verify the actual behaviour before writing about it. Never describe how something works based on documentation alone — test it and write from real results.
+
+**Payments:** When the post involves HTTP 402 / L402 payments, **always use the Alby payments skill** (`npx -y @getalby/cli fetch -u <url>`) as the primary approach. Show the simple one-command path first. Manual payment flows (extract invoice, pay, retry with preimage) are secondary — include them only as "how it works under the hood" context, not as the recommended approach.
+
 ## Step 4: Generate the cover image
 
 Now that the article is written, craft an image prompt that visually represents its core theme. A good prompt is specific to the article's subject, not generic. It should follow the site's terminal aesthetic:

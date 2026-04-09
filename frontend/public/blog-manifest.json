@@ -1,5 +1,22 @@
 [
   {
+    "slug": "2026-04-09-smoke-test-l402-integration",
+    "title": "Smoke-Test Your L402 Integration in One Request",
+    "description": "A free public endpoint that charges 1 sat over L402 and returns a fortune — the quickest way to verify your lightning payment flow is wired up correctly.",
+    "date": "2026-04-09",
+    "isoDate": "2026-04-09T00:00:00Z",
+    "displayDate": "April 9, 2026",
+    "tags": [
+      "402",
+      "bitcoin",
+      "lightning",
+      "l402",
+      "agents"
+    ],
+    "image": "/blog/images/2026-04-09-smoke-test-l402-integration.jpg",
+    "imageAlt": "A glowing cyan fortune cookie cracked open with a lightning bolt emerging from it, connected to a padlock icon via dotted lines on a dark navy background."
+  },
+  {
     "slug": "2026-04-08-x402-bitcoin-facilitator",
     "title": "Pay-Per-Request with Bitcoin: Testing Alby's x402 Facilitator",
     "description": "Alby's x402 facilitator lets any x402-compatible service accept bitcoin lightning payments in seconds — here's what happened when I tested it with a 13-sat API call.",
