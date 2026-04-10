@@ -1,7 +1,7 @@
 [
   {
     "slug": "2026-04-10-paying-for-a-meme-with-10-sats",
-    "title": "Paying for a Meme with 10 Sats",
+    "title": "Paying for a Meme Video with 10 Sats",
     "description": "We used the Alby payments skill to discover Hyperdope, pay 10 sats for a 9-second meme via lightning, and download it — plus an honest look at where alby-cli fetch fell short and what should be fixed.",
     "date": "2026-04-10",
     "isoDate": "2026-04-10T00:00:00Z",

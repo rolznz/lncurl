@@ -1,5 +1,5 @@
 ---
-title: Paying for a Meme with 10 Sats
+title: Paying for a Meme Video with 10 Sats
 description: We used the Alby payments skill to discover Hyperdope, pay 10 sats for a 9-second meme via lightning, and download it — plus an honest look at where alby-cli fetch fell short and what should be fixed.
 date: 2026-04-10
 tags: [bitcoin, lightning, l402, hyperdope, video, alby]
@@ -41,7 +41,7 @@ The results included several short clips. We picked **"Declaration of Memes — 
 
 Here it is — paid for with 10 sats of real bitcoin:
 
-<video controls playsinline style="max-width:100%;border-radius:8px;margin:1rem 0">
+<video controls playsinline style="max-height:70vh;border-radius:8px;margin:1rem 0">
   <source src="/blog/video/declaration_of_memes.mp4" type="video/mp4" />
 </video>
 
