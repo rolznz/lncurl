@@ -1,5 +1,24 @@
 [
   {
+    "slug": "2026-04-10-ai-image-generation-l402-lightning",
+    "title": "AI Image Generation, Paid Per Pixel with Lightning",
+    "description": "llm402.ai now supports image generation via L402 — generate FLUX or GPT-5 images for as little as 21 sats, no account or API key needed.",
+    "date": "2026-04-10",
+    "isoDate": "2026-04-10T00:00:00Z",
+    "displayDate": "April 10, 2026",
+    "tags": [
+      "bitcoin",
+      "lightning",
+      "402",
+      "l402",
+      "ai",
+      "images",
+      "flux"
+    ],
+    "image": "/blog/images/2026-04-10-ai-image-generation-l402-lightning.jpg",
+    "imageAlt": "A glowing cyan neon vending machine with AI-generated image thumbnails in each slot, golden lightning bolt coins floating toward it on a dark navy background."
+  },
+  {
     "slug": "2026-04-09-smoke-test-l402-integration",
     "title": "Smoke-Test Your L402 Integration in One Request",
     "description": "A free public endpoint that charges 1 sat over L402 and returns a fortune — the quickest way to verify your lightning payment flow is wired up correctly.",
