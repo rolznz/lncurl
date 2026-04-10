@@ -1,5 +1,23 @@
 [
   {
+    "slug": "2026-04-10-paying-for-a-meme-with-10-sats",
+    "title": "Paying for a Meme with 10 Sats",
+    "description": "We used the Alby payments skill to discover Hyperdope, pay 10 sats for a 9-second meme via lightning, and download it — plus an honest look at where alby-cli fetch fell short and what should be fixed.",
+    "date": "2026-04-10",
+    "isoDate": "2026-04-10T00:00:00Z",
+    "displayDate": "April 10, 2026",
+    "tags": [
+      "bitcoin",
+      "lightning",
+      "l402",
+      "hyperdope",
+      "video",
+      "alby"
+    ],
+    "image": "/blog/images/2026-04-10-paying-for-a-meme-with-10-sats.jpg",
+    "imageAlt": "A glowing cyan lightning bolt coin dropping into a video play button icon on a dark navy terminal background, minimal flat pixelated design."
+  },
+  {
     "slug": "2026-04-10-ai-image-generation-l402-lightning",
     "title": "AI Image Generation, Paid Per Pixel with Lightning",
     "description": "llm402.ai now supports image generation via L402 — generate FLUX or GPT-5 images for as little as 21 sats, no account or API key needed.",
