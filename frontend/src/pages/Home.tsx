@@ -9,7 +9,6 @@ import { NodeStats } from "@/components/node-stats";
 import { StatCard } from "@/components/stat-card";
 import { LeaderboardTable } from "@/components/leaderboard-table";
 import { AchievementShelf } from "@/components/achievement-shelf";
-import { FundingBars } from "@/components/funding-bars";
 import { useStats } from "@/hooks/use-stats";
 import { fetchLeaderboard, type LeaderboardEntry } from "@/lib/api";
 
@@ -70,9 +69,6 @@ export function Home() {
         <AchievementShelf stats={stats} />
       </section>
 
-      <section>
-        <FundingBars stats={stats} />
-      </section>
     </div>
   );
 }
