@@ -174,7 +174,7 @@ The agent really struggled here. We burned through thousands of sats getting now
 
 [402index.io](https://402index.io/) is part of the problem. It lists endpoints but doesn't tell an agent how to call them. No request format, no parameters, no example. It's a directory that assumes you already know everything you need to know.
 
-[pullthatupjamie.ai](https://www.pullthatupjamie.ai) defaulting to 1000 sats per request while quietly supporting `?amountSats=10` feels like a rug pull — especially when the `discover-podcasts` endpoint is this limited. If you don't know to check the 402 response body before paying, you're paying 100× more than you need to. That information should be surfaced, not buried.
+[pullthatupjamie.ai](https://www.pullthatupjamie.ai) defaulting to 1000 sats per request while quietly supporting `?amountSats=10` feels like a rug pull — especially when the `discover-podcasts` endpoint is this limited. If you don't know to check the 402 response body before paying, you're paying 100× more than you need to. I don't even know why you can or should configure the price in the first place.
 
 The idea is great. Semantic search inside podcast audio, unified L402 credentials, self-describing API responses — these are exactly the right design choices. But the agent experience needs work. We got there in the end, and the magic moment — finding lncurl.lol spelled out letter by letter on Bitcoin Audible — was genuinely surprising. It just took longer to get there than it should have.
 
