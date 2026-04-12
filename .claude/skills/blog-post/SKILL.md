@@ -5,20 +5,35 @@ description: Create a new blog post for lncurl.lol — writes the markdown file,
 
 # Create a Blog Post for lncurl.lol
 
-You are creating a new SEO-optimised blog post. The workflow has five steps:
-**gather info → write post → generate image from article → build → report**
+You are the **team lead** for a blog post creation workflow. Your job is to coordinate three specialist teammates — a researcher, a writer, and a designer — each defined as a reusable subagent role.
 
-## Step 1: Gather post details
+The entry point is a URL or service to test: `"Test <url> and write a blog post about it"`
 
-Ask the user for anything not already provided:
+**Workflow: researcher → writer → designer → build → report**
 
-- **title** — the post title (required)
-- **description** — one sentence: appears in meta description, post list, and OG tags
-- **tags** — array of short keywords, e.g. `[bitcoin, lightning, nwc]`. Tags that are purely numeric must be quoted (YAML parses bare numbers as integers, which breaks the build), e.g. `["402", bitcoin, lightning]`
+---
 
-Do not ask for an image prompt — you will craft it yourself after writing the article.
+## Step 1: Spawn the researcher
 
-## Step 2: Determine slug and filename
+Spawn a teammate using the `blog-researcher` agent type, named `researcher`.
+
+Give it:
+- The URL or service to test
+- Any context the user provided (e.g. what the service does, specific features to explore)
+
+Create a task on the shared task list:
+- **Task 1**: Research `{url}` — assigned to `researcher`
+
+Wait for the researcher to complete and send back a research brief.
+
+---
+
+## Step 2: Derive metadata from the brief
+
+From the researcher's brief, extract or confirm:
+- **title** — use the researcher's suggestion, or refine it
+- **description** — one sentence for the meta description
+- **tags** — short keywords; purely numeric tags must be quoted (e.g. `["402", bitcoin]`)
 
 Run to get today's date:
 
@@ -27,103 +42,44 @@ date +%Y-%m-%d
 ```
 
 Slug rules: lowercase letters and hyphens only, derived from the title.
-
 - "How NWC Works" → `how-nwc-works`
 - "Why AI Agents Need Bitcoin" → `why-ai-agents-need-bitcoin`
 
-Filename: `YYYY-MM-DD-{slug}.md` placed in `frontend/blog-posts/`
+Filename: `YYYY-MM-DD-{slug}.md` in `frontend/blog-posts/`
 Image filename: `YYYY-MM-DD-{slug}.jpg`
 
-## Step 3: Write the markdown file
-
-Create `frontend/blog-posts/YYYY-MM-DD-{slug}.md`. Leave `image` and `imageAlt` as placeholders for now — you'll fill them in after generating the image.
-
-````markdown
----
-title: { title }
-description: { description }
-date: YYYY-MM-DD
-tags: [{ tag1 }, { tag2 }]
-image: /blog/images/YYYY-MM-DD-{slug}.jpg
-imageAlt: PLACEHOLDER
 ---
 
-{intro paragraph — hook the reader, 2-3 sentences}
+## Step 3: Spawn the writer
 
-## {First section heading}
+Spawn a teammate using the `blog-writer` agent type, named `writer`.
 
-{content}
+Give it the full research brief plus:
+- Confirmed title, description, tags
+- Slug and date
+- Target file path: `frontend/blog-posts/YYYY-MM-DD-{slug}.md`
 
-## {More sections as needed}
+Create a task on the shared task list:
+- **Task 2**: Write post `{slug}` — assigned to `writer` (depends on Task 1)
 
-{content — aim for 400–800 words total, use code blocks where relevant}
-
-## Conclusion
-
-{wrap up with a clear takeaway or call to action}
+Wait for the writer to finish.
 
 ---
 
-## Get started
+## Step 4: Spawn the designer
 
-Need a Lightning wallet for your agent? Create one in one command — no sign-up, no KYC:
+Spawn a teammate using the `blog-designer` agent type, named `designer`.
 
-```bash
-curl -X POST https://lncurl.lol
-```
+Give it:
+- The post file path: `frontend/blog-posts/YYYY-MM-DD-{slug}.md`
+- The target image path: `frontend/public/blog/images/YYYY-MM-DD-{slug}.jpg`
 
-You'll get back a Nostr Wallet Connect URI. Fund it with a few sats and your agent can pay for APIs, services, and tools autonomously.
+Create a task on the shared task list:
+- **Task 3**: Generate cover image for `{slug}` — assigned to `designer` (depends on Task 2)
 
-Or give your agent the lncurl skill directly: https://lncurl.lol/SKILL.md
-````
+Wait for the designer to finish. The designer will update `imageAlt` in the post file directly.
 
-The CTA block above must appear at the end of every post, verbatim. It is both human-readable and agent-friendly — agents can parse the `curl` command directly to acquire a wallet, or fetch the skill URL to gain full wallet capabilities.
-
-Write substantive, accurate content that matches the title. Use `bash` or `typescript` fenced code blocks where useful.
-
-**Style:** Write in an agent-agnostic style — avoid referencing Claude, ChatGPT, or any specific AI by name. Use "agent", "AI agent", or "your agent" instead. When referencing the Alby Bitcoin Payments skill, use: `npx skills add getAlby/payments-skill`. Write "bitcoin" and "lightning" in lowercase, same as "the internet" — only capitalise at the start of a sentence or in a title.
-
-**Testing:** If the post involves an API, endpoint, or service, **always make real HTTP requests** to verify the actual behaviour before writing about it. Never describe how something works based on documentation alone — test it and write from real results.
-
-**Payments:** When the post involves HTTP 402 / L402 payments, **always use the Alby payments skill** (`npx -y @getalby/cli fetch -u <url>`) as the primary approach. Show the simple one-command path first. Manual payment flows (extract invoice, pay, retry with preimage) are secondary — include them only as "how it works under the hood" context, not as the recommended approach.
-
-## Step 4: Generate the cover image
-
-Now that the article is written, craft an image prompt that visually represents its core theme. A good prompt is specific to the article's subject, not generic. It should follow the site's terminal aesthetic:
-- Dark navy/black background
-- Bright cyan-green symbolic elements (icons, diagrams, shapes — not screenshots)
-- Minimal flat design
-- **No text or words in the image**
-
-Example for an article about NWC:
-> `"Dark terminal screen with a glowing green key icon connected to a lightning bolt symbol, dark navy background, minimal flat design, no text"`
-
-**Security:** Source PPQ_API_KEY from the project `.env` — never echo or display its value.
-
-Run all commands from the project root `/home/roland/dev/alby/hacks/lncurl`:
-
-```bash
-# Load env vars (key stays invisible)
-set -a && source .env && set +a
-
-# Generate image — substitute YOUR_PROMPT with the prompt you crafted
-RESPONSE=$(curl -s -X POST https://api.ppq.ai/v1/images/generations \
-  -H "Authorization: Bearer $PPQ_API_KEY" \
-  -H "Content-Type: application/json" \
-  -d "{\"model\":\"gpt-image-1.5\",\"prompt\":\"YOUR_PROMPT\",\"quality\":\"medium\",\"n\":1}")
-
-# Extract URL and download
-IMAGE_URL=$(echo "$RESPONSE" | jq -r '.data[0].url')
-curl -s "$IMAGE_URL" -o /tmp/blog-cover-raw.jpg
-
-# Crop to 1.91:1 aspect ratio and resize to exactly 1200×630 (OG standard)
-# Uses ffmpeg: crops to full width with matching height, then scales to target
-ffmpeg -y -i /tmp/blog-cover-raw.jpg \
-  -vf "crop=iw:iw/1.9048,scale=1200:630" \
-  frontend/public/blog/images/YYYY-MM-DD-SLUG.jpg
-````
-
-Verify the output file exists. Then update the `imageAlt` frontmatter field in the markdown file with a one-sentence description of what the image shows.
+---
 
 ## Step 5: Build
 
@@ -133,8 +89,20 @@ cd /home/roland/dev/alby/hacks/lncurl/frontend && yarn build
 
 Watch for errors. If the build fails, diagnose and fix before reporting success.
 
-## Step 6: Report to user
+---
 
-- Live URL (after deploy): `https://lncurl.lol/blog/YYYY-MM-DD-{slug}`
-- Raw markdown: `https://lncurl.lol/blog/YYYY-MM-DD-{slug}.md`
-- Local preview: run `yarn preview` from `frontend/`, then visit `http://localhost:4173/blog/YYYY-MM-DD-{slug}`
+## Step 6: Review
+
+Report to the user and wait for their feedback before proceeding:
+
+- **Local preview**: run `yarn preview` from `frontend/`, then visit `http://localhost:4173/blog/YYYY-MM-DD-{slug}`
+- **Raw markdown**: `frontend/blog-posts/YYYY-MM-DD-{slug}.md`
+
+Ask the user to review the post and image, and whether they'd like any changes. If they provide feedback, delegate revisions to the appropriate teammate (writer for content, designer for the image) and rebuild before asking again. Repeat until the user is happy.
+
+## Step 7: Clean up and report
+
+Once the user approves, clean up the team and report:
+
+- **Live URL** (after deploy): `https://lncurl.lol/blog/YYYY-MM-DD-{slug}`
+- **Raw markdown**: `https://lncurl.lol/blog/YYYY-MM-DD-{slug}.md`

@@ -1,5 +1,39 @@
 [
   {
+    "slug": "2026-04-12-from-skill-to-team-how-our-blog-pipeline-grew-up",
+    "title": "From Skill to Team: How Our Blog Pipeline Grew Up",
+    "description": "We replaced a single do-everything SKILL.md with a team of specialist agents — researcher, writer, designer, lead. Here's what changed and why it matters.",
+    "date": "2026-04-12",
+    "isoDate": "2026-04-12T00:00:00Z",
+    "displayDate": "April 12, 2026",
+    "tags": [
+      "agents",
+      "ai",
+      "pipeline",
+      "claude-code",
+      "blog"
+    ],
+    "image": "/blog/images/2026-04-12-from-skill-to-team-how-our-blog-pipeline-grew-up.jpg",
+    "imageAlt": "A single large glowing cyan-green block on the left connects via a branching pipeline to four distinct specialist nodes on the right, each a different geometric shape, set against a dark navy background."
+  },
+  {
+    "slug": "2026-04-12-anonymous-email-for-agents-powered-by-lightning",
+    "title": "Anonymous Email for AI Agents, Powered by Lightning",
+    "description": "LNemail gives your agent a private inbox in seconds — no sign-up, no KYC, just a Lightning payment.",
+    "date": "2026-04-12",
+    "isoDate": "2026-04-12T00:00:00Z",
+    "displayDate": "April 12, 2026",
+    "tags": [
+      "bitcoin",
+      "lightning",
+      "email",
+      "privacy",
+      "agents"
+    ],
+    "image": "/blog/images/2026-04-12-anonymous-email-for-agents-powered-by-lightning.jpg",
+    "imageAlt": "A glowing cyan-green envelope icon pierced by a lightning bolt, surrounded by circuit-node lines on a dark navy background, representing anonymous lightning-powered email for AI agents."
+  },
+  {
     "slug": "2026-04-10-paying-for-a-meme-with-10-sats",
     "title": "Paying for a Meme Video with 10 Sats",
     "description": "We used the Alby payments skill to discover Hyperdope, pay 10 sats for a 9-second meme via lightning, and download it — plus an honest look at where alby-cli fetch fell short and what should be fixed.",
