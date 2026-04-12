@@ -50,6 +50,16 @@ Image filename: `YYYY-MM-DD-{slug}.jpg`
 
 ---
 
+## Step 2b: Ask about a rant
+
+Before spawning the writer, ask the user:
+
+> "Would you like to add a **Roland's Rant** section — an honest, opinionated take on what was frustrating, broken, or surprising about the service? If yes, tell me what to include and I'll pass it to the writer."
+
+If the user provides rant content, include it in the brief to the writer. If they decline, proceed without it.
+
+---
+
 ## Step 3: Spawn the writer
 
 Spawn a teammate using the `blog-writer` agent type, named `writer`.
@@ -66,7 +76,26 @@ Wait for the writer to finish.
 
 ---
 
-## Step 4: Spawn the designer
+## Step 4: Spawn the editor
+
+Spawn a teammate using the `blog-editor` agent type, named `editor`.
+
+Give it:
+- The post file path: `frontend/blog-posts/YYYY-MM-DD-{slug}.md`
+- The full research brief (or the brief you provided to the writer)
+
+Create a task on the shared task list:
+- **Task 3**: Edit post `{slug}` — assigned to `editor` (depends on Task 2)
+
+Wait for the editor to respond.
+
+**If the editor approves:** proceed to Step 5.
+
+**If the editor returns issues:** send the post back to the writer with the specific issue list. Wait for the writer to fix, then ask the editor to review again. Repeat until approved. Update task status accordingly.
+
+---
+
+## Step 5: Spawn the designer
 
 Spawn a teammate using the `blog-designer` agent type, named `designer`.
 
@@ -75,13 +104,13 @@ Give it:
 - The target image path: `frontend/public/blog/images/YYYY-MM-DD-{slug}.jpg`
 
 Create a task on the shared task list:
-- **Task 3**: Generate cover image for `{slug}` — assigned to `designer` (depends on Task 2)
+- **Task 4**: Generate cover image for `{slug}` — assigned to `designer` (depends on Task 3)
 
 Wait for the designer to finish. The designer will update `imageAlt` in the post file directly.
 
 ---
 
-## Step 5: Build
+## Step 7: Build
 
 ```bash
 cd /home/roland/dev/alby/hacks/lncurl/frontend && yarn build
@@ -91,7 +120,7 @@ Watch for errors. If the build fails, diagnose and fix before reporting success.
 
 ---
 
-## Step 6: Review
+## Step 8: Review
 
 Report to the user and wait for their feedback before proceeding:
 
@@ -100,7 +129,7 @@ Report to the user and wait for their feedback before proceeding:
 
 Ask the user to review the post and image, and whether they'd like any changes. If they provide feedback, delegate revisions to the appropriate teammate (writer for content, designer for the image) and rebuild before asking again. Repeat until the user is happy.
 
-## Step 7: Clean up and report
+## Step 9: Clean up and report
 
 Once the user approves, clean up the team and report:
 

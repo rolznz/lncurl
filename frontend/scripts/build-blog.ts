@@ -257,8 +257,8 @@ function renderBlogIndexHtml(posts: PostMeta[], cssFile: string): string {
       </div>
     </main>
     <footer class="blog-footer">
-      Powered by <a href="https://getalby.com/alby-hub?ref=lncurl" target="_blank" rel="noopener noreferrer">Alby Hub</a>
-      + <a href="https://nwc.dev" target="_blank" rel="noopener noreferrer">Nostr Wallet Connect</a>
+      Powered by <a href="https://getalby.com/alby-hub?ref=lncurl" target="_blank" rel="noopener">Alby Hub</a>
+      + <a href="https://nwc.dev" target="_blank" rel="noopener">Nostr Wallet Connect</a>
     </footer>
   </body>
 </html>`;
@@ -372,6 +372,19 @@ RSS feed: \`/feed.xml\`
 }
 
 // ── Main ─────────────────────────────────────────────────────────────────────
+
+// Open external links in a new tab
+marked.use({
+  renderer: {
+    link({ href, title, tokens }) {
+      const text = (this as unknown as { parser: { parseInline: (t: unknown) => string } }).parser.parseInline(tokens);
+      const titleAttr = title ? ` title="${escapeHtml(title)}"` : "";
+      const external = href && /^https?:\/\//.test(href);
+      const targetAttr = external ? ' target="_blank" rel="noopener"' : "";
+      return `<a href="${href}"${titleAttr}${targetAttr}>${text}</a>`;
+    },
+  },
+});
 
 const posts = loadPosts();
 const template = fs.readFileSync(TEMPLATE_PATH, "utf-8");

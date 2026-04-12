@@ -1,5 +1,23 @@
 [
   {
+    "slug": "2026-04-12-search-4m-podcasts-powered-by-lightning",
+    "title": "Search 4M Podcasts for Any Person, Topic, or Show — Powered by Lightning",
+    "description": "Pull That Up Jamie's podcast intelligence API lets an agent search 4M+ shows by natural language query for 7 sats, with an LLM router that classifies intent and fans out to the right backend.",
+    "date": "2026-04-12",
+    "isoDate": "2026-04-12T00:00:00Z",
+    "displayDate": "April 12, 2026",
+    "tags": [
+      "bitcoin",
+      "lightning",
+      "L402",
+      "podcast",
+      "search",
+      "agents"
+    ],
+    "image": "/blog/images/2026-04-12-search-4m-podcasts-powered-by-lightning.jpg",
+    "imageAlt": "A cyan-green lightning bolt radiates outward on a dark navy background, branching into a constellation of interconnected microphone and audio waveform nodes representing a vast podcast network."
+  },
+  {
     "slug": "2026-04-12-from-skill-to-team-how-our-blog-pipeline-grew-up",
     "title": "From Skill to Team: How Our Blog Pipeline Grew Up",
     "description": "We replaced a single do-everything SKILL.md with a team of specialist agents — researcher, writer, designer, lead. Here's what changed and why it matters.",

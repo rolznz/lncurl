@@ -48,6 +48,12 @@ imageAlt: PLACEHOLDER
 
 {wrap up with a clear takeaway or call to action}
 
+{If a rant was provided by the user, include this section before the CTA — otherwise omit it entirely:}
+
+## Roland's Rant
+
+{Write in Roland's voice — casual, direct, honest. No diplomatic softening. Name what was broken, what wasted money, what should be better. End with a fair acknowledgement if the underlying idea is good. Use markdown links for any URLs — no bare URLs.}
+
 ---
 
 ## Get started

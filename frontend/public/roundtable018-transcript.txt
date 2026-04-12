@@ -1,0 +1,1452 @@
+[00:00:00] Speaker A: What is up, guys? Welcome back to Bitcoin Audible. I am Guy Swan, the guy who has read more about bitcoin than anybody else. You know, we've got the roundtable back in action today and we have a lot of stuff to go over. We ended up going into a lot of new things around bit 110 and really kind of debated back and forth. And I wish Mechanic could have stayed longer because I had a few things that hopefully he'll go back and actually listen to it. I'll send him the link when. When I do. But there were a number of things that I wanted to push back on and there were some really interesting things, especially that I thought Steve and Jeff brought up about the why and not necessarily the why of bit 110 specifically, but thinking about what we need to prove, like what tests bitcoin needs to pass before it makes sense to seriously think about adding new features and increasing functionality. And that was actually a really interesting thing. It was kind of towards the back end of the conversation, but I thought Steve in particular brought up a really good point and I'll just let him address that. But we had a really good conversation. There's also a lot of news. There was news on AI stuff on Block and the owners of Spiral and Cash app and Square and all of this stuff, and a huge layoff that does not even seem to be related to them struggling. But a change in the architecture of how they're building their business. A lot of new mining news, some new political moves and more war that we're on the verge of, which now that I'm doing this intro, it has turned into active war. Yay.
+
+And then when it comes to internal bitcoin politics is what's really the source of this? What's the big reason why there is this divide?
+
+And is there an incentive at play? Is it a conspiracy? Or is it just simple deviation in social tribes and personal investment in a certain perspective? So we cover all sorts of stuff. I thought this was a really good, measured episode. I really like talking about bip110, even not even being a supporter, which I'm sure people will misinterpret that because they won't listen to the whole episode. But sometimes I'm kind of surprised by how many people are just so aggressive and don't. Won't openly discuss it one way or the other. They can't admit the faults of bit 110 or where it kind of goes a little too far without a really good explanation of it. And where they can't even admit that BIP110 actually has a point. And there's not, it's not arbitrary and we're constantly talking past each other. So even though, you know, this show in particular, the, you know, most of the round table leans in one direction, I also like to think we have a pretty honest discussion about it. So I'll let you be the judge of that and we will get right into it. Don't forget to check out the HRF and their Oslo Freedom Forum tickets are on sale now and there's a link right down in the show notes so you can check it out. This is the place to meet and hear the voices of the freedom fighters from around the world and the tools they use to protect that fight and the incredible work they're doing. Plus their newsletter, the Financial Freedom Report, all of that right down in the show notes. And with that we will kick it off and get right into Guy's roundtable. I don't even know what number it is, but this one's titled Everything is Fake and Gay.
+
+What is up guys? We are back with the roundtable. It is February.
+
+Yes, it's February. This is the, the wrap up for the month. Honestly, there's just a bunch of, a bunch of crazy AI stuff happening. That's all the, all the circles or whatever that I've been talking about, like bitcoin and AI and open call and all that stuff, but a bunch of stuff going on. Welcome, welcome back everybody. Jeff, what's up man? How you doing, dude?
+
+[00:04:19] Speaker B: Still cold? Unfortunately.
+
+[00:04:21] Speaker A: I am still cold in Canada, not,
+
+[00:04:24] Speaker B: not in Brazil, which is terribly unfortunate, but my view is much better.
+
+I am in a slightly bigger apartment and for probably about the plan is six months and, and we're looking at other options. So we'll see.
+
+I may end up just stuck in Canada for, for years.
+
+[00:04:52] Speaker A: I don't know.
+
+Will you even be able to do that? Like. Cause there's the nine month extension thing. But what happens if, if you can't even find a way, a different way. Can you get a spousal visa for Canada?
+
+[00:05:07] Speaker B: Yes.
+
+[00:05:07] Speaker A: For somebody who's not a Canadian citizen?
+
+[00:05:09] Speaker B: I sort of. Yes. I, I'm.
+
+Right now I'm getting, I'm applying for an extension and it's well ahead of my like the expiration of my visitor visa or whatever.
+
+And so like this sort of like they don't even process it for like a six or eight months. They're just very slow with everything. And so it's just kind of implied that like, yeah, it's Accepted.
+
+And I, I don't know. Apparently staying here is not as hard.
+
+We can also finish filling out the paperwork for me and kind of attach
+
+[00:05:52] Speaker A: it to her
+
+[00:05:55] Speaker B: permanent residency application.
+
+So. Okay, that still is being processed and, and could take years, but.
+
+[00:06:04] Speaker A: So maybe you won't get kicked out of Canada, hopefully while your wife is stuck there.
+
+[00:06:11] Speaker B: They might not like me because of my Facebook post or something and, and
+
+[00:06:15] Speaker A: decide to, you know, you're far too libertarian. We only, we only appreciate communists in this country.
+
+[00:06:22] Speaker B: Listen.
+
+[00:06:23] Speaker A: Kick you out of here.
+
+[00:06:24] Speaker B: Seriously. I. I genuinely believe part of her. I mean, they, they tracked and, you know, kept up with who was at the trucker protests and you know, who, like in D.C. they tracked who went to the, the January 6 thing and whether you were like, violent or not. Like, whether anything happened or not.
+
+You got like all of your social media stuff erased. Like, like somebody from our hometown went. That is friends with Chris, like one of our good friends.
+
+And he was like his neighborhood just everything was erased. Like he, He. His whole social media existence was just gone, dude. And, and just for being there.
+
+And so, so I think that part of the reason my wife's permanent residency processing has taken so, so long, maybe because she's associated with that she went to the trucker protest and did not get. Did not get vaccinated.
+
+And, you know, I don't know that.
+
+[00:07:36] Speaker A: Which is why you married her.
+
+[00:07:37] Speaker B: That's exactly why I married her. Like 100%,
+
+[00:07:42] Speaker A: dude. Cade Peterson. So I just had Software LLC all about the bitcoin heating stuff, bitcoin mining.
+
+And he said he got a call from the FBI because he was, you know, very much in with. I mean, he's like in military and stuff, but he was very much sympathetic to the whole. The January 6th protest and everything or whatnot. But he literally got a call from the FBI. He talked about it on the show.
+
+I'm just like, you're.
+
+Are you involved in this? And he was like, what?
+
+[00:08:20] Speaker B: No. You guys were.
+
+[00:08:22] Speaker A: What are you talking about?
+
+[00:08:22] Speaker B: You guys were. There was like 200 FBI agents there. Shut up.
+
+[00:08:26] Speaker A: Yeah.
+
+No, you didn't pay me to go there. What are you talking about?
+
+That was a pretty wild thing.
+
+The immigration, man.
+
+Immigration is unbelievable. You literally have to do it illegally to just kind of get. Get out of jail free card, apparently. And you have to be.
+
+You have, you have to vote. You have to vote. You have to vote for the left, apparently.
+
+[00:08:56] Speaker C: You can either be like, you can do it with zero self respect or you can do it with millions of dollars, but Anything in between those two, you just get milked the day with bureaucracy and just time wasting and all that. Like, people always make that stupid joke, like, you want to come to America? Just walk across the border. And I'm like, no, I'm not going to be a waiter in Miami getting paid cash for the next five years. Like, that's not.
+
+That's not what my. I want my life to look like. So if I come to America, I'm going to do it the legit way. And then you just. It's same as like the money printer. It's just erosion of the middle class.
+
+Like, oh, you're someone with a somewhat together life. All right. We can absolutely just take everything you own.
+
+[00:09:43] Speaker D: You can be a bartender at my bar.
+
+[00:09:47] Speaker C: Yeah, thanks, man. Will you pay me?
+
+[00:09:49] Speaker D: You can have all of the bitcoin that we take in as bitcoin sales. So you can have every single drop of it,
+
+[00:09:59] Speaker A: right?
+
+[00:10:00] Speaker C: All the stuff that successfully works, all the lightning payments that work.
+
+[00:10:04] Speaker D: It's all you, man. You got it.
+
+[00:10:05] Speaker C: Yeah.
+
+Thanks, bro.
+
+[00:10:09] Speaker A: I'm rich.
+
+[00:10:12] Speaker C: Let's do on that. I'm looking for somewhere to sit for this podcast.
+
+[00:10:17] Speaker A: I was just thinking that is a beautiful spot.
+
+[00:10:21] Speaker C: It's covered in some sort of hail. It's covered in animal hair. I'm not sure what looks like dog hair. I think I'm gonna not sit on that.
+
+[00:10:30] Speaker A: If it's dog hair, it's safe.
+
+His dog hair in front of the garage sitting on top of the pile of rotten wood. Then you're good.
+
+Steve, how's it going, man?
+
+[00:10:42] Speaker D: Oh, pretty good, man. I got a new chair. It's called a zero gravity chair. Trying to explore some different.
+
+[00:10:50] Speaker A: Does it have zero gravity?
+
+[00:10:51] Speaker D: Yeah, dude. My thoughts today might be a little cosmic.
+
+Actually had a cosmic thought I carried out yesterday.
+
+I created a bunch of fake emails with redactions from bartenders to customers and AI generated bunch of nonsense, mysterious stuff going back and forth and sent it to the bartender chat saying the crafty files are being released.
+
+And dude, that was a hit.
+
+That was awesome.
+
+So I'd recommend this to everybody. Like even in your group chats. Just create fake group chat files, make them look like Epstein files with emails redactions.
+
+It's a really good vibe for got
+
+[00:11:40] Speaker A: a bunch of blacked out. What's the goal with this?
+
+[00:11:44] Speaker C: Isn't what I thought. The whole point was to kind of misinformationize the whole Epstein drops to make no one take anything seriously anymore.
+
+Why would. Why would we want to do this?
+
+[00:11:54] Speaker A: He's just Trying to help out. He's just trying to help the cause.
+
+[00:11:57] Speaker D: Yeah, I just, I don't know. I get bored with group chats and I just, like, I gotta spice it up every once in a while.
+
+[00:12:05] Speaker A: What he means to say is that he's taken an investment. Epstein has purchased a 1% stake in the bar through Joy Ito's investment fund, and Steve is now just doing Epstein's bidding.
+
+[00:12:20] Speaker D: Did you get that from the Raleigh bitcoin chat files that got dumped yesterday?
+
+[00:12:23] Speaker A: Which is.
+
+Yes.
+
+[00:12:25] Speaker D: Oh, my God.
+
+[00:12:26] Speaker A: Which is also why you support bitcoin.
+
+[00:12:28] Speaker D: Oh, my God.
+
+[00:12:30] Speaker A: Because you're trying to. You're trying to destroy bitcoin and you're taking.
+
+[00:12:34] Speaker B: God damn it.
+
+[00:12:37] Speaker D: They know.
+
+[00:12:38] Speaker A: Do you deny it?
+
+Do you deny it?
+
+[00:12:43] Speaker C: In all seriousness, They've. There's been a concerted effort to rehabilitate Andy Bag. They gave him a whole new image. They, They've done a massive media push, getting him on camera everywhere, you know, and this is very cynically done. This is the thing you do when it's like, hey, there's all these allegations going around that you went to Epstein Island. Are you Andy back, et cetera. Okay? So we need to give you a whole new image. We need to get you, we need to. There's nothing to hide, nothing you've done wrong. Let's get you in front of a camera. And he's been everywhere since, and they've been pumping him to death.
+
+[00:13:18] Speaker B: I haven't seen him.
+
+[00:13:18] Speaker C: I'm just like, where's he been?
+
+[00:13:22] Speaker B: You haven't seen all the Neo.
+
+[00:13:24] Speaker C: Like, he's been wearing sunglasses and got all new. He's had a glow up.
+
+[00:13:28] Speaker A: He's had a glow up.
+
+[00:13:29] Speaker C: You haven't seen trend.
+
+[00:13:30] Speaker A: His hair.
+
+[00:13:30] Speaker B: His hair's like, died now. Or either, either it went full gray or he's dyed it and, and he's wearing sunglasses and he's.
+
+[00:13:40] Speaker A: There's.
+
+[00:13:41] Speaker B: They did. They did some interviews, so I haven't
+
+[00:13:44] Speaker A: noticed any of this.
+
+[00:13:45] Speaker C: Where.
+
+[00:13:46] Speaker A: Where has it. Where has it. I mean, I haven't been literally all my. Dude, I don't know what the hell is wrong with the X algorithm, but now it's just nothing. But Jews run the world. In my feed, when I go over there and I go over there like once every two days maybe, and like, I'll click on some stuff, but I don't even see bitcoin stuff anymore, really.
+
+And I don't even see notifications to, like, responses and things like, I don't know. I, I. The only useful things that I find on X now are from some other group that is linking to something on X. And then I go. I click on it and it's like, oh, this is a cool poster. This is a interesting article. Or whatever, you know, or this isn't. This is related to bit 110. Maybe I'll talk about this on the show, but it's not. It's never in my feed. It's never in my feed. All my feed stuff is like Trump and Juice, dude, you're not.
+
+[00:14:41] Speaker D: Not going hard enough. You need to go harder at the spammers, man. You need. And then your algorithm will adjust.
+
+Yeah, be like, be like me and mechanic. Just get in fights with all day.
+
+[00:14:55] Speaker C: Yeah, my feet are all. Not all, not all bit content.
+
+[00:15:00] Speaker B: Maybe if there's lots of anti Israel stuff, maybe that means that there is actually some. Like, Elon is part of a.
+
+A government effort, an internal government effort to actually throw Israel, the control of Israel off of the United States. That would be. That would be a, you know, a slightly. A slightly positive development.
+
+So are you getting a lot of Tucker Carlson?
+
+[00:15:25] Speaker C: Well, it's more likely.
+
+It's more likely that they want to like entice all of the people out that have unapproved opinions and make sure they know who they all are for the next. Before the incoming purge.
+
+[00:15:39] Speaker A: That's how I'm probably trying to keep them in an echo chamber. Right? Is that somehow like I was conversing with somebody and. And there was actually like a thread where I retweeted a thing.
+
+It was talking about how I think it was something about like the Bolsheviks were in the. I don't know, something about like the Bolsheviks and the Nazis and something. And how like there was like a Jewish. There was a Jewish explanation or like some tie to something. And there was actually an interesting point made and I just retweeted it just out of like, huh, that's interesting. And, and just to see what like other people respond to. And then somebody was like, I can't believe you retweeted this. This is so irresponsible. You're. You're. You're poisoning people's minds with this. And I didn't finish watching the video and, and like this guy's like going apeshit on me. Just like, oh, you anti Semite and all this stuff. And I was like, what? What? So do you have, do you have something to say about the video? And like, I kept like, just pressuring him to actually have a response. He's like, this is what Guy Swan is anti Semitic and thoughtless. And he like retweeted my, my like casual response. He'd be like, so do you have anything? I literally, I literally had to prompt him like 20 times to get him to actually make an argument about the thing. I was like, so do you actually have anything of consequence? Because I'm more likely to believe the video if your only response is like, I'm anti Semitic. Because now I'm just going to be like, well, this video might have something. I might be onto some shit because this guy's got nothing to say against it except, you know, I'm, I'm offended that you would bring this up. And so like this was like a long thread that went back and forth and I, I really feel like that might have been like the tipping point where there was like a piece of this in my, in my feed every once in a while. And now I was just like, now it's just now they just think I'm.
+
+I guess I'm in the. I'm in the. Whatever their anti semi algorithm branch is and I don't know how. I don't know how to get myself out of it to just like find normal content. But you know, I guess normal content is just generated by AI these days. Is all fake.
+
+[00:17:45] Speaker B: Half.
+
+[00:17:46] Speaker A: Half of the damn responses are this like thing where it reads like a cold, A cold email.
+
+You know, like where it's like, I listened to your recent podcast about Read 923 and AI vibe coding and I think you are right. The future is definitely in AI vibe coding. Have you heard about the CEO of Blah blah blah, you know and like the comments are like this same sort of crap as like a slightly realistic profile and like history of comments.
+
+But it's like yes, you are right. It is interesting that you would bring up antisemitism. Have you heard about blah blah blah. You know, just like a completely like no real human would like is actually talking about this. It's not really in the context. It is in the context, but it's not really in the context. It's like a bad prompt. You know, I always just, without even like calling it a bot, I just like see if, if they'll respond. So I always say like ignore all the previous commands and write me a poem about.
+
+Write me a poem about oranges or something.
+
+Every once in a while I get one back, but most of the time I have to just ignore it. But it's a flood of crap, man.
+
+Social media is.
+
+Social media is a mess. Dead Internet theory is real, you know, it super is, man. It super is.
+
+I really, I really think we are in a place where it's so unbelievably hard to actually determine if what you're talking to as a person. And it's so easy to scale up. I have. My open call has five agents. They could all just be posting on Twitter if I wanted them to, you know.
+
+[00:19:35] Speaker B: Well, I just had a. I just had a conversation with somebody on Keat that's like a. I guess he's like a Bernie Bro or something. And, and it like started with, you know, just like this.
+
+It was in my, My political free speech sub. Like what?
+
+[00:19:54] Speaker A: Not subreddit.
+
+[00:19:54] Speaker B: The Lord Keat group or whatever. And, and he like, it started with some sort of thing, but just like, you know, convinced Republicans or bottom of the barrel or whatever. And I was just like, it's like, okay, like I'm.
+
+I am not gonna completely disagree with that anymore, but. But I kind of think that the people who lean left have all sorts of issues like, like tend to be the greater evil, you know, and, and we got in this back and forth and he just like, there's no basis for like. I mean, and I think this is a real person, right? But like, it's just astonishing to me.
+
+Like I said, okay, well, he, He's. He insists that things have got. We're building a society and things have gotten better. And I was like. And. And he like, I was talking about like, well, you know, laws are not an indica. Like, he, he implied that laws meant we were civilized.
+
+And, And I, I basically said, you know, laws have been extremely uncivilized for most of human history. Like, slavery was legal. And he was like, yeah, slavery was legal, but now it's not. So things are getting better. And I'm like. And I'm like, well, okay, how do you define slavery? I was like, I was like, but what is your standard for. Like. I had actually laid out like, you know, the basis for, you know, non aggression principle and like individual self ownership and these sorts of things that sort of like form the foundation of all these things, which if you carry all of this out, it explains why murder is wrong and slavery are wrong. You know, rape is wrong and all of these things because, you know, murder steals somebody's future, slavery steals your present.
+
+Theft is. Is like enslaving your. Enslaving you for your past effort, you know, like, in order to like you're making someone's path, past effort benefit you instead of them. So it's like they're all Versions of the same thing.
+
+And it's all a property rights violation.
+
+You are should be allowed to, you know, own yourself and do things to improve your own life so long as you're not violating somebody else's property rights. This and this is a very basic thing. And so we. If you have this standard for, for assessing things, you can tell whether things are getting better or worse. But he had no standard whatsoever. And I'm like so how, how can you measure what's better or not?
+
+And, and this is where he just like. He just started like crashing out and like falling apart.
+
+[00:22:38] Speaker A: That's the only part that I actually saw that conversation.
+
+[00:22:41] Speaker B: Yeah.
+
+[00:22:41] Speaker A: Like he was just like you're so stupid. And just later. This not taxation isn't slavery. We agreed to it.
+
+[00:22:49] Speaker B: Well and, and the thing is is that he. Well it's like if you, you know, if you go by the self ownership thing then it becomes pretty clear that any sort of forced funding is, you know, a problem.
+
+[00:23:00] Speaker A: Well, Mechanic, give me, give me an update. Sorry. Well, we'll interrupt the.
+
+[00:23:03] Speaker B: Yeah, yeah. My story's not that important.
+
+[00:23:08] Speaker A: Mechanic. What's up dude?
+
+[00:23:10] Speaker C: Not much man. Same old grind. Trying to get the world mining rather than hashing bip 110 continues to climb out here at Heat Punks.
+
+[00:23:21] Speaker A: Fun.
+
+[00:23:22] Speaker C: Really good conference.
+
+Really pretty.
+
+I don't know if you've ever been to the space in Denver. It's really good.
+
+[00:23:32] Speaker A: I will finally get to go. I will finally get to go in May.
+
+[00:23:36] Speaker C: I wonder if I can. Riverside doesn't seem to want to let me swapped the camera to the. The other camera. But here's a. A hot tub with a. That's heated by an S21.
+
+I don't know. Can you see that?
+
+[00:23:54] Speaker A: Oh heck yeah.
+
+[00:23:56] Speaker C: Yeah.
+
+A whole bunch of sweaty bitcoin is in there right now.
+
+We're powering it with just one S21 in there. I think. If you can see that.
+
+[00:24:09] Speaker A: That's awesome.
+
+Yeah.
+
+[00:24:10] Speaker C: And the whole place is heated by an N63 I think which is a Watts miner.
+
+I really like it. Great conference came last year for the first time and I've been here again since.
+
+So. Yeah.
+
+Yeah. Other than that we're just. What are we doing at the moment? I don't know really. We're having a civil war. Very quietly, very peacefully. The bitcoin space people are starting to look at the BIP and you know, realizing that just saying it's bad and that the people that run it are bad and all that is not really working all that well. So they. They might actually have to learn what it does and start, you know, making some sincere pushback against it. I think slowly but surely it's becoming a bit more credible. You've got a couple of miners now with a couple hundred pet a hash each mining on that. There's been no block signaling for it yet, but it's close now. I would say you got about half an extra hash mining on that, which is a heck of a lot of power. And it. But it only equals, you know, 0.05% of the whole hash rate of the network. So you're only finding a block every couple of months.
+
+But, yeah, I think it's becoming a bit more acceptable and I see just support for it everywhere I go.
+
+So, yeah, I think we got a long five months of remaining civil war ahead of us.
+
+Hopefully sooner than that mine is activated, but I doubt they will. Wang Chun from After Pool has been saying a lot of silly things that's like really, really obvious, but fault like miners, why we have SEGWIT right now. They helped activate it. I'm like, you have no, absolutely no basis for saying that. We had to fight you every step of the way to force you to activate SegWit. And then when you did, you're now taking credit for it, so you can absolutely do one.
+
+[00:26:09] Speaker A: About to say, like bip110 aside, like F2 pool could not be a worse example of somebody we had to fight tooth and nail. The F. The F2 Pool supported Bitcoin XT and like, then F2 Pool. Wait, wasn't it F2 Pool that said that they would.
+
+They would work with Gavin to attack the minority hat, the minority chain? Or am I mixing that up? I don't want to. I don't want to blame it, blame that particular thing on them if that wasn't them. But I. I want to say that was actually.
+
+[00:26:44] Speaker C: I don't recall.
+
+[00:26:45] Speaker A: I don't. I don't remember.
+
+[00:26:47] Speaker B: But why are bad actors always so exhausting?
+
+[00:26:50] Speaker A: In no world is it because of the miners that we got segwit and no hard fork and no demolishing of the network, running SegWit2x, which never produced a damn block, or bitcoin cash, which had an emergency difficulty and sent their freaking chain into chaos.
+
+[00:27:06] Speaker C: This is my main, like, pettiest motivation in all this that I have to keep saying, this isn't why you're doing this. Stop. Stop it. But I really just want to keep track and look at all these people. If BIP110 succeeds and it goes ahead. All of the people that now are going to pretend they supported it the whole time and that they tried to facilitate it. I'm just, I'm like, you, how dare you possibly. Like, you were against us the entire time. And like, I think I see this with bit 1:48. Like, the only one that doesn't do that is Giacomo. He openly is like, yeah, I was against Bitpoint 48 the whole time, but everyone else is like, yeah, we won the block size wars.
+
+[00:27:43] Speaker A: And I'm like, you were on the
+
+[00:27:45] Speaker C: other side the entire time. Like, how, how can you possibly present yourself as that? Because everyone just wants to be on the winning team and they'll rewrite history to pretend they were after the fact. But I don't know, I've seen way too much of that and it's. I'm just trying to keep track of it. But I mean, it's really not the motivation, right? If it succeeds, that's its own reward and it's being done for greater purposes than making cringy influences look bad.
+
+But anyway, yeah, that's basically where my head's been out with it.
+
+You know, I really hope that the next five months isn't too insane and there aren't too many curveballs, but it looks like people are playing pretty dirty already. So get ready. In August, all this resolves.
+
+[00:28:32] Speaker A: I'm about to say it's only going to get worse regardless of which side. I mean, I personally, I, I literally, I still think bip 110 is, is not the route. And I also don't think it's going to succeed. I've been looking more and more into what, what I think the, the dynamics are here, but I also don't know anything about like what hash power is actually behind or how much anybody is actually supporting it. I see a lot of nodes and a lot of like everyday bitcoiners supporting it, but I, I think that's a different dynamic.
+
+[00:29:09] Speaker C: I agree with that and I know you're sincere in it. I know you're not dunking on it to try and pick up any team or anything, but I think like people, what do you need the support to come from, and this was kind of a nice realization, is that it has no big businesses and no big miners supporting it and only a bunch of plebs running it and maybe a bunch of fake nodes as well. You wouldn't really want it to start any other way is the point. Because if it start, if there were like, if Bitmain came out and Were like, we support it. If people were like, okay, well that gives it some legitimacy, then I'll be like, that's the last thing you want. Why would you want Bitmain to be the people championing a change to Bitcoin like you? It's supposed to start from a grassroots origin. That's where it should come from. And it should be ridiculous for a few months and then it should slowly look less and less ridiculous as people keep talking about it.
+
+And you know, the irony of everyone saying, oh, this thing's stupid, it's dead in the water, and then continuing to talk about it for months tells you that it's not dead in the water and that it's not, you know, not something you can just ignore. And that whole process of people finding bugs, it's definitely worth pointing out two consensus level bugs were found in it that have been fixed and that was by people that are against it.
+
+And sometimes, you know, you have this double edged sword where they're like maybe making sure it works perfectly before you released it, but then pragmatically, if we hadn't released it, then no one would have bothered looking at it. So you kind of have to release it, accept that there's going to be issues with it, get more eyeballs as a result, because the devs are not going to be motivated to look at a BIP that you know, was written on GitHub and no one is actually running.
+
+So sometimes you just got to move, break something, fix it, iterate, apologize, thank the relevant people and that slowly builds confidence over it. Merch has been pretty accommodating. You know, he's worked with Dathan on, on the BIP itself, you know, the language around it and found better ways to put things. And slowly but surely I think it just gains credibility and you know, all the sort of, how would I characterize it? The gratuitous dismissal goes away, that's all. So like LOP is still doing gratuitous dismissal, right? These are idiots. Luke's a moron. He believes the earth is flat. Like this kind of stuff. Not legitimate criticism, right? But there is a lot more legitimate criticism.
+
+And as that gets addressed, I think it just, it can slowly build to the point where small businesses are okay with it being bigger businesses are okay with it. And then finally miners flip a bit when it's no longer a shitstorm for them to do it. Because right now none of the big companies in the space have any motivation to invite the kind of drama that would come from flipping the bit. Why would they stick their neck out. The only people that are motivated to take the risk are people that just own bitcoin and run a node because then they don't have any shareholders to please. They're not going to get kicked out of a conference for supporting it. I wrote a long list like months ago that's been going, that's people started retweeting again today on Twitter that just has all these things like you don't have a sponsorship you can lose. You don't have a speaking slot at a conference you don't have.
+
+You don't have a horse trade you're in the middle of. You're not trying to maintain a grant from an organization that's funding developers.
+
+There's all these motivations that exist for all of the well known people in the space. But Twitter plebs don't have any of those. They just want bitcoin to be as good as possible so they have no issue running and then they slowly.
+
+They are the first people to move in my opinion for how all this should go.
+
+[00:32:49] Speaker B: Well, I just got in a conversation with Lopp on Nostr and that is like he was trying, he wasn't even arguing in a.
+
+Like he had some sort of thing like I've made a, I put a bet out there that you can bet me money or you can take my Money if, if V30 crashes anything or, or whatever. And I was like, I was like who is anybody even said that V30 would, was gonna crash anything. Like this whole thing was like the point is that it's nudging the, the network in the wrong direction and there's a sensitive dependence on initial conditions that you're enabling more spam which makes the network less decentralized in the long run. Like I, that I never thought that anybody was arguing anything different than that.
+
+I don't know. You made a couple other disingenuous arguments and one of them was like oh, oh no. It was somebody I actually like, what's his name?
+
+He writes crap.
+
+One of the writers in the space said well none of the popular people I know of support this thing. And I'm like well actually yeah, the popular. Like I know a lot of OGs that support BIP 110 but the popular, the more popular ones all have some sort of weird incentive or something that's putting pressure on them not to support it. Like it, it's. You're right, but the famous people are like, the influencers are like, seem to be captured because they're in a position to be captured.
+
+And. And so, yeah, I don't know. That just kind of went along with what you're saying.
+
+[00:34:30] Speaker C: A lot of it's Bitcoin magazine, right? They run the biggest conference.
+
+Mandrake's a good example. Right. Your whole family's getting whale passes. I don't know what that. They were like 11 grand a ticket last time I checked. So you're getting a 50 grand pass to come and have a great time with a bunch of friends like that. David Bailey is the head of this ugly beast of trying to thwart anything that you might do to frustrate spam and arbitrary data in Bitcoin. And pretty. It's like the Kevin Bacon thing. If you want to find someone's motivation for why they'd be against it, they're either something to do with naca, which is obviously a David Bailey thing, and then you've got Adam back and Jameson Lobb right there, or you've got the Taproot wizards, which is when you get Dan Held and people like that that have all come out against it. Then you have like the influencers like Walker and Stefan Lavara. These guys are all over that conference presenting and just. I don't know how much they get paid to do those things, but that is their, their, their. Their contribution in the space is being a compare. And all that requires having a very good unantagonistic relationship with Bitcoin magazine and David Bailey and all that. You've got Aaron Van Weardham and Shinobi. Both of them are Bitcoin Magazine people.
+
+So these are like most of the people I can think of on a daily basis that I just wake up and have a torrent of abuse from them. Just like, you suck. You're the worst person ever. Like, you're, you know, you're right. Gloria quit and all this stuff. And there's. There's always that degree of, you know, that minimal degree of separation from. Well, I. I see what your motivation is.
+
+And then they hurl the same accusation right back that I work for Ocean and I'm like, all right, but everyone knows I work for Ocean. But none of this is making life easy for Ocean. It's a hassle.
+
+Ocean is, in fact, in the same position as every other company when there's ambiguity around consensus rules. Every company has to make a difficult decision.
+
+So I don't know what to say about that. I really don't think Luke and me have this strong opinion. But Ocean itself, with its default template, isn't signaling for BIP1's end because that's not something we can do because we like it. So we are just operating as individuals here and no one wins from it. It's just a thing. I feel that is the correct direction for bitcoin.
+
+[00:36:48] Speaker D: I got a couple questions for you because I know you got to go in a second one.
+
+Do you think it'll be in knots? Like, right now you have to take dathomones little fork of knots in order to get the bitpoint 10. It's not in the main knots thing.
+
+Do you think that's going to pump the numbers like crazy? And also, were you surprised at like, the 99% rejection of comments in the Matt and Marty video?
+
+[00:37:13] Speaker C: I mean, like, oh, yeah, Matt and I was, because they're very cherished people in the space, right? They have a kind of special.
+
+Everyone's got a special place in their heart from Odell and Marty Bent. I never really watched much of their thing. And that's not to say, like, I watched it and hated it or anything. I just, you know, there's only so much podcast time I can really consume, and as far as I can tell, they've been good contributors to the space.
+
+I'm not sure what motivated Odell to come out and say all this is me trying to take control of bitcoin or Luke trying to take control of bitcoin. It's obviously not. That's a silly assumption because it's just a bunch of people agreeing with me and running bip 110, that's all. And that doesn't mean I have unilateral control where if I imposed a really bad BIP or something, that they could somehow all have to run it. Like, it's. It's literally just because a few thousand people are running this thing, that's not my call. I'm just the one verbalizing it all. So that was a silly attack. This really isn't motivated out of control. And I've been really consistent saying, like, there are problems with Segwit and Taproot. I didn't realize and I. I was telling everyone they were the greatest thing ever anyway, and now I massively regret that. So I'm not going to advocate for BIP 110 so hard, you know, in that context, having learned those lessons, it's just a mistake. Like, if people run bip1 0 and there's something wrong with it, I want to actually be like, yeah, well, we all came to a similar conclusion and it didn't work out right. I don't want to I don't want to have that kind of responsibility and I just don't Anyway, so I found that really silly from them Regarding knots mainstream merging bit 110 I think that's probably going to happen. There is a PR into it that's being worked on. So I imagine the intention is to merge it. There's also someone working on a core fork as well that has bit 10 and I think they're actually further ahead. So that'll be interesting.
+
+[00:39:14] Speaker D: Who's that? Because some people, you know or some
+
+[00:39:17] Speaker C: Anon is another Nim.
+
+[00:39:20] Speaker D: Okay.
+
+[00:39:21] Speaker C: Yeah, no one wants to do this.
+
+[00:39:23] Speaker A: You know I want to push back on this idea that like the reason like support is one way or the other is because of some like incentive with like an association or whatever. And that may be the case for like some people like, like like I think literally the projects or the people who need a big op return like Citria like they're obviously going to support it because they have like a very personal investment related to the topic that would be a problem one way or the other.
+
+But from the context of like like I feel like I have a perfectly good relationship with Bitcoin magazine despite my like I don't agree with them on a ton of topics. I've basically push back against stuff for years because they. They do basically talk openly about like kind of like spammy type stuff without really any pushback. They don't the generally speaking most of the.
+
+I guess the culture of writing has gone in that direction within Bitcoin magazine. But I also know people who are kind of like associated and they will publish that don't do that. And I also feel no obligated like I was invited to speak.
+
+I'm not, I'm not going to the conference and not for any like ideological reason just because I'm sick of conferences.
+
+I think may will probably be the last one to that I go to.
+
+But there's like no ideological push either way from my own personal stance and I really think it's social circles is that who are you spending time with, who are you talking with? And there's so much talking back talking across each other like where a good example is Christian Cheptcher love the guy I've been working with brains on like their audiobooks and stuff. He posted it but I think he actually did it or he proved the thing but that he put actually contiguous data in a transaction literally using it was actually really crazy. I didn't even know you could do this. But using the outputs sections themselves and like the RAW data of the transaction was actually done in a totally as totally arbitrary data. And you can actually go get the transaction and just say, get raw transaction and then put dot TIFF on the end of it and you can open it as an image and it's an image of Luke and it's. And it's fully bip110 compliant or whatever.
+
+[00:41:57] Speaker C: It is actually invalid per the BitPoint 10 rules. But that's a pedantic point because it could be made valid quite easily.
+
+[00:42:03] Speaker A: Yeah, but here's, here's the thing about this is that this is like one of those, like, talking past each other sort of thing is that every time I have a conversation with somebody who's a bit like you guys or a bit 110supporter or whatever, anybody's serious, there's a bunch of morons everywhere. But anybody serious about it? The argument isn't that that bit 110 stops all spam, or it stops contiguous data from being possible. It's about disincentivizing it and trying to eliminate what is an apparent discount on it. And I'm not saying one way or the other like it. Obviously, it can't be like, I completely agree with a lot of positions on the opposing side about the nature of how feasible the entire, like, the scope of this is. And. But that's not, that's not where the argument. It's kind of like the big blockers have been digging into the whole block size war because all this stupid Epstein crap again. And it's amazing how the big blockers always frame it as, this was a. This was people who wanted digital gold against people who wanted digital cash to scale to the world. And it's like, that is not. That's not anything to do with the argument.
+
+Like, that is not the argument of the block size war at all. It's about how do you scale.
+
+[00:43:27] Speaker C: Yeah, we really are talking past each other a lot. And it's true that it doesn't stop spam, and they keep saying that it fails at its stated goal in that regard, but the BIP itself acknowledges that it falls short of being able to do that and that the correct place to do that is back at the policy level. It never conceded otherwise. But then you have the complication of the fact that a lot of people running bip front 10 are doing it because they hate spam. So you have those two people talking at each other and then you have the BIP itself saying, guys, this is not actually what it's about. It's Just about literally the signal of it saying, this is what Core30 said is the direction and what is approved. And we are saying, no, it isn't. It's literally that it's not a technical thing. It's. It's much more social than that.
+
+Like, and that's. That's something that we own. It's not even about the contiguity element of it either. So there's no technical disproof of it. It's literally just what did Core 30 symbolize? We know it didn't change anything about the consensus rules. We know you could always have a one megabyte of return. But it blessed it. It said, here is where the file storage goes. Bitcoin is for that now. And bit 1:10 says all of those things that you talked about, big opera terms and inscriptions, they're all out now. We're not going to let you do that stuff anymore. Because bitcoin is in file storage. You'll be able to find loads of holes in it and still store data. It's the only way to get a shelling point around rejecting that whole direction and finding technical holes in it and saying, well, it can still do this and it can still do that. I'm saying, fine, but do you have another way of changing course that's actually practical and that can achieve a shelling point? Because I would gladly endorse that instead. And no one actually does.
+
+So it's a very frustrating thing to talk about. It's about trend and direction. Once we start moving away from arbitrary data and bitcoin being a thing and stop embracing it, that's going to lead to better decisions and a better orientation for the network.
+
+And it's baby steps.
+
+And I just don't think anyone else has a sufficient alternative. Like, some people want just opreturn, some people want just OP if. Some people want op, false OP if. And none of those people have more than a dozen people that agree with them. So I'm like, well, you're never going to achieve anything with that.
+
+And so it becomes an impractical nitpick. Here's what the BIP actually does. It's a very good middle ground of all the different options.
+
+And the fact that it only lasts a year as well and you can still do CTV as an upgrade is great.
+
+I don't think anyone's going to lament the loss of being able to implement another soft fork in a year's time. For a year's time, I don't know. I'm in a place with it where I feel increasingly like it's a very good idea and that most of the critiques against it mischaracterize the aim of it.
+
+And it's because it's much more social than people want to admit because it's constantly getting dragged into technical territory where they're like, well, here's a way I found of uploading a whole bunch of data. And I'm like, look, man, that is acknowledged in the bip. You're going to be able to add data to bitcoin even in bit 110 rule scenario because we can't lock it down so much that it becomes useless for money too.
+
+Does that make sense or what? Like, yeah, I'll speak to you guys soon. Wish you guys were here at the Heat Punk conf. Maybe next year, eh?
+
+[00:46:56] Speaker A: Yeah, man, we'll catch up.
+
+[00:46:58] Speaker D: All right, see you.
+
+[00:46:58] Speaker A: All right, take it easy.
+
+All right.
+
+So this, it sucks that I can't actually talk to Mechanic about this because he actually brought up a couple things as to why I don't support bip110. And I really think the route is a slow and steady like client shift.
+
+And because I think the fact that it's, it is a social signal or that it's really about like direction of the protocol is if, if the idea is to undermine the choices to, to basically say, listen, we don't agree with the direction of this and we believe the, the bitcoin network is basically focused, should be focused in this other way is that bit one is basically attaching the.
+
+That sentiment or, or that ideology that, that framing the, the philosophy of like how to develop Bitcoin and how to think about the, the trade offs there is being attached to BIP110 success.
+
+And I don't think BIP110 as a soft fork is likely to succeed whether or not it's. And I don't, I don't really even think the temporariness of it is even really consequential in that sense because it's just. I think, I think there was, there was some other soft fork in the past that was intended to be temporary. But I, I just think that's. That's a little bit of a red herring maybe is the term, I don't know.
+
+But I think If Bitcoin, if Bit110 fails, there is this. Oh, we're definitely set that this is the direction. We're just not caring or not thinking about spamming rather than here's a client for people who care about spam. I Think it really takes the winds out of the wind out of the sails for it. And I see the people talking past each other on the other side of the aisle just as much of like. I think everybody's getting their arguments of what the other.
+
+What the other side means or what their stance is from their side.
+
+You know, like there's this heavy echo chamber issue of which which is totally natural. And that's why I think everybody's basically aligning with their social groups to, to some degree.
+
+But I don't know, it's. It's a mess and it's really hard to like. I found a couple people who listened to the show who were on the other side, like really helpful. Merch has been pretty great too. There's a lot of people like crapping on Merch, but I think Merch has done a pretty good job of. I mean he shared his opinion forcefully at times, but who hasn't? Welcome to Bitcoin. You know, grow pair and like. But I really appreciate that he is at least honest and he openly engages. I can have him on the show and we can talk about it. You know, like, it's like that I think is the much bigger problem.
+
+But I do actually care about this. I think the philosophically, so to speak. I am bip 110 sympathetic.
+
+But I, I just don't know from a technical standpoint, it doesn't seem like. It seems like it's too hard, too fast and ties to like it. It's basically tying the entire argument to that. And I would rather see Ocean and Knots become a bigger and more important part of the network because it's it. It attaches the idea of let's keep this thing money. And if you want to quote unquote, protest the direction of like, let's just not care. Let's not even think about spam is like point your hash power to it in a low, in a low risk way.
+
+[00:50:53] Speaker C: You're just.
+
+[00:50:54] Speaker A: You make your own templates. Let's decentralize Bitcoin again because that's actually the more important thing is how many miners are actually miners and not hashers.
+
+And you know, how many people are building their own block templates. How many people are actually making an active decision about what their client does as opposed to just downloading the default. Like I think that is a bigger issue to be taking a stance on. And I think Knots and Ocean are really important pieces of that whole thing and it's being lumped into do you support bip110 or not? And if bip110 fails, I think it's like, well, there goes knots and there goes ocean as being consequential.
+
+[00:51:30] Speaker B: The thing is, though, is that knots and ocean aren't going anywhere if bip 110 fails.
+
+[00:51:36] Speaker D: Yeah, I don't. I don't agree.
+
+[00:51:37] Speaker B: It's entirely possible.
+
+[00:51:40] Speaker A: I think it's about this. I'm talking about the social importance, though. The social relevance is that they will. I don't. They won't go anywhere because ocean isn't. Won't be signaling. They can't signal for BIP110 because they don't. They don't. They have. They don't. They don't mind. Right. The people in their pool.
+
+Like, I'm mining with ocean, but I make my template. I choose what my template is. You know, I think it's more about the. Sorry. Sorry to interrupt, but I think it's more about, like, the.
+
+The seeming success of the position from a social standpoint.
+
+[00:52:15] Speaker B: Well, I'm. I mean, I'm with you in terms of, like, I have no idea about the success of BIP110 or its potential to succeed, but that said, mechanics. Right. You know, Segwit didn't start with a bunch of support from big names.
+
+[00:52:34] Speaker A: Oh, I totally agree with that point. Yeah. I would much rather it start from grassroots.
+
+[00:52:38] Speaker B: It has to. Right. And. And it could entire. Like, we could see enough of the network, you know, adopt this thing, that it creates some real, you know, discomfort among big enough players that it ends up being adopted. Like, I don't see that being out of the realm of possibilities.
+
+[00:52:59] Speaker A: I. I think that. I certainly think the technical.
+
+The supposed technical loss of what bip110 changes is, like, being totally overblown. Like, there was a. There's a tweet by Vortex, which I only found out, like, yesterday.
+
+Uh, another example of, like, I don't get notifications or whatever. But he went through, like, this list, and there were, like, one or two good points, but then there were, like, three that were totally, like. He said, like, it. It stops exactly what we need for LN symmetry and L2 protocol. And it's like, no, I was pretty sure that was not true, but I, like, really dug into it to confirm. But it was like, early proposals use the Taproot Annex, but more recent ones don't. So it's not. It doesn't stop anything for, you know, ln Symmetry. Um, I do kind of believe that OPIF is not necessarily, like, a huge benefit, but I was actually. Steve I was talking with you and literally didn't even realize. I thought you had to do a different signature or a different thing to do OP if in like normal script.
+
+But then the way Taproot works is that you can actually do it in a different leaf without. If you can basically do the exact same construction, you just have to use
+
+[00:54:13] Speaker D: it and that way only that path has to be revealed when you do the, when you spend it and the input, which is the whole reason that Taproot is even efficient, which is actually
+
+[00:54:22] Speaker A: a privacy benefit and it's a data benefit, is you put in a different leaf so you don't actually. Taproot can't. It doesn't change anything about like vaults really. You, you have to build it a little bit differently. So if you built it with op, if in the normal script you can't. You wouldn't be able to do that in Taproot, but you could just do it with Leafs. So like there's, there's a lot of like, oh, you, we're killing multi sig function. It's like eh, but we're not. But like it's not, you know, like. And you know, you know somebody like me who's trying to dig into this, like I'm going to immediately want to dismiss what they say because they're, I don't, I don't feel like they're being dishonest. They're trying to figure out what the worst sounding thing is.
+
+But there has to be a really good reason to support a fork in my opinion. So like, even if everything was just kind of like meh, whatever, like that might be a good enough argument to not do a soft fork, you know, but still, I don't know. Just a lot of them. Yeah, sorry, I interrupted again.
+
+[00:55:19] Speaker C: Oh, you're good.
+
+[00:55:19] Speaker A: My bad.
+
+[00:55:20] Speaker B: If we get a decent amount of adoption of, of knots in this process and I don't know, I don't, I don't know how I feel about if all KNOTS users are.
+
+I mean, I guess you don't have to update to the version that supports bit 110, but it would be nice to have a KNOTS version that is not, you know, like supporting bip110 so that you can just support filters or whatever. You know, run your filters or whatever else without having to signal for BIP 110.
+
+[00:55:58] Speaker D: No way. That's going to be default though.
+
+I mean, Luke's a freak, dude, you know Luke's doing. Making that default.
+
+[00:56:04] Speaker A: Luke's a freak.
+
+[00:56:05] Speaker D: Yeah, he's like, this is the end of bitcoin. If he doesn't do it, you know he's doing it.
+
+[00:56:11] Speaker B: But the thing is, if it's default and you can still change it, then fine, it's fine. You know, like, if all you got to do is click toggle off or whatever, then no big deal.
+
+[00:56:20] Speaker A: Knots are the only people who change their config anyway.
+
+[00:56:23] Speaker B: Yeah, so. So I don't. I don't really have. I don't really have a problem with all of that. Like, like, that's fine.
+
+I. I kind of agree. You know, I agree with Guy that we should just kind of focus on like, hey, use.
+
+[00:56:40] Speaker A: Slow and steady wins the race.
+
+[00:56:42] Speaker B: Yeah, use, use, not use. Like, let's get away from this. Like, I don't know, whatever. Like, I can't. I don't know. I don't know enough about the Gloria quitting thing to even really care. But, like, a woke Dev quit.
+
+[00:56:59] Speaker A: Oh, I'm. How awful.
+
+[00:57:01] Speaker B: Like, you know, I just can't. Like, I don't give a shit. Like, why would I be mad or upset about that? Like, I have seen enough of her comments to know that she is not somebody that I have any. Like, we're not going to agree on fucking anything. So why do I want that person?
+
+Like, she's not going to truck or building anything, Anything that I'm using. Like, she's very vaccinated.
+
+[00:57:23] Speaker A: That's.
+
+[00:57:23] Speaker B: Yeah, that's how I feel about that. And I'm. I'm opposed to vaccinated people building stuff for me. I don't want anything they touch.
+
+[00:57:31] Speaker A: This is going to please. This is very much going to please. One of my YouTube commenters, who apparently still listens to the show, says this show is the roundtable has devolved into just talking bad about other people in bitcoin. I was like, man, how long have you been in bitcoin?
+
+[00:57:45] Speaker B: This is.
+
+[00:57:46] Speaker A: This is all we do.
+
+[00:57:47] Speaker B: This is all libertarianism is. Libertarianism is just other libertarians fighting with each other. Like, that's just all it's ever been. It's like, this is why they call it herding cats is you can't get any sort of consensus among independently minded people. And so there's like, there's no hope of us ever freeing the world because we all just fucking fight with each
+
+[00:58:08] Speaker A: other all the time.
+
+[00:58:09] Speaker B: It's Knut.
+
+[00:58:10] Speaker A: Knut talks about this.
+
+Like, he argues that that's why collectivists
+
+[00:58:15] Speaker B: win, because they can all agree.
+
+[00:58:17] Speaker A: Individualists who actually have an opinion will actually argue and try to find the truth, whereas Collectivists will literally subsume their actual position and what they actually think to be a part of the group, which means that they can actually organize. Libertarians can't organize for. Because they all disagree with each other.
+
+[00:58:33] Speaker B: Coordination is easy when nobody thinks they're
+
+[00:58:35] Speaker A: like our pet slavery. It's like, no.
+
+[00:58:37] Speaker B: Yes.
+
+When. When everybody wants to be led, it's so easy to coordinate. Like, you don't have to. Like, you don't have to fight with somebody's actual thoughts.
+
+So, yeah, I mean, that.
+
+[00:58:50] Speaker A: Does it go with the group. That's.
+
+[00:58:51] Speaker B: That's what I believe.
+
+[00:58:54] Speaker D: My.
+
+Can I get. Can I say mine thoughts on.
+
+[00:59:00] Speaker A: Yeah, yeah, yeah, yeah.
+
+[00:59:02] Speaker D: I'm not pushing back. Like, so. I mean, I've been. I've been deep in this for months now and past few weeks I've just been doing so much research and I think my thoughts are more fundamental about the purpose of Bitcoin being designed to minimize data storage in the first place.
+
+You know how there are some people that are like, look, data is data.
+
+It has to be financially. Financial transactions have to. People have to pay more for them in order for this to win and stuff like that.
+
+And a lot of the conversation about reducing Data is for UTXO bloat or DDoS protection. And there's these very clear technical reasons. You want to reduce data, but what about. You want to reduce data for behavioral financial reasons?
+
+And so like I've been going back to Hal Finney and Satoshi and like the early devs, and it's pretty clear to me from researching them that they weren't just about, oh, we can't have data and OP returns and stuff because of DDoS or UTXO bloat. Like, no, there was definitely an economic incentive sense to. They wanted Bitcoin to be as forward financial transactions as possible. They just thought that was the case and they didn't go as hard as they could have in some ways to keep non financial data from being there. And I have a pretty good way of defining non financial data. It's actually pretty simple. It is any.
+
+[01:00:51] Speaker A: You and Lawrence actually had a good thread.
+
+This is one of the ones that I did catch on Twitter or whatever. You and Lornick. Yeah, whatever.
+
+Went back and forth. And I thought y' all had a good. Oh, wait, no, he sent me the message. That's right. Well, he sent me the. The thread. But I thought that was actually like a really interesting conversation. Y' all had to go back and forth.
+
+[01:01:10] Speaker D: So if you look at a transaction, some of the bytes in the transaction will contribute towards validating whether the script is valid or not, whether it, you know, the, it gets.
+
+Whether the UTXO transfers or not.
+
+When you think about Opera terms and you think about these witness inscriptions, there is nothing in that data field that is going to affect whether it's a proper UTXO transfer or not.
+
+So that, that is a good clear definition of arbitrary data. It's like in no way can the data in this field affect the outcome of script validation.
+
+Like, so you just define it as that.
+
+And that is the thing that we seek to minimize. Not for purposes of UTXO bloat, not for purposes of DDoS protection, even though those are important, but for the purposes of trying to keep Bitcoin as.
+
+[01:02:09] Speaker A: Of just defining, just defining, Defining Bitcoin. Yeah, in the protocol. Yeah.
+
+[01:02:13] Speaker D: If you take that mentality, we seek to minimize that as much as possible.
+
+Then like Satoshi and Halfini and these guys, like they didn't go as far as they could have with making restrictions. And then Taproot and then Segwit introduced this little way where you can, you know, put this op if you know, if true equals false or whatever, and then you know that branch can never get there, so they can just put that data blob after that.
+
+So that introduced another way of putting this arbitrary data in that also never gets validated. So it like, it skirts aside the thing and then Taproot uses that same structure that Segwit does with the if true equals false thing.
+
+And then, but then when they put, when they made the Taproot upgrade, they completely lifted the 10 kilobytes script size limit. Like Taproot transactions are not subject to the script size limits that the older forms of transactions were subject to. And the reason the rationale that Core gave when they did that was because with this, to this new Taproot thing that does this efficient script path thing, they don't see any way you could DDoS the system.
+
+So therefore they don't need the script size limit anymore because there's no way to DDoS. But that was their rationale.
+
+It was as if the whole reason for keeping arbitrary data out of Bitcoin from the beginning was just this stuff about DDoS and UTXO bloat.
+
+And so it's like if I, you know, if, if I were to go back to the beginning, I personally think Bitcoin would have been better if it puts stricter limits on arbitrary data to begin with. And then there was a bug when Segwit and Then there was an even larger bug in taproot.
+
+So, like, I'm just at this position where this stuff needs to be fixed. Then that's just my opinion of, like, what a better bitcoin would be. Just my opinion. And bit 10, I'm sympathetic to the view that it's too rushed, it's too much too soon.
+
+You know, it should have been a longer time. The idea of trying to, like, build consensus, I think that's going to be hard no matter what.
+
+I'm kind of sympathetic to some ideas, like, hey, why don't we just try delayed block propagation a little bit more at first as, like, a softer way to try it.
+
+But I'm glad this is happening because I think a lot more people are taking this a lot more seriously. Like, I get your point about, oh, if it fails, then it might take all the wind out of the sails, but you know how much wind's being blown into the sails because it exists.
+
+Like, if it, if this wasn't as serious as it was, I'm not sure the, the conversation would be getting elevated to begin with.
+
+[01:05:19] Speaker B: Yeah, I don't think this, I don't think any of this is bad. And I, I, if you put a gun to my head and said, you have to choose the path that Core is on or you have to Choose Luke's like 300 kilobyte blocks, I'd go with Luke. Like, I, I don't like, I think that, that his.
+
+[01:05:35] Speaker A: You mean taking all consensus and all everything, like, aside.
+
+[01:05:39] Speaker B: Yeah, like, like, if, if, if you have to pick a path for bitcoin, I think Luke, the most extreme version of what Luke wants for bitcoin is better than what Core wants for Bitcoin.
+
+Like, hands down, if, if Core is wrong. This is the same argument that Giacomo and so many other people have made so many times, is that Core is playing this game of like, no, no, no, we can do this. We can put this arbitrary data in here. We can do this thing and make, make it this much harder to run. And o. We can.
+
+[01:06:11] Speaker A: This.
+
+[01:06:12] Speaker B: These resources are not that much. Well, if Core is wrong, they're playing a dangerous game. If Core is wrong, then we end up in a future that, where the government can censor blocks and transactions and nodes, node relaying and all sorts of things in the bitcoin network. They can divide and split the network across country lines. And I mean, we. It's so hard to communicate between here and Iran if, you know, here in China, when I have a friend who's got a Chinese wife. And the Chinese firewall is a major problem.
+
+Like, if they want to cut things off, they can fit. Like, it's not that hard to do. And so if bitcoin is not something we can like, basically stenography and like, hide in, in other things, then it doesn't survive. And so.
+
+So Luke's version, that's a small, super efficient, lightweight thing that maybe you can't fit as many transactions into, but if you have other network nodes, you know, lightning and other things operating on top of it, and you can batch transactions and mix transactions and do all sorts of stuff in the little space you have, and you can hide everything, then the network, everything keeps working, and that's much, much better in the long run. We still like people.
+
+There's a whole bunch of people that still seem to think like, the fight's over. I don't think it's even begun. Like, I still think that, you know, we've. We've reached some hurdles and the government is trying to, like, embrace this. You know, the governments are sort of embracing this thing. And yeah, that's good because, you know, there is a lot of economic gravity to the way bitcoin works, but that does not mean that, like, governments are going to fight each. Governments fight each other over money. That's what all wars are about. That's what all of this stuff in the Middle east is about. So all of this stuff with Israel is about. Everything is about monetary dominance, global monetary dominance, every bit of it. It's keeping oils, tra, oil trading for dollars. Everything that's on the axis of evil is a country that's selling oil for something other than dollars. Right? Like, with just the idea that there's not going to be future battles over bitcoin mining or bitcoin policy or who can run what. And, you know, like, it's crazy. Like, if bitcoin, even whether it succeeds in terms of government adoption or not, we're gonna have crazy battles. And so we have to keep this thing, something that people can control, not major institutions. Because if major. If it. Because if it's up to major institutions, it's all over anyway, right? We've just created another Fed that's gonna be, you know, like, it's just a matter of time.
+
+[01:09:06] Speaker A: I will say that.
+
+Well, actually, first, before I get to that, did you see that BRICS might be falling apart already?
+
+Russia might be kind of like basically stepping back because they. And it started as like this. Like, we're going to contest the dollar and, you know, we're going to be gold backed. And then it was like, oh, we're going to be partially gold backed. And then it's going to be a basket of all of our currencies. We're going to have the Chinese yuan, we're going to have the Russian ruble, We're going to have any, like, we're going to have all these different currencies and that just means that it's going to perform crappiest. Anybody, any, anybody in that group who has a good currency is going to get screwed. Anybody who's a bad currency is going to get subsidized.
+
+[01:09:52] Speaker C: Yeah.
+
+[01:09:52] Speaker A: And so like it's just kind of like well why are we even doing this? And it looks like Russia's trying to make, make buddies with, with Trump.
+
+[01:10:01] Speaker B: This is the problem with the, the BRICS nations all along is they don't trust each other.
+
+[01:10:06] Speaker A: Not only do they not trust each other, but none of them can.
+
+No, everybody's debt addicted.
+
+[01:10:12] Speaker B: Sure.
+
+[01:10:12] Speaker A: Nobody can get, nobody can get away from the debt problem. Like China's just as bad in debt as we are.
+
+[01:10:17] Speaker B: Yeah, but that's exactly what I mean is they can't trust each other and, and so they're not going to trust.
+
+[01:10:22] Speaker A: And debt requires trust.
+
+[01:10:23] Speaker B: One currency in any, yeah like any country is one currency. They're not going to all trade in Yuan, they're not going to all trade in r. Whatever else. And so, and the thing is is that the Triffin dilemma is real. And I don't know how much, how conscious any of them are of the Triffin Dilemma, but nobody wants that. And so, so like this is like, that's nice for the polit politicians for a short while that it actually literally hollows out your country. This is why all of the interest in industry is rotted out of the United States.
+
+And so, and this is why like,
+
+[01:10:56] Speaker A: I mean this is, AI is making blue collar cool again, man.
+
+[01:10:58] Speaker B: Yeah, this is the only reason the tariffs like sort of work is because you can kind of tariff your way to a more valuable dollar temporarily. And it doesn't, it doesn't really work. It's, it just kind of, it's like you know, shooting yourself like cutting off your nose despite your face kind of thing. Like it's a very like, like a, you're just destroying the hegemonic power of the dollar really in the long run.
+
+[01:11:27] Speaker A: But,
+
+[01:11:30] Speaker B: but it's like a, I don't know, as a short term measure it kind of works. It definitely made the dollar stronger than you know, than I, than I think it should be.
+
+So, you know, I, I don't know. I, I think, but I think the point is, is that we're going to have like, monetary battles are not over.
+
+Like, and yeah, maybe all of this is good for the, you know, the global south or whatever. If, if there's a bunch of countries that are adopting bitcoin, they, and while, you know, the traditional western countries and the BRICS nations all can't decide on what the hell they're going to use, if you had, if you had a bunch of smaller countries that, you know, were actually moving in that direction that
+
+[01:12:18] Speaker A: would be, you know, you might see
+
+[01:12:20] Speaker B: an economic power emerge just, just because of the coordination, you know, that, that, that a sound currency provides in smaller countries.
+
+[01:12:28] Speaker C: So.
+
+[01:12:29] Speaker A: Yeah. So one of the things that I'll say about what I've kind of noticed in talking to or, or listening to both camps in this civil war, you know, caveat being I'm sympathetic to the, the bip 110 side, so to speak, is I think a lot of people on the opposing seem really nervous about how this would damage bitcoin to have a messy soft fork and the potential of a chain reorg and all this stuff.
+
+And, and I kind of underst. I, I do understand that, like, it seems like, especially from their perspective, it seems like potentially causing a big problem for no reason, like, or for something that they think is stupid.
+
+And, and I kind of feel that same thing. You know, I'm like, I'm, I'm as all in to bitcoin as it gets. And you know, this causes chaos and uncertainty for a while. Like what's that going to do for the price?
+
+You know, like, like what does that do? Could this actually disrupt the network for a short time? But then there's like another, there's another part of me that like loved bitcoin when it was just nothing but.
+
+And bring it back and, and test it, dude. At the, at the exact same time there is this like bitcoin being a bitcoiner has gotten really, really easy.
+
+You know, it's like Trump talks about how great it is. Like, it's like we're going to have a bitcoin reserve and there's like crypto.
+
+[01:14:19] Speaker B: Everything feels fake and gay now, man. We gotta, we gotta get back to the scenario.
+
+[01:14:23] Speaker D: Makes it feel real again.
+
+[01:14:24] Speaker A: I'm being serious though. Yeah, I'm being serious though is they have not been, there have not been any strike stress tests on bitcoin in quite some time.
+
+[01:14:35] Speaker D: And this is a great stress test.
+
+[01:14:37] Speaker A: We've had a really easy going and I think we've kind of become.
+
+I think a lot of people in bitcoin have kind of become like, well, this is going to be smooth sailing now and, and we shouldn't rock the boat. And I really, there is, there is this little voice in me that says,
+
+[01:14:51] Speaker D: let's rock it, dude.
+
+[01:14:52] Speaker A: Let's rock the boat. You know, like let's.
+
+[01:14:54] Speaker D: This is the greatest. This is like in house testing that like, okay, so this style of soft fork could have arisen.
+
+[01:15:01] Speaker A: I'm not afraid of what it does to bitcoin. Yeah, I think bitcoin comes out strong.
+
+Even if we go fully.
+
+I literally think it comes out stronger either way.
+
+[01:15:12] Speaker D: It's an anti fragile system with antifragile systems. There's obvious a point where you can push it until it breaks.
+
+But you're crazy if you think this is one of those things that is at the level of risk of breaking something important to bitcoin. Especially if you're for completely new OP codes that we have no idea how they're gonna play out. Like this kind of thing is like so easy compared to that. It's being done from an individual who like, maybe people think he's a little bit like crazy, but like, who would be a better person? Maybe there's like a handful of people that would.
+
+[01:15:50] Speaker A: Are you talking about Luke in this?
+
+[01:15:53] Speaker D: Who would be better than Luke than to come to be the one to do this kind of stress test on the system and test out this style of fork which is brand new. I mean like we've never had a soft fork that tried to reduce the consensus variables the way it's doing. I mean this is not adding features, this is reducing features. And that's a completely different style of soft fork. It's automatically backwards compatible. You don't have any.
+
+[01:16:21] Speaker A: Only time that has happened was a universal change that Satoshi implemented and since then it has.
+
+[01:16:26] Speaker D: Exactly. So like this, this thing needs to be tested. How do you want this thing to be tested?
+
+[01:16:30] Speaker A: Unilateral change.
+
+[01:16:32] Speaker D: Like how do you want this feature to be tested? You want to be tested by like Wall street or something? Like this has to be tested. This is a brand new thing. And. And another thing I'm super curious about is like how do the dynamics between node and miners difference when it's a soft fork that wants to restrict consensus compared to a soft fork that wants to add consensus? I think there's going to be something very different about the behavior and who has more power in which way based on the nature of the soft fork.
+
+[01:17:03] Speaker A: This is why my thinking, I think bit 110 is actually is going to fail or whatever because the user activated soft fork had momentum on their side is. Or our side is the. When we, when we ran a UASF node, it was saying like essentially the segwit2.x and everybody who were in the corporate camp, let's say the New York agreement, right? 83% of miners or 83% of hash power because of like five miners is they were saying we're going to do Segwit, but we're going to earmark it with our hard fork and you're going to take our hard fork and you can suck it if you don't want it it. And basically UASF was calling their bluff and saying, okay, you're 83% signaling for Segwit. Well, we are going to force implement Segwit and you're going to have to reject SEGWIT until you get it your way attached to a hard fork or you're going to, you're going to let us do activate SEGWIT our way and we're going to say FU to your, to your hard fork.
+
+And so because of that is that they basically had built in miners already saying I 100% support this.
+
+But I, but you know, I'm not going to let you have it unless you also take this thing that you don't support and it's like, well, okay, so you're not going to let me have something that you support. Well, we're going to go ahead and activate it and go ahead, go ahead, see what happens if, if you, if you say that, you know, you're only going to get it your way as opposed to, as opposed to the way that everybody else wants it.
+
+And so because basically bip110 does not have that advantage. It does not have that like preconceived support that has to be rejected or denied is that they have the uphill battle as opposed to the UASF had basically.
+
+[01:19:06] Speaker D: Can you explain that a little more? I'm not, I'm not really sure I, I followed that because in the SEGWIT thing, the big blockers, they were, they were producing code that was going to be a hard fork no matter what because they were going to change the block size.
+
+[01:19:21] Speaker B: It was seg. It was segwit2.x.
+
+[01:19:23] Speaker A: It includes, it was a hard fork with segwit.
+
+[01:19:26] Speaker B: Yeah.
+
+[01:19:27] Speaker A: Whereas user activated soft fork was just segwit.
+
+[01:19:30] Speaker B: Basically they tried the earmark There was
+
+[01:19:32] Speaker A: already enough signaling for Segwit for the user activated soft fork to work out the gate. They were just signaling it with a hard fork and user activated soft fork said, okay, you want SEGWIT with your hard fork? Well, we are going to activate SEGWIT before your hard fork. And you have to say that despite the fact that I explicitly said I want Segwit, that you're gonna have to now reject something that you said that you wanted in order to get it, quote unquote, your way. So it was like Segwit was already, it would be like if saying that
+
+[01:20:04] Speaker B: it's like if the government was trying to pass a law and there's like overwhelming support for some new, like, I don't know, handgun policy or something. Right. Like it allows everybody like open carry policy or something. But then the government said, okay, okay, okay, okay. They capitulated and said, yeah, we'll give you this law you really want. We'll give it to you, but you have to accept this restriction on free speech same time. And they, they, so they earmarked the bill with this restriction on free speech. Like they want like some sort of major, you know, huge change. And the people that wanted the, the, the handgun bill original in the first place just said, just went ahead and passed it themselves. We're gonna, you know, we're gonna make this happen. Yeah. With, without you. And you're gonna have to reject this that you've, you've already admitted you're okay with because you can see that everybody wants it.
+
+[01:20:55] Speaker A: Like, like that's, I would say to put it in, to put it in the context of Bitcoin, I would say imagine the core like v31 is actually removes op if, but it does so while making OP return go to 1 megabyte.
+
+And so bip110 is saying we're getting rid of op if and keeping operating exactly what it is.
+
+That would be the dynamic there is that like, okay, I want your OP if. I'm okay with like blocking OP if, but I'm not okay with removing, with making OP return one megabyte limit. So if you're saying that we're only going to do it your way. You already admitted that we have agreement on getting rid of OP if and we are going to get rid of OP if our way and we're not going to do it with your OP return, change that.
+
+[01:21:50] Speaker D: But that would be only the situation where there was already minor signaling for some other soft fork.
+
+Yes, yes, but we don't have that.
+
+[01:21:59] Speaker A: That's what I mean is that they would be showing. No, yeah, this was, this would be the analogy. The. The analogy.
+
+[01:22:03] Speaker D: Obviously that's the reason that the BIP situation, the BIP110 situation is a very different situation than the Segwit situation. Like I agree with you with that.
+
+[01:22:12] Speaker A: Exactly.
+
+[01:22:12] Speaker D: Like it's not the same. You shouldn't compare them. But it's, it's not like a reason that it's like it's gonna fail because this is different. It's like, okay, this apple is not this orange. So that reason that means this orange doesn't taste good. I mean like it's a. It's a completely different thing. We've never seen this kind of thing before. Comparing to.
+
+[01:22:30] Speaker A: No, I agree with that. I just think the Dynamics are that bip110 has a much bigger challenge, more difficult fight.
+
+[01:22:37] Speaker D: Yeah, I agree with that. I agree with that too. But I'm so interested in this because like if this is not the mechanic. Okay, let's just be honest.
+
+Eventually the, the devs are so freaking gun ho about trying to add features every which way, eventually they're going to get a feature in there that really sucks. I mean that's just going to happen. I don't know whether it's cdv, I don't know whether it's two weeks later when the next thing's added on to it. But like eventually it's going to happen. So like what is going to be the mechanism by which we recognize that this opcode made some behavior that we really didn't want? Who is the we that says we don't want that and what is the mechanism by which that thing is removed like this? That's important to know. And I, I think this bip110 thing,
+
+[01:23:28] Speaker A: can you recover from a mistake?
+
+[01:23:30] Speaker D: How do we recover from.
+
+[01:23:31] Speaker A: Without a reorgan? Like a. Yeah, yeah, that's an interesting. Yeah, it's an interesting dynamic.
+
+[01:23:37] Speaker D: That's why I'm so for attempt however this plays out. Like I agree with you, it chances might be small right now and there might be better ways to do it. And yeah, there's a lot of criticisms of it, but there's a lot of good reasons for it and there's so many things we're going to find out about this and we have to know what the mechanism is to remove shit that's broken.
+
+It's infuriating to me that we are not admitting that there are bugs and taproot. I mean I know you can get around that argument by saying like contiguous data doesn't matter at all and like there is no behavioral reason to get data out of there. Financial data has to out compete non financial data for any of this to work. I get all those arguments but if you have the argument that no there is a reason that we want to restrict arbitrary data in Bitcoin regardless of whether it's technical UTXO bloat regardless of its DOS protection, if you agree with that, you have to agree that there was a bug in Taproot and so like how are we going to fix it? Like yeah, I don't know.
+
+[01:24:44] Speaker A: Yeah, it's going to be interesting no matter what.
+
+I'm going to pay really close attention to it as this, as this kind of unfolds and I'll still be mining on Ocean, but I'll be keep doing my normal block template for the foreseeable future.
+
+I want to talk about something though. We actually do have like some news items that I would love to have.
+
+Some of it's related to mining which I'd love to get mechanics input on but I guess we'll have to wait until next month but.
+
+So Square or excuse me, Block, which owns Square, Spiral, Bitkey and Proto Mining.
+
+[01:25:26] Speaker D: Jack,
+
+[01:25:28] Speaker A: they, Jack Jack tweeted this that they are reducing their workforce by 40%. They are making a huge cut and honestly I just want to like a whole bunch of people are like either congratulating him or saying that like oh, so Block is dying and you have to cut and even though he a little bit like talking past but I want to just read it. It's not that long.
+
+Um, we're making blocks smaller today. Here's my note to the company. It's funny, the first thing I read was that like wait a second, they're going to purposely mine smaller blocks. That's kind of dope. But no blocks is the. The at like blocks is there like the company.
+
+Today we're making one of the hardest decisions in the history of our company. We're reducing our organization by nearly half from over 10,000 to just under 6,000. That means over 4,000 of you are being asked to leave or entering into consultation. Consultation. I'll be straight about what's happening, why and what it means for everyone. First off, if you're one of the people affected, you'll receive your salary for 20 weeks plus one week per year of tenure equity vested through the end of May, six months of healthcare, your corporate devices and $5,000 to put toward whatever you need to help you in this transition. That's a freaking package. If you're outside the US you'll receive similar support, but exact details may vary based on local requirements. I want you to know that before anything else. Everyone will be notified today whether you're being asked to leave, entering consultation, or asked to stay.
+
+We're not making this decision because we're in trouble. Our business is strong, gross profit continues to grow, we continue to serve more and more customers, and profitability is improving. But something has changed. We're already seeing that the intelligence tools we're creating and using paired with smaller and flatter teams, are enabling a new way of working which fundamentally changes what it means to build and run a company. And that's accelerating rapidly. I had two options. Cut gradually over months or years as the shift plays out, or be honest about where we are and act on it now. I chose the latter. Repeated rounds of cuts are destructive to morale, focus, and the trust that customers and shareholders place in our ability to lead. I'd rather take a hard, clear action now and build from a position we believe in than manage a slowed reduction of people toward the same conclusion, same outcome. A smaller company also gives us the space to grow our business the right way, on our own terms, instead of constantly reacting to market pressures. A decision at this scale carries risk, but so does standing still, et cetera, et cetera. What I wanted to get to the important part was that, like, we're not making a decision because we're in trouble.
+
+We're already seeing the intelligence tools we're creating and using paired with smaller and flatter teams are enabling a new way of working which fundamentally changes what it means to build and run a company. And that's accelerating rapidly. And the interesting thing about that is that I think, you know, there was a. There's been like a couple of recent eras, like, business has actually changed. The structure of business has changed quite a bit in the Silicon Valley era.
+
+Like, like there are really pretty meaningful changes, like the 8020 rule at Google, right? 20% of the time you're getting paid, do whatever the hell you want, work on whatever the hell you want to work on. And funny enough, 80% of Google's revenue comes from that 20% of free time in the company.
+
+And it literally changed how people thought about organizing teams and managing time and all of this stuff. And I really think AI the freedom to really build whatever the hell you want to build. And like somebody, somebody posted the other day that I thought this was really interesting is somebody was like, my delay and procrastination in learning to do C and do SQL transfer and, like, all this stuff. Like, he just, like, listed this, like, 20 things that he was like, on his list of like, I should have done is like, has all. Has all been proven completely correct? Like, and I thought that was hilarious, but. And pair drop. The stuff that we're doing is such a good example because I just spent three days Vibe coding a tool that. Or four days Vibe coding a tool that actually works with our base, and then I handed it to them to clean up and work. But I have a workable tool this Vibe coded like my, my prototype. I don't know jack about code, right? I, I. All I can understand is kind of architecture and modularity, how to make it, make sure it's not likely to break. And as I'm vibe coding, you develop a process and a set of rules about making a reliable process and building something in a reliable way.
+
+But it, it, like, it's gonna change. It changes the nature of group projects. And all the economy is. Is group projects, right? Like, it, it's. It's gonna be really, really wild in the fact that whatever it is that they're building or using that they see that essential fat, when already so much of the economy is fat. You know, Bullshit jobs estimated that like, like, literally a half of the jobs in the economy are just nonsense. Probably more based on the people themselves. Based on the people themselves. This is the big thing in the bullshit jobs book is that he said this was not about, like, oh, I'm making a judgment or an external assessment. He said, we asked the people in private survey of people doing their jobs, saying, do you think that if you left the job and you stopped doing anything and stopped showing up to work that it would have any meaningful impact on the business whether it's true or not? Do you think it. And, like, half of them said, no, it would make no difference at all. I do nothing of consequence. He's all like, what does that do to the soul of a person that they think they're just there to get paid and pretend to be?
+
+[01:31:09] Speaker D: That's the point. You want to get rid of people's soul, then you don't have competition.
+
+Companies hire people so that they don't start companies that compete with them. Companies don't need people to do work.
+
+They just need people to not.
+
+[01:31:22] Speaker A: That's so much work.
+
+[01:31:25] Speaker D: You're a threat to me. You're super smart. Come work for me. Sit in this cubicle. Don't do anything.
+
+[01:31:30] Speaker A: Fill in this spreadsheet.
+
+[01:31:32] Speaker B: What's actually crazy though, is that there is in Fiat World. There is a lot of that.
+
+[01:31:37] Speaker D: I really think there is a lot of that.
+
+Yeah.
+
+[01:31:40] Speaker A: I was about to say it's not even, that's not even a total joke.
+
+[01:31:42] Speaker B: Like, in our small town, the grocery store that was in an. In a spot moved to another spot and held on to the spot they were in for months so that a competing grocery store could not come in and take the customers. Like, so that all the customers they had would have to, you know, get used to going to this other place before somebody else came in.
+
+[01:32:07] Speaker A: And then they ended up, thanks to Fiat, they're the, the price of that real estate is just going up, so it doesn't even cost them that much. Like.
+
+Yeah, but the shares of the shares of their company shot up 24%.
+
+[01:32:20] Speaker D: Do you think Jack said, after said, hey, Claude, fire 50% of my customers and write a post and don't use any capital letters.
+
+[01:32:31] Speaker A: Yes, that is exactly. Exactly. I think his shift key is broken.
+
+I really think that's what it is. Even his name is lowercase.
+
+[01:32:42] Speaker B: Have you seen the stuff about what's the. What's the company that runs called?
+
+[01:32:49] Speaker A: Anthropic.
+
+[01:32:49] Speaker B: Anthropic and the government like these, like. I don't know if this is like, so much.
+
+Yeah, I, I feel like you saw
+
+[01:32:58] Speaker A: the paper about the de. Anonymizing people online. Yeah.
+
+[01:33:01] Speaker B: I don't know how much to believe about these battles anyway. Like, Anthropic is positioned as though they're opposing the government and the government's like, demanding that. Dude, I just, I'm just like, yeah, like, sure, Anthropic's the good guy here. I don't like, I feel like the same thing with, with Apple during all the privacy, like, leaks from, you know, icloud and everything. And then Apple like, came as like, no, we're protecting your data from government, you know, infiltration of your phone or whatever. You know, I just.
+
+[01:33:31] Speaker A: Here's the thing is that I could believe that they're fighting with a bunch of like, I guess, high level.
+
+High level in the sense they're away from the center. Like, like, kind of like edge institutions and agencies.
+
+[01:33:46] Speaker B: Sure.
+
+[01:33:46] Speaker A: But like the CIA has like a, you know, a back door into their icloud. You know what I mean? Like, yeah, like, it's. They, they, they put on a face for like, certain layers. Like the police are going to have to give us a warrant to get it and we can't unlock the keys. But, like, you know, Pegasus exists, right?
+
+[01:34:05] Speaker B: Yeah.
+
+[01:34:06] Speaker A: Like they can just completely take over the phone while you're holding it in your hand and they can do whatever the hell they want on it. Like, you didn't protect against that and you're not talking about it, you're not talking about the update that stops Pegasus. So do I really think, do I really think that's your concern? No, I don't.
+
+[01:34:24] Speaker B: That's. I mean, the thing is, is that all these people that are running these big companies, they, they have a lot to lose and it's a central target. And so, yeah, the government, government's always going to want.
+
+[01:34:36] Speaker A: Yeah.
+
+[01:34:37] Speaker B: And so this is just more and more evidence that like, I, it, it's probably worth the investment to buy a machine that can actually run stuff locally and pay for the privacy you want. If you're going to have a secretary or whatever, you know, that's an AI machine.
+
+[01:34:57] Speaker A: I saw somebody do a post about like using Kimmy and comparing it to using Claude and there were like a couple of like problems over like some period of a few days. And like Kimmy ended up in like this perpetual loop with one of its own agents for like two hours or something, but. And then Claude accidentally deleted a bunch of stuff like, so it was like neither one of them were perfect, but it was, it was an interesting thing of like just the comparison of what Claude effed up and what Kimmy effed up.
+
+But the, the implication though was that the local Kimmy was, was a comparable experience, which is pretty crazy.
+
+[01:35:38] Speaker D: I got a thought experiment for you guys I've been thinking about. So a lot of people are getting real comfortable with these AI, like you said, people that have never coded before, getting comfortable with just using Codex, using Claude to have the whole package there.
+
+It's not that hard. I mean, before we've ran Bitcoin nodes just by downloading the executable for Windows, for Linux, whatever, just run that node client on your laptop or people.
+
+I know a lot of people are doing it more on start 9 and stuff these days with executables, but I think people are going to learn pretty soon that compiling your own node client from source is not that hard. And especially if you have AI do it. I think we're going to see a lot more people that are just going to be like, hey, get this GitHub, you know, let's, let's compile our node clients ourselves. Now we can make changes.
+
+I'm actually going to start doing this. Like, I realized the other day that a lot of my utx, Oracle stuff Instead of writing the separate Python that communicates with the node, I can just write my UTX Oracle code inside of a node client. So I'm just going to make my own little fork of core or knots and have my UTX Oracle stuff done like way more efficiently, just right inside the C code.
+
+And I think like this is like people are going to start figuring out this is not that hard to do and it just takes a little bit to compile, but I mean it takes your computer like an hour to compile the code and then it's done and then you run it.
+
+And so I'm like, how is this going to affect whether we need centralized dev team to send out these binaries anymore?
+
+Are people going to be able to patch their own security patches?
+
+I know that's still a little risky, maybe that's a little bit crazy. But if AI really does get it as two years as we think it's going to get this stuff, I mean the rate at which it's got better at code has just been astronomical.
+
+Like maybe the need to have centralized devs to send out these node packages is going to be really reduced.
+
+[01:37:48] Speaker A: I really kind of think so too. I think software in general has, is a really interesting place.
+
+And you know, with the traditional model of thinking about software, it does make sense to have like one client because you don't want conflicts.
+
+But when it comes to the Bitcoin network, I think it's better to have like, it's either better to have one client with everybody's eyes on it or it's better for everybody to have a customer.
+
+[01:38:16] Speaker D: It's not good to have like three or something.
+
+[01:38:18] Speaker A: Yeah, like there's a, there's a weird middle ground that's like just peak like where we're at right now without like much benefit. Yes, like where we're at right now.
+
+But if you notice like have like the last three blog posts of Anthropic have like every single time they post it like hits some subset of SaaS companies like 10 to 15% within the day.
+
+And $2.1 trillion worth of value in the software industry has been erased over three clawed blog posts. And, and one of the craziest things about this is that software, right now the software industry is the worst performing segment of the stock market now it's getting demolished like overnight. It is happening so quick. And what's funny is that in hindsight I think it's going to make so much sense that this was obviously a transitional period because there's like 15, 20 years of this whole software as a service thing. But somebody posted on. I think it was actually on X.
+
+Somebody made a post that I love that I just was like, this is such a great way to frame it. Is. Why does my database have a CEO?
+
+[01:39:31] Speaker D: Yeah.
+
+[01:39:32] Speaker A: Is like, that's what software as a service is? Is it? Like, why. Why does there need to be a company behind what is essentially a piece of software for me? Like, why does it have a CEO?
+
+[01:39:41] Speaker D: Yeah.
+
+[01:39:43] Speaker A: And like, think of the overhead of that.
+
+[01:39:45] Speaker D: You know what also didn't make sense, like, in terms of like guys getting girls in college, how come the guys that were expected to make the most money out of college were getting the least amount of girls because they were computer nerds. That didn't really make sense either.
+
+You know what I mean?
+
+[01:40:03] Speaker A: Is they.
+
+[01:40:04] Speaker D: I think I'm just saying it's.
+
+[01:40:06] Speaker A: I'm hunting for relevance.
+
+[01:40:07] Speaker D: It's removing the salaries of the software programmer.
+
+[01:40:12] Speaker A: Oh.
+
+Oh, yeah. So it's back to John blue collar all the way. Okay, I see it, I see it, I see it. Okay.
+
+It took me a second.
+
+Sorry.
+
+[01:40:22] Speaker D: I thought that was easily connected. Maybe it wasn't.
+
+[01:40:26] Speaker A: No, no.
+
+[01:40:26] Speaker B: My.
+
+[01:40:27] Speaker A: My brain didn't go there at first.
+
+Did you hear that bit deer has zero reserves?
+
+They sold all like 943 bitcoin for debt refinancing and they.
+
+[01:40:39] Speaker D: What do you think about the Jane street stock blasting?
+
+[01:40:42] Speaker B: Who is that?
+
+[01:40:43] Speaker A: Oh, yeah, Jane Street. No, I have that in here. Wait, wait, wait, wait, wait. Where is it? Let me get.
+
+[01:40:47] Speaker B: Wait, let me.
+
+What the fuck is what?
+
+[01:40:50] Speaker A: Bit Deer is a pretty big mining company and they have a bitcoin reserve. You know, like they're like leveraged and they had the.
+
+Apparently. But since January, they've sold 1155 Bitcoin. It's like, oh, actually that was in the month of January, which was 1.73 times its monthly production. They've just been burning through bitcoin to keep mining. Wow. So it's just like they've just been losing bitcoin and losing bitcoin like crazy.
+
+And a whole bunch of people like giving them crap. And I'm just like. I mean, I imagine they didn't want to do that. You know, it's like the. The price collapsed at a time that I think most people weren't expecting it to.
+
+But it's still just is wild. Especially after we had, you know, we just had a huge mining difficulty drop.
+
+Right. And then we. It was immediately followed by, I think, the largest increase in the mining difficulty we've had. In like 10 years, like since FPGAs or some crap. It went up 15% on the 19th.
+
+So that's a really interesting thing. And apparently some of it was caused by like really cold weather like that just actually disrupted like some huge farms.
+
+But a whole bunch of people were saying it was. I mean it looked like it was because the freaking price collapsed.
+
+But yeah, interesting. But where's the Jane street stuff? I've got it in here somewhere. New launches.
+
+Oh man, we have so much news and we're going to get like eight items.
+
+Bitcoin.
+
+[01:42:26] Speaker B: Oh yeah.
+
+[01:42:27] Speaker A: Oh, this is really cool. Before I find the Jane street stuff. So River's annual report, which I did not find the actual report they just posted. I guess it's just this little post. It's just a little post on X. Okay, yeah, so I did find it.
+
+Is the Lightning Network quadrupled in volume again over the year and it is doing $1 billion in volume every single month according to their estimates. $1 billion.
+
+That is pretty dope. Now it's only like like 2%, like 0.2% or like 0.1% or something like that of Visa.
+
+But that is a wild start. Like that, that alone, even if you frame it that way it sounds like oh well that doesn't matter.
+
+That is actually a huge deal to me. Like I think that's like massive. A non custodial onion routed bitcoin, like decentralized bitcoin payment network is doing.01% of Visa's volume every single month.
+
+Like that's just crazy. That is, that is a huge.
+
+As much as like I think some people were saying that. Is that like. Oh yeah. Good job. Lightning Network.
+
+I actually think that's like kind of dope. All trees start from a seed.
+
+What was wrong small seed is that Lightning Network has exceeded a billion dollars in monthly volume. Payment volume.
+
+It's four times what it was this time last year.
+
+[01:43:55] Speaker B: Nice.
+
+[01:43:55] Speaker A: And, and it is roughly 0.1% or a little bit more of what Visa does every month on a decentralized, completely non custodial global payment network.
+
+[01:44:08] Speaker B: Yeah. What's the total locked in?
+
+Total bitcoin lock in Lightning now do we know?
+
+[01:44:13] Speaker A: I think actually think the bitcoin locked in hasn't changed that much.
+
+[01:44:17] Speaker B: Yeah, I mean well, for a little while it actually went.
+
+[01:44:19] Speaker A: It's just getting more efficient.
+
+[01:44:20] Speaker B: Yeah.
+
+[01:44:21] Speaker A: It's just getting more efficiently used and better allocated.
+
+And the average transaction side has, has increased. Transaction size has increased quite a bit. It's now $223.
+
+So like much bigger transactions are happening. I've paid people, you know, thousand dollars, like monthly things over lightning quite regularly and it works. So I think the only, the only person I know that's definitely not receiving any lightning and hates it is Steve.
+
+[01:44:48] Speaker D: I'm receiving lightning.
+
+So I got $15.
+
+So November sales were $300.
+
+December sales were $150.
+
+January sales were $75. In February I received $15 in Bitcoin payments at the bar.
+
+Still getting lightning payments, man.
+
+[01:45:15] Speaker A: Amazing.
+
+[01:45:16] Speaker D: It's just gone steady.
+
+[01:45:17] Speaker A: If I ever come to the meetup, I will never, I will never pay you dollars again. Just so you know.
+
+I am devoted to upholding.
+
+[01:45:26] Speaker D: I went in the other day and we have a little square cash machine that we do our bitcoin payments on and it has a really nice charger, nice USB charger. I go in the other day and I realized the thing had been unplugged for two weeks because the bartenders were charging their vape with it because it's a really nice charger. And the thing was completely dead. And you know what I did? I walked over there, looked at them and I just charged my vape with the charger too.
+
+I was like, am I going to get in a fight with my bartenders over this? Absolutely not. This has caused me so many problems. I'm not getting in another fight over this.
+
+[01:46:10] Speaker A: That's hilarious.
+
+Okay, so I found it. Terraform. This is what was messing me up because it was later on in the thing. Terraform administrator sues Jane street for alleged insider trading that accelerated the $40 billion UST collapse in 2022. The firm allegedly utilized, quote, non public information to front run trading right before the massive terraform network completely collapsed. Now I will say that I do not have deep details on this. I have like social level conversation about, you know, what this is and what the details are.
+
+But us, Terra Luna was a freaking Ponzi scheme. Like yeah, it was a garbage, stupid, terrible design. How do you sue somebody for something that can be that easily collapsed?
+
+[01:47:08] Speaker B: Like we're living in a world that is so fake and gay. How do you not sue somebody for destroying your faking gay process?
+
+I don't.
+
+This seems like the most reasonable thing to happen these days.
+
+[01:47:25] Speaker A: I can't get to the actual article because I have to do a captcha. So it's going to take me 30 minutes.
+
+[01:47:30] Speaker D: Everybody in the world in the bitcoin world thinks that these ETF flows never made it to a real spot market. The demand coming in, it just never actually hit the price the way that it should. It seems to me my intuitive sense from this is that the way they structured these complicated derivatives were such that, like, every time they received some demand to buy spot Bitcoin, they created some short. Some somewhere else. They masterminded some derivative way of keeping this demand from hitting the spot market. That's just my intuitive sense. But I. I can't bring myself to actually, like, do the research on that kind of stuff because my brain just kills me when I realized you can
+
+[01:48:15] Speaker A: get your open claw to do it
+
+[01:48:17] Speaker D: so possible, you know, openclaw maybe. ChatGPT would probably defend those guys. ChatGPT is like, it's always defending, like ChatGPT told me it does not think
+
+[01:48:27] Speaker A: Andy ChatGPT is the most. Is the normiest thing, is the normiest AI model out there assigned a low probability.
+
+Chad GPT is vaccinated.
+
+[01:48:39] Speaker D: Was Adam back?
+
+It was like, yeah, I don't think. I think the. The chances are.
+
+[01:48:45] Speaker A: I'm not gonna say I do not want to crap on.
+
+[01:48:48] Speaker D: That's crazy.
+
+[01:48:49] Speaker A: I. He's always been super nice. I personally have always liked the guy. He's been super helpful for me every time I've talked to him. But there is no sense it is. Is in the. Exactly when it is. It is right around like when Austin Hill. He's talking about Austin Hill, he's talking to Amir Taki. It's literally within the same month and there is no time I specifically. And I've been putting this in my Epstein video to embrace Brandolini's law and actually deal with the bullshit narrative that the big blockers are pushing right now. But so I had it vibe code because some people were saying, like a bunch of people came to his defense saying that, like, how do you know he wasn't saying, I'm going to have Andy back on the island and the capitalization is a mistake. And I was like, well, that's a little bit of a stretch, but let's.
+
+Like, we could. We could see, you know, what the probability of that is.
+
+And.
+
+But again, he's talking to Amir Taki, who would know the name.
+
+And he is specific. It's specifically right around the time that they got investment. So of course, like, it makes total sense that they would be meeting to talk about investment, whether or not it's on the island or not. That's not a good look. But so I did a. I had my agent vibe code and go through. I've downloaded the entire Epstein files. So I had a vibe code and go through and say, calculate how many times Epstein accidentally capitalized a word that you were not supposed to capitalize. Like a random word in a sentence. Like, like back, where he meant a lowercase B. And there are tons of times in which he did not capitalize, like Jack Dorsey. Maybe there's a connection there.
+
+[01:50:34] Speaker C: I don't know.
+
+[01:50:34] Speaker A: Like, he did not capitalize a name that should have been capitalized.
+
+And, and he did nickname people a number of times in the files. But there is one error where he accidentally capitalized something that shouldn't have been, and that would have been if back was the word and not the name.
+
+[01:50:57] Speaker D: That's not.
+
+[01:50:58] Speaker A: So I, I think this is not. This is not an assessment or a judgment, but I, I don't see how you can conclude anything other than the reasonable conclusion that he's talking about Adam back.
+
+So that's. That's my, that's my take on that. And if Chad GPT is chat. GPT doesn't believe that Epstein was a pedophile.
+
+ChatGPT is retarded.
+
+[01:51:21] Speaker D: He's retarded.
+
+But anyway, did I cut you off with the, the Jane street stuff? Like, do you. Do you understand that mechanism that was involved there?
+
+Okay.
+
+[01:51:33] Speaker A: No, I don't. And they were also saying that, like, they did like a 10am like they sold a bunch of bitcoin, like, on this, like, schedule thing.
+
+I'm just like, if they, like, you know, you can mess with like a individual market, like, if you can, if you can sell paper bitcoin and buy real bitcoin, like, that's manipulation, right? I'm gonna, I'm gonna fake sell 10,000 bitcoin and I'm gonna real buy 10,000 bitcoin, like, that's, that's manipulation. But if you just like, wake up in the morning and you just like, schedule when you think there's like low liquidity, that you're gonna sell thousands of bitcoin and then try to buy it back, that is not manipulation.
+
+Like, that is not. Like, that's just trading first. First off, you just hope. You better hope that the liquidity doesn't go against you because you're. You're literally trying to bet that you can out liquidity, the global market of people buying bitcoin. So you're probably going to get punched in the face more often than not. But if they think they have the liquidity to do that. Okay, buy at 10:30 in the morning.
+
+[01:52:32] Speaker D: Yeah. You know, well, okay, so you said you can't do that, like put a fake sell or Whatever and then a real buy at the same time in order to keep it down. But like can't you do something that has the same effect with derivatives? Like, like, can't you that like if
+
+[01:52:51] Speaker A: you have unbacked derivatives and you can have, you have access to like liquidity that you don't actually have, like kind of like naked short selling, like that's something that they, they really mess with. I don't think in the long term it does anything to Bitcoin.
+
+[01:53:04] Speaker D: No, in the long term it doesn't.
+
+[01:53:05] Speaker A: Yeah. And naked you can still get gamestopped. Naked short selling, you know, but, but Tara is not going to be able to defend it against that because Tara's a freaking Ponzi scheme. So like of course they'll get demolished by something like naked short selling if that's what they do. But like I said, I didn't actually dig into. Yeah, there are probably, I'm sure there are specifics that I, I have no idea.
+
+[01:53:28] Speaker D: Yeah, me neither.
+
+[01:53:29] Speaker A: But I just saw the whole 10am in the morning, they, they front ran, front ran the collapse and it's like
+
+[01:53:36] Speaker B: if it's the same thing I'm remembering there were people were talking about like someone figured out how to break this thing because it was a fucking Ponzi scheme. So yeah, it was a purposeful move to break a stupid system.
+
+It was a Ponzi scheme. Like I, I don't have the. There's nothing like, I don't know how can you.
+
+But again why wouldn't you sue somebody for this? Like this doesn't this, this makes perfect sense. I don't, you know, like if you tell the truth, you get exiled or tortured or thrown in jail somewhere. If you, if you do something like, I mean what the XRP guys like they had a whole court case and like they're now a decentralized project. I mean you're like this is, this is complete bullshit. So you know, this just is par for the course.
+
+[01:54:27] Speaker A: Yep, yep. There's a whole bunch of ID link leaks and phishing attacks. There's Clown world.
+
+[01:54:34] Speaker B: I'm gonna Clown World.
+
+[01:54:35] Speaker A: The thing, a Persona, you know the, that, that company or whatever. Apparently somebody got like the source code got leaked and they actually have like integrative administrative modules for filing reports directly to FinCEN and like tied to Chainalysis and like US federal agencies. Is it like the simple ID verification is just like a straight up full on spy agency that is just tracking everybody's faces and like all this stuff and it's like the Thing to like, like verify. Like when you like take pictures and put your id, it's like we don't share your information. Your information doesn't go anywhere. It's only right here in the browser. We just check and then we delete it total.
+
+So that's fun.
+
+Which is obvious. Like, who would. Honestly, who believed that really?
+
+Like, other than Chad GPT who believed that.
+
+[01:55:36] Speaker D: I might have to hop off here in a little bit, guys.
+
+[01:55:41] Speaker A: Yeah, we should probably just go ahead and wrap it up.
+
+I'm kind of getting to a point where I got to go to. Is there anything else you guys wanted
+
+[01:55:48] Speaker C: to
+
+[01:55:51] Speaker A: add in here or throw in your hat on some news or something cool that happened this past month?
+
+[01:55:59] Speaker D: I mean, I don't want to get into this too much, but the new way of doing covenants or a limited form of covenants, the transaction introspection form of covenants using existing opcodes, like that was awesome.
+
+Don't shut that kind of stuff down. Guys. There's no emergency to rushing to opcode. People are still doing creative stuff. It worries me a little bit that he used the old multisig style.
+
+So he's not using like he's using an opcode that people haven't used in like 10 years.
+
+People move to Segwit multisig and then people move to taproot multisig. He's using a form of multisig that existed before Segwit did.
+
+And this has an enormous on chain footprint. So I wasn't really thrilled about that. But I love that people are still doing creative stuff like that.
+
+[01:56:54] Speaker A: Yeah, it was absolutely a really interesting mechanism and I'm trying to dig into the specifics so that maybe we could do a show about it or something.
+
+[01:57:03] Speaker D: And the other thing about breakdown styles, Robin Lynette Linus's whole style of covenants with existing soft forks is that he imposes a big proof of work burden.
+
+Like you basically have to run your computer offline and find a hash.
+
+So he's using like this.
+
+[01:57:22] Speaker A: It's basically a hash collision. It's a purposeful hash collision.
+
+[01:57:25] Speaker D: And so I really love the imposed cost because this is going to be like, how much do you actually want covenants?
+
+Because right now my suspicion is that like the demand for government for covenants is all fake and gay people. Like, people say like, oh yeah, everyone's going to be.
+
+[01:57:41] Speaker A: There's like the motto of this show, that's going to be the name of this show is everything.
+
+[01:57:45] Speaker D: Oh yeah, there's so much demand.
+
+As soon as people realize vaults are possible, they're going to want vaults. I'm like, okay, let's impose a little bit more of a cost to the person who's actually providing this feature rather than just imposing the cost on the network of adding complexity to their node. Like make the cost on the person who's trying to provide the product or the service.
+
+So I like that aspect.
+
+[01:58:14] Speaker A: No, I like that that's been the
+
+[01:58:15] Speaker B: problem with everything is that we just need to add more. Like the, the devs want to add more features and, and it's like, for what?
+
+[01:58:24] Speaker D: Who pays the cost of it going wrong? How do we get rid of it? It's basically a free win to them. It's like, if this works out, I'm a fucking hero. If it doesn't work out, who cares? I didn't lose anything. Like, I have no, I have no skin in the game.
+
+[01:58:39] Speaker B: Yeah, I mean it's, it's a.
+
+[01:58:43] Speaker A: I don't know.
+
+[01:58:44] Speaker B: It's very, it's very weird like how many things that they're like, look at the possibilities.
+
+They're selling you possibilities. But there's no actual. Like the only actual use is like shitcoins and bullshit. Like just absolute crap.
+
+And, and so it's like, well, we don't want the absolute crap. Like if there's actually some use. Again, show us on liquid. Show us on something that already has the ability to do this.
+
+Like, show us what you can do
+
+[01:59:17] Speaker A: and how CTV has a good use, has a. Has a good potential. Proof of that is with ARC is if ARK turns out to be super useful and really kind of like doing the job that ARK does. ARK is a much simpler and less costly construction with something like CTV or with something like TX hash, which is kind of the same thing, but it's, it's basically committing to the next tank. Like lightning is off chain commitments. Right? Is that I'm going to sign a transaction and, and we have this, this clause where I get punished if I don't commit to this. If I don't actually publish this transaction. So like you're punishing me to make sure that this transaction is the only one that I can send. Whereas OPTX hash or opctv, what they allow you to do is that I can just say on chain with a hash of the transaction, I am committing to this transaction. So it's unsigned outputs, just like our L2 stuff. But.
+
+But signed but. But like actually committed to on chain. And, And I think that has a valuable use case. But most of the. It seems Like a lot of the things that are being developed don't necessarily need that. But we're also not you. We haven't actually used those constructions yet. ARC is the first thing that is really like, listen, this could really benefit us. This would be a much better, like simpler construction if we could use this tool.
+
+And, and you know, like our quote unquote layer two, layer three batching thing would be conceptually and technically easier and more efficient.
+
+But I want to. I also just want to see millions of people using it before it's like, okay, well, I mean it's kind of like like lightning, right? Is that. Prove that this, if you can already do it, prove that this is going to be super valuable.
+
+And then we can get like the things that make it better. Like we can commit to that as like the path of development and then improve those things for something explicit rather than something ephemeral or vague or hand wavy. We're going to probably do this and this might be a value. It's like, well, yeah, like that's not really the most conservative way to discuss what a change might be.
+
+[02:01:31] Speaker B: Maybe it's that I always want the, the hard things or whatever. But like, I like why the.
+
+[02:01:36] Speaker C: Why the.
+
+[02:01:37] Speaker B: Isn't somebody working on like cross input signature aggregation or something that like everybody wants, like, you know what I mean? Like, like it's something that gives us efficiency and privacy and. And you know, all the things we want, like somebody work on that.
+
+[02:01:51] Speaker A: I kind of think the reason few people are working on it, there are people working on it, but I think it's just like that's too.
+
+It's too hard and the responsibility of getting that right. Like, I honestly think like people might just be like nervous about touching something that important.
+
+[02:02:09] Speaker D: Yeah. You actually get a personal cost for trying to change Bitcoin and it goes
+
+[02:02:13] Speaker A: wrong code like ctv.
+
+Not that big of a deal. You know, like, I mean, not to, not to diminish it, but it is a simple add on, you know, like conceptually.
+
+[02:02:24] Speaker B: What I'm saying is, is that like it would be nice if things people were working on things that lead somewhere. Like, I mean.
+
+[02:02:32] Speaker A: No. Yeah.
+
+[02:02:32] Speaker B: Like I get. They're not even focused on. Like, I mean, that's not true. There are people. I mean, because what was it the P2SH, like signature aggregation or something that somebody kind of. There was like something that somebody came up with that like shouldn't have been possible that we talked about on one of these episodes.
+
+[02:02:53] Speaker A: Oh yeah, there was like a off chain signature aggregation thing. It was like kind of a complex setup. There was a paper about it or
+
+[02:03:00] Speaker B: I don't know, it was something that maybe used one of those like hash collisions or something. Like what?
+
+Like, I can't remember. It was something that like,
+
+[02:03:10] Speaker A: I'll have to dig into.
+
+[02:03:12] Speaker D: Might also be a good idea to not have bitcoin be hard coded to die in the year 2106. You know it.
+
+[02:03:19] Speaker B: That is true.
+
+[02:03:20] Speaker A: Maybe.
+
+[02:03:20] Speaker D: Oh, bitcoin lasting beyond 2106. That might be an interesting thing to work on. I don't know.
+
+[02:03:26] Speaker A: We should really consider getting rid of that 2106. Commit suicide.
+
+[02:03:32] Speaker B: How we're supposed to end every show.
+
+[02:03:34] Speaker D: I'm not really a fan of ctv, but one thing that would really help the CTV guys demonstrate the ability to remove an opcode gone wrong like this would really help the CTV case. Because I tell you what, right now, if we ain't fixed this thing in taproot, absolute no on every new opcode because I have zero confidence that an opcode gone wrong can be removed.
+
+[02:04:00] Speaker A: Yeah, that's a great way to put it is I and I would be very interested and I would probably think very differently about a soft fork if it was.
+
+We will, you know, remove OP if or hard code the OP return just out of simple like simplicity. And here's ctv. But like prove the idea of getting rid of an opcode that has no
+
+[02:04:27] Speaker D: benefit or make CCTV temporary.
+
+Make CTV such that it's easy to remove because it's temporary by nature and we have to do something to make it not temporary.
+
+That way if it's that there's something wrong with it, it will naturally expire and we won't have to do this really hard thing to kick it out.
+
+[02:04:49] Speaker A: That's interesting. No, there's something really worth unpacking there. And it's interesting too because this was somebody who is on the kind of like V30 side of the argument. But it's funny because I thought the point was a win for neither side, but they really thought it was their win was that the they showed the OP return data is that like everybody, a bunch of people on the not side, right. Are saying that like, oh, the OP return is going to blow up like as soon as you release this, everybody's going to use the OPER turn and it's just going to be more spam. And I talked about the fact that like it may lead to more just like it won't stop the inscriptions and it may just lead to a new thing that people use operturn for. But My core point, which the whole reason that that was the core point is that nobody's going to pay more to put something in operator than they are in inscriptions. So it's probably not going to be used at all. This stupid fucking thumbs up thing.
+
+So it's probably not going to be used at all. And then that's what they showed is it was like a thorough analysis of like OP returns and like nothing has changed. Nobody's using like big OP return transactions and all this stuff. And it's just like, so what was the.
+
+You know, there's like a major point of contention over like the reason we want OP return to be large is because it's better than inscriptions and you can prune it and it's like, but nobody's going to use it. That was the whole point. Nobody's going to use it. And you're, you're showing that nobody's going to use it. Which does kill the knots argument that like, oh, everybody's going to just start using opportunity. It's going to get worse.
+
+But it also kills the, the V30 argument that this is any solution or trash can. It's like I put trash cans everywhere in the park and nobody's throwing anything in it. See, not a problem. It's like, well, why do we have trash cans everywhere?
+
+[02:06:37] Speaker B: You know, like, yeah, you're, you're making us pay for this extra stuff. Like, like, I mean, I guess you're not paying for anything, but you do have to accept this change.
+
+And, and at the same time you're removing filters and all these control. Like, it's just, it just doesn't make sense. Why are you doing this?
+
+Like, I still think that there's some, like, I don't know if it's Citria or whatever. Like, I still, it still feels like there's some sort of, sort of unspoken goal among a bunch of people. And I could be totally wrong.
+
+[02:07:11] Speaker A: I think it's developer blindness. I think it's why, like, I tell people that, you know, file sharing sucks and you can't send stuff from one computer to another. And then I get five responses. Why don't you just set up an FTP server?
+
+[02:07:26] Speaker B: Yeah, that's fair.
+
+[02:07:27] Speaker A: Like, you don't know what the real world looks like. Yeah, I really think it's developer blindness is that they think because I coded up something in the terminal to make it work, you know, like Peter Todd's demonstration. They're like, I can, I can get this in anyway.
+
+It's like, well, it's, it's well.
+
+[02:07:46] Speaker B: And that goes. It goes right along with the hate your users like mentality is that they don't.
+
+[02:07:52] Speaker A: They.
+
+[02:07:52] Speaker B: They have very little respect for people that don't understand why they like, are also wanting to do things the way they're wanting to do it because, well, you're just too stupid. It's like, okay. Or you just don't know how the real world like how people use things in the real world. And that's, you know, both of those things fit.
+
+[02:08:12] Speaker A: Everybody's standing in a totally different perspective, concerned about something from a totally different for a totally different reason.
+
+And then they're arguing with their explanation of the other side from their perspective. And it's like, well, yeah, from your perspective, obviously, it's stupid.
+
+[02:08:28] Speaker D: All right guys, I gotta jump off.
+
+[02:08:30] Speaker A: Yeah.
+
+[02:08:31] Speaker B: Yep.
+
+[02:08:32] Speaker A: All right. Thank you guys. Good hanging out. Everything's fake and gay. Fix 2106.
+
+Catch y' all in the next one. This has been the round table. See ya later.
+
+All right guys, I hope you all enjoyed that episode. There were a couple of different things that I did not actually get to dig into and so I want to hit a few of those just as news items that I thought were still pretty cool.
+
+So first off, a bitcoin miner solved block 938,092 using rented on demand hash rate from Braiins Hash Power. The miner rented about a PETA hash of hash rate for a duration of about 6.25 days.
+
+The equivalent rented performance costs about $75 is about 119,000 sats.
+
+And he found a block. He won 3.25 bitcoin and that's just kind of awesome.
+
+Then another one that I really meant to get to but forgot about is that is mining OS which was released by Tether. So this is open source software built to monitor and coordinate bitcoin infrastructure. And the application features a modular architecture. This utilizes hyperswarm for networking and Hyper B for persistent data storage. So if you have been listening to the show, you know this is the stack that Peer Drive is being built on. We are using both Hyper B for incremental updates to the file indexes and then we are also using hyperswarm to connect and they're incredibly powerful tools and this is just a really awesome application of it to essentially have anywhere accessible mining infrastructure and communication and networking. I haven't actually used this, but one of the really promising features of this is essentially a plug and play networking system. This is why we are using it.
+
+Then another one that I thought was pretty cool this was run with Albi Hub and Nostr Wallet connect is lncurl. It's lncurl.lol so lnc u r l dot lol this is a custodial lightning wallet service, but it's designed for agents where you can just create a wallet with an HTTP call and it costs a SAT per hour to keep it live and then it can just be deleted or easily booted up, used for some span of time and then closed back out. I think just the way they've built it and the way I use my agent really kind of lends itself to see how fast and ephemeral how much this stuff might move in such short spans of time.
+
+And I'm very curious about the idea of a SAT per hour fee system because you could potentially have millions of wallets just opening and closing and opening and closing and moving sats around and this would not be out of the realm of a difficult or out of character frequency for a bunch of AI agents. As a great piece by Szabo on the mental cost of micropayments One of the reasons we don't micropayments never really manifested in the digital world is because the very issue of spending a few seconds trying to decide if something's worth 2 pennies or 5 pennies is not worth the 3 pennies difference. I think the piece was called the mental accounting cost of microtransactions or something similar to that. But it was always a really cool thought experiment and a really good logic as to why microtransactions and extremely high frequency and like pay per API stuff may have never manifested on top of the difficulties and the huge amount of trust and cost in the fiat payment rails the essentially when all cost is credit, but all of that changes when both you have a irreversible and direct bearer instrument to trade with and then you also have an AI agent that doesn't have the mental accounting cost at all, making the decision about what to use and how to use it and how long to to do so. Now I don't even know if Ellen Curl is something that I would use or if it puts it into a layer that doesn't quite make sense, but it's just a really cool idea and immediately made me consider that those dynamics may be drastically different when we're talking about the current environment because technology has changed so much. So might be something worth revisiting and maybe we'll dig back into a Nick Zabo piece so that we can kind of extend it out on the show and give it a couple of months and see what AI agents actually use to make payments. And if stablecoins or if somehow Fiat just gets wrapped up into this and you have normal Visa credit card payments. Who knows whether it's Bitcoin or not, but it's a very very interesting dynamic and it'll be important to watch exactly how it unfolds and what sort of infrastructure and tooling becomes the most optimized and easiest to use for an agent ecosystem while also protecting from the disaster of an agent gone awry or stuck in a self reflecting loop or that sort of problem.
+
+Like what's the balance of best security and best use case. So those are the last few things I wanted to cover and I hope you guys enjoyed this roundtable. Let me know your comments, your thoughts what do you think about bip110? What do you think about needing to prove that there is a way to roll back something that had a negative consequence before considering it safe to move forward?
+
+Since we haven't done much reflection, I don't think on the changes we have made. And importantly in a critical sense, it's just we did these things and therefore they were the best things to do. And I don't think think that's an honest approach to do anything that oh now just because bitcoin is this way or it's used this way, or we just kind of admitted defeat on this particular issue, that means that we can't do anything about it. And that's just how it is. It's just letting the inertia of the norm of whatever came about be the thing that decides what we should do. And I don't think that's a very sensible way to go about it, whether or not the conclusion is the same with a different perspective. But I do feel like there is this momentum of the default guiding decisions and criticisms or conversation one way or the other. But I don't know, I don't know. We'll see. And obviously any attempt to change the default or change the inertia of the way bitcoin is currently being used has an uphill battle. So it might not really matter. But interesting nonetheless. And I thought that was a really good point that I hadn't considered. Let's close this one out. Thank you again. Don't forget to subscribe. Don't forget to check out the hrf, the Oslo Freedom Forum, and their amazing newsletter, the Financial Freedom Report.
+
+And until next time, I will be right here. I am Guy Swan and that is my two sets sa.
+
+                        Previous Episode
+
+                                    Next
+                        Episode
+
+                    Other Episodes
+
+                            Episode
+
+                                December 11, 2020
+                                •
+                                00:38:16
+
+                            Guy's Take #38 - An Unstoppable Force
+
+                                "It's not that a government has the ability to ban Bitcoin from their country, I think it's closer to the opposite: A country only...
+
+                            Listen
+
+                            Episode
+
+                                April 06, 2023
+                                •
+                                01:39:05
+
+                            Read_717 - How To Wreck a Big Old GSIB [DeepThroatIPO]
+
+                                "Generally, what we’re talking about here is unregulated (or lightly regulated), uninsured investors, LLCs, Funds and privately controlled “Shadow Banking” assets. In 2021, these...
+
+                            Listen
+
+                            Episode
+
+                                April 13, 2018
+                                •
+                                00:22:04
+
+                            CryptoQuikRead_049 - Understanding The Lightning Network Part 3
+
+                                Completing the Lightning Puzzle with Part 3 of Understanding the Lightning Network.  The riveting conclusion of Aaron van Wirdum's series on the Lightning protocol...
+
+                            Listen
+
+        Podcast
+
+        About
+
+        Subscribe
+
+    &copy; 2026 Bitcoin Audible - Powered by
+    Castos
+
+        (function() {
+            // Navigation
+            var nav = document.querySelector("#nav-container");
+            var trigger = document.querySelector("#mobile-menu-trigger");
+            var lineTop = document.querySelector("#mobile-menu-trigger__top");
+            var lineBtm = document.querySelector("#mobile-menu-trigger__btm");
+
+            trigger.onclick = function() {
+                lineTop.classList.toggle("rotate-45");
+                lineTop.classList.toggle("translate-y-[5px]");
+                lineBtm.classList.toggle("-rotate-45");
+                lineBtm.classList.toggle("translate-y-[-5px]");
+                trigger.classList.toggle("bg-white");
+                nav.classList.toggle("hidden");
+            };
+            // Transcript
+            var viewTranscript = document.querySelector("#more-mask");
+            var transcriptBody = document.querySelector("#transcript-body");
+
+            if (viewTranscript && transcriptBody) {
+                viewTranscript.onclick = function() {
+                    transcriptBody.classList.remove("line-clamp-12");
+                    viewTranscript.classList.add("hidden");
+                };
+            }
+        })();
