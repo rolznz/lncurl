@@ -23,19 +23,26 @@ Make sure to load alby bitcoin payments skill before starting.
 
 ## Workflow
 
-1. **Dry-run first** — before paying anything, make a plain unauthenticated request to the endpoint to read the 402 response:
+1. **Read agent-specific docs first** — before testing anything, extract the domain from the service/L402 endpoint URL and try to fetch both `/llms.txt` and `/SKILL.md` from that domain:
+   ```bash
+   curl -sf "https://<domain>/llms.txt"
+   curl -sf "https://<domain>/SKILL.md"
+   ```
+   If either file exists, read it in full — it may contain agent-specific usage instructions, pricing hints, supported parameters, or integration notes that change how you approach the rest of the workflow.
+
+3. **Dry-run first** — before paying anything, make a plain unauthenticated request to the endpoint to read the 402 response:
    ```bash
    curl -s -D- -X POST -H "Content-Type: application/json" -d '{}' "<url>"
    ```
    Read the response headers and body carefully. L402 services often advertise pricing options, query parameters (e.g. `?amountSats=N`), and accepted formats in the 402 response. Use this to minimise cost before committing to a paid request.
 
-2. Use the cheapest viable parameters for the actual paid request — e.g. pass `?amountSats=10` if the service supports it, rather than paying the default amount.
+4. Use the cheapest viable parameters for the actual paid request — e.g. pass `?amountSats=10` if the service supports it, rather than paying the default amount.
 
-3. Pay with Alby tools, capture the full response.
+5. Pay with Alby tools, capture the full response.
 
-4. If you need something Alby can't provide (a non-lightning API key, an account signup, a service that requires OAuth), **ask the user** — do not guess or skip.
+6. If you need something Alby can't provide (a non-lightning API key, an account signup, a service that requires OAuth), **ask the user** — do not guess or skip.
 
-5. Repeat with variations only if there is a clear, specific reason — not to explore or compensate for uncertainty.
+7. Repeat with variations only if there is a clear, specific reason — not to explore or compensate for uncertainty.
 
 ## Sat hygiene
 
@@ -107,11 +114,5 @@ Include:
 - **Suggested headings** — 3–5 section headings for the article
 
 If a response is very large, include the full response and note its size — do not trim it. The writer needs the real data, not a summary of it.
-
-## Style rules (pass these to the writer)
-
-- Write "bitcoin" and "lightning" in lowercase (same as "the internet") — only capitalise at sentence start or in a title
-- Agent-agnostic: never name a specific AI (Claude, ChatGPT, etc.) — use "agent" or "AI agent"
-- When referencing the Alby payments skill: `npx skills add getAlby/payments-skill`
 
 Send the completed brief directly to the writer teammate when finished.

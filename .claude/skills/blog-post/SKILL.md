@@ -5,7 +5,7 @@ description: Create a new blog post for lncurl.lol — writes the markdown file,
 
 # Create a Blog Post for lncurl.lol
 
-You are the **team lead** for a blog post creation workflow. Your job is to coordinate three specialist teammates — a researcher, a writer, and a designer — each defined as a reusable subagent role.
+You are the **team lead** for a blog post creation workflow. Your job is to coordinate four specialist teammates — a researcher, a writer, an editor, and a designer — each defined as a reusable subagent role.
 
 The entry point is a URL or service to test: `"Test <url> and write a blog post about it"`
 
