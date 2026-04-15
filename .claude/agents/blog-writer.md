@@ -73,6 +73,12 @@ The **CTA block must appear verbatim at the end of every post** — do not alter
 
 Leave `imageAlt` as `PLACEHOLDER` — the designer will fill it in after generating the image.
 
+## Never truncate paid API data
+
+If the research brief includes a `briefing`, `analysis`, `summary`, or similar field from a paid API response — include it **in full** in the post. That content is what was paid for; it is the most valuable thing in the article. Never shorten it, add `...`, or paraphrase it. Quote it verbatim and completely.
+
+The same applies to any structured response data (arrays of signals, market data, etc.) that the brief highlights as important — show real examples in full, not truncated fragments.
+
 ## Before writing: verify, don't infer
 
 If the brief contains any claim you cannot directly verify from the files provided — about why something was built, how it previously worked, what problem it solved, what changed and why — **stop and ask the lead** before writing.

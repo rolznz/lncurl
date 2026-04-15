@@ -38,11 +38,13 @@ Make sure to load alby bitcoin payments skill before starting.
 
 4. Use the cheapest viable parameters for the actual paid request — e.g. pass `?amountSats=10` if the service supports it, rather than paying the default amount.
 
-5. Pay with Alby tools, capture the full response.
+5. Pay with Alby tools, capture the full response. **Save the complete raw response to `/tmp/blog-research-response.json` immediately after receiving it.** Include the file path in the brief so the team lead can read it without re-fetching.
 
 6. If you need something Alby can't provide (a non-lightning API key, an account signup, a service that requires OAuth), **ask the user** — do not guess or skip.
 
 7. Repeat with variations only if there is a clear, specific reason — not to explore or compensate for uncertainty.
+
+8. **Never fetch a paid endpoint more than once.** If you need to process the response differently, read from the saved file. A second paid request is a waste of real money.
 
 ## Sat hygiene
 

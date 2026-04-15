@@ -50,16 +50,6 @@ Image filename: `YYYY-MM-DD-{slug}.jpg`
 
 ---
 
-## Step 2b: Ask about a rant
-
-Before spawning the writer, ask the user:
-
-> "Would you like to add a **Roland's Rant** section — an honest, opinionated take on what was frustrating, broken, or surprising about the service? If yes, tell me what to include and I'll pass it to the writer."
-
-If the user provides rant content, include it in the brief to the writer. If they decline, proceed without it.
-
----
-
 ## Step 3: Spawn the writer
 
 Spawn a teammate using the `blog-writer` agent type, named `writer`.
@@ -120,7 +110,17 @@ Watch for errors. If the build fails, diagnose and fix before reporting success.
 
 ---
 
-## Step 8: Review
+## Step 8: Ask about a rant
+
+Now that the post is written, edited, designed, and built — ask the user once:
+
+> "Would you like to add a **Roland's Rant** section — an honest, opinionated take on what was frustrating, broken, or surprising about the service? If yes, tell me what to include and I'll add it."
+
+If the user provides rant content, delegate to the writer, then rebuild before showing the preview. If they decline, proceed to review.
+
+---
+
+## Step 9: Review
 
 Report to the user and wait for their feedback before proceeding:
 
