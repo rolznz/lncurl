@@ -1,5 +1,23 @@
 [
   {
+    "slug": "2026-04-15-predictions-oracle",
+    "title": "The Oracle at the End of a Lightning Payment",
+    "description": "An L402-gated API that analyzes 4,000+ prediction markets and returns a structured intelligence briefing — paid autonomously by an AI agent for 250 sats.",
+    "date": "2026-04-15",
+    "isoDate": "2026-04-15T00:00:00Z",
+    "displayDate": "April 15, 2026",
+    "tags": [
+      "l402",
+      "bitcoin",
+      "lightning",
+      "ai-agents",
+      "polymarket",
+      "apis"
+    ],
+    "image": "/blog/images/2026-04-15-predictions-oracle.jpg",
+    "imageAlt": "A glowing cyan-green geometric eye at the center of a dark navy background, surrounded by probability nodes connected by circuit lines, with a lightning bolt striking upward through it"
+  },
+  {
     "slug": "2026-04-12-search-4m-podcasts-powered-by-lightning",
     "title": "Search 4M Podcasts for Any Person, Topic, or Show — Powered by Lightning",
     "description": "Pull That Up Jamie's podcast intelligence API lets an agent search 4M+ shows by natural language query for 7 sats, with an LLM router that classifies intent and fans out to the right backend.",
