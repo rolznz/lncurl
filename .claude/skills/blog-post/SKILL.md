@@ -13,6 +13,18 @@ The entry point is a URL or service to test: `"Test <url> and write a blog post 
 
 ---
 
+## Step 0: Load the Alby bitcoin payments skill
+
+Before spawning the researcher, run:
+
+```bash
+npx skills add getAlby/payments-skill
+```
+
+This ensures the payments skill is loaded and the researcher can use it without prompting the user.
+
+---
+
 ## Step 1: Spawn the researcher
 
 Spawn a teammate using the `blog-researcher` agent type, named `researcher`.
@@ -20,6 +32,7 @@ Spawn a teammate using the `blog-researcher` agent type, named `researcher`.
 Give it:
 - The URL or service to test
 - Any context the user provided (e.g. what the service does, specific features to explore)
+- **Explicitly tell the researcher: the Alby payments skill is already installed — do not ask the user to install it**
 
 Create a task on the shared task list:
 - **Task 1**: Research `{url}` — assigned to `researcher`
@@ -58,6 +71,7 @@ Give it the full research brief plus:
 - Confirmed title, description, tags
 - Slug and date
 - Target file path: `frontend/blog-posts/YYYY-MM-DD-{slug}.md`
+- Style note: "bitcoin" is lowercase in body text, but **capitalised in titles** (e.g. "How Bitcoin Works" in the frontmatter `title` field). Same rule as "the internet" — lowercase in prose, normal title case in headings.
 
 Create a task on the shared task list:
 - **Task 2**: Write post `{slug}` — assigned to `writer` (depends on Task 1)

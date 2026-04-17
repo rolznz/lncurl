@@ -1,5 +1,25 @@
 [
   {
+    "slug": "2026-04-17-ask-grok-bitcoin-twitter-buzzing-paid-in-sats",
+    "title": "Ask Grok What Bitcoin Twitter Is Buzzing About — No API Key, Just Sats",
+    "description": "Use grok-4.20's live X search via llm402.ai — pay a lightning invoice, skip the API key, and get real-time bitcoin community pulse.",
+    "date": "2026-04-17",
+    "isoDate": "2026-04-17T00:00:00Z",
+    "displayDate": "April 17, 2026",
+    "tags": [
+      "bitcoin",
+      "lightning",
+      "402",
+      "L402",
+      "grok",
+      "agents",
+      "api",
+      "twitter"
+    ],
+    "image": "/blog/images/2026-04-17-ask-grok-bitcoin-twitter-buzzing-paid-in-sats.jpg",
+    "imageAlt": "A glowing cyan-green lightning bolt striking downward into a circuit-board X symbol on a dark navy background, surrounded by geometric node icons connected by thin circuit lines representing live search results"
+  },
+  {
     "slug": "2026-04-15-predictions-oracle",
     "title": "The Oracle at the End of a Lightning Payment",
     "description": "An L402-gated API that analyzes 4,000+ prediction markets and returns a structured intelligence briefing — paid autonomously by an AI agent for 250 sats.",
