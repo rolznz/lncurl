@@ -30,6 +30,8 @@ Make sure to load alby bitcoin payments skill before starting.
    ```
    If either file exists, read it in full — it may contain agent-specific usage instructions, pricing hints, supported parameters, or integration notes that change how you approach the rest of the workflow.
 
+   **Understand the whole service before describing any part of it.** Read the top-level description in `llms.txt` carefully. Many services have a primary purpose (e.g. AI inference, payments, analytics) and secondary features (e.g. data enrichment, webhooks). If you're testing a secondary feature, say so — don't describe the whole service as if it only does that one thing. Get the framing right before writing the brief.
+
 3. **Dry-run first** — before paying anything, make a plain unauthenticated request to the endpoint to read the 402 response:
    ```bash
    curl -s -D- -X POST -H "Content-Type: application/json" -d '{}' "<url>"
@@ -39,6 +41,17 @@ Make sure to load alby bitcoin payments skill before starting.
 4. Use the cheapest viable parameters for the actual paid request — e.g. pass `?amountSats=10` if the service supports it, rather than paying the default amount.
 
 5. Pay with Alby tools, capture the full response. **Save the complete raw response to `/tmp/blog-research-response.json` immediately after receiving it.** Include the file path in the brief so the team lead can read it without re-fetching.
+
+5a. **For search and data endpoints: document quality and sort parameters from the docs only — never guess.** Check the docs you already fetched (llms.txt, SKILL.md, any API reference) for:
+   - A `sort` or `order` parameter (e.g. `sort=engagement`, `order=top`, `sort_by=likes`)
+   - A `minLikes`, `minRetweets`, `minReplies`, or similar engagement threshold
+   - Any parameter that controls result quality or recency vs. popularity
+
+   If such parameters are documented, note them in the brief with example values. If they are not documented, explicitly state that — "no sort parameter found in docs; results appear chronological" — because readers will wonder.
+
+   **Do not try undocumented parameter names speculatively.** Every request costs real sats. If a parameter isn't in the docs, do not guess at its name — state it wasn't found and move on.
+
+   The default response from most social/search APIs is raw chronological firehose with zero-engagement posts. Document honestly whether that's what you got.
 
 6. If you need something Alby can't provide (a non-lightning API key, an account signup, a service that requires OAuth), **ask the user** — do not guess or skip.
 

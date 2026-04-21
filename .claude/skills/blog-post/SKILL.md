@@ -15,7 +15,7 @@ The entry point is a URL or service to test: `"Test <url> and write a blog post 
 
 ## Step 0: Load the Alby bitcoin payments skill
 
-Before spawning the researcher, run:
+Before spawning the researcher, load the alby payments skill. ONLY if it's not already installed run:
 
 ```bash
 npx skills add getAlby/payments-skill
@@ -30,11 +30,13 @@ This ensures the payments skill is loaded and the researcher can use it without 
 Spawn a teammate using the `blog-researcher` agent type, named `researcher`.
 
 Give it:
+
 - The URL or service to test
 - Any context the user provided (e.g. what the service does, specific features to explore)
 - **Explicitly tell the researcher: the Alby payments skill is already installed — do not ask the user to install it**
 
 Create a task on the shared task list:
+
 - **Task 1**: Research `{url}` — assigned to `researcher`
 
 Wait for the researcher to complete and send back a research brief.
@@ -44,6 +46,7 @@ Wait for the researcher to complete and send back a research brief.
 ## Step 2: Derive metadata from the brief
 
 From the researcher's brief, extract or confirm:
+
 - **title** — use the researcher's suggestion, or refine it
 - **description** — one sentence for the meta description
 - **tags** — short keywords; purely numeric tags must be quoted (e.g. `["402", bitcoin]`)
@@ -55,6 +58,7 @@ date +%Y-%m-%d
 ```
 
 Slug rules: lowercase letters and hyphens only, derived from the title.
+
 - "How NWC Works" → `how-nwc-works`
 - "Why AI Agents Need Bitcoin" → `why-ai-agents-need-bitcoin`
 
@@ -68,12 +72,14 @@ Image filename: `YYYY-MM-DD-{slug}.jpg`
 Spawn a teammate using the `blog-writer` agent type, named `writer`.
 
 Give it the full research brief plus:
+
 - Confirmed title, description, tags
 - Slug and date
 - Target file path: `frontend/blog-posts/YYYY-MM-DD-{slug}.md`
 - Style note: "bitcoin" is lowercase in body text, but **capitalised in titles** (e.g. "How Bitcoin Works" in the frontmatter `title` field). Same rule as "the internet" — lowercase in prose, normal title case in headings.
 
 Create a task on the shared task list:
+
 - **Task 2**: Write post `{slug}` — assigned to `writer` (depends on Task 1)
 
 Wait for the writer to finish.
@@ -85,10 +91,12 @@ Wait for the writer to finish.
 Spawn a teammate using the `blog-editor` agent type, named `editor`.
 
 Give it:
+
 - The post file path: `frontend/blog-posts/YYYY-MM-DD-{slug}.md`
 - The full research brief (or the brief you provided to the writer)
 
 Create a task on the shared task list:
+
 - **Task 3**: Edit post `{slug}` — assigned to `editor` (depends on Task 2)
 
 Wait for the editor to respond.
@@ -104,10 +112,12 @@ Wait for the editor to respond.
 Spawn a teammate using the `blog-designer` agent type, named `designer`.
 
 Give it:
+
 - The post file path: `frontend/blog-posts/YYYY-MM-DD-{slug}.md`
 - The target image path: `frontend/public/blog/images/YYYY-MM-DD-{slug}.jpg`
 
 Create a task on the shared task list:
+
 - **Task 4**: Generate cover image for `{slug}` — assigned to `designer` (depends on Task 3)
 
 Wait for the designer to finish. The designer will update `imageAlt` in the post file directly.

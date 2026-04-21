@@ -75,9 +75,37 @@ Leave `imageAlt` as `PLACEHOLDER` — the designer will fill it in after generat
 
 ## Never truncate paid API data
 
-If the research brief includes a `briefing`, `analysis`, `summary`, or similar field from a paid API response — include it **in full** in the post. That content is what was paid for; it is the most valuable thing in the article. Never shorten it, add `...`, or paraphrase it. Quote it verbatim and completely.
+The real response data is the most important part of the post. Readers come to see what the API actually returns — not a description of it. Always include the full response in the post.
 
-The same applies to any structured response data (arrays of signals, market data, etc.) that the brief highlights as important — show real examples in full, not truncated fragments.
+**If the brief includes actual API response data** — tweets, articles, signals, market data, structured JSON, or any other payload returned by a paid call — include it **verbatim and in full** in the post. Do not summarise it, truncate it, or describe it in prose instead. Do not add `...` or `// 17 more items`. Show every item.
+
+This applies equally to:
+- Analytical fields (`briefing`, `analysis`, `summary`) — include complete text, never cut off
+- Array responses (tweets, results, records) — include all items, not a "sample" of a few
+- Nested data (author objects, metrics, entities) — do not flatten or strip fields
+
+### Expandable sections for large payloads
+
+When a response contains many items (5+), use this pattern:
+
+1. **Above the data**: a summary table or prose highlighting the most notable results. For social data, rank by the best available engagement signal — likes first, then follower count if likes are all zero (fresh content). For other data, use the most meaningful signal from the response.
+
+2. **The full payload**: wrapped in a `<details>` block so it's accessible but not overwhelming:
+
+```markdown
+<details>
+<summary>Full response (N items, X sats)</summary>
+
+\```json
+{ ... full verbatim JSON ... }
+\```
+
+</details>
+```
+
+The `<summary>` line should state the item count and cost paid. The markdown renderer passes HTML through, so `<details>`/`<summary>` renders natively.
+
+The writer's job is to surface the signal (summary table), then preserve the full evidence (`<details>`). A post that only shows a trimmed version makes the reader wonder what was hidden.
 
 ## Before writing: verify, don't infer
 
