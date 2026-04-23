@@ -18,6 +18,23 @@
     "imageAlt": "A glowing cyan speech bubble feeds a hexagonal orchestrator node marked with a lightning bolt, which fans out through circuit lines to four podcast-search tool icons — a magnifying glass, a chapter list, a microphone waveform, and a radar sweep — on a dark navy background."
   },
   {
+    "slug": "2026-04-23-browsing-satsback-catalog-with-your-agent",
+    "title": "Browsing the Satsback Catalog With Your Agent — Affiliate Cashback, Paid in Bitcoin",
+    "description": "Register an AI agent with satsback.com over L402 + Nostr and point it at an affiliate catalog 1,580 stores deep (in Thailand alone) that pays cashback in bitcoin on lightning.",
+    "date": "2026-04-23",
+    "isoDate": "2026-04-23T00:00:00Z",
+    "displayDate": "April 23, 2026",
+    "tags": [
+      "bitcoin",
+      "lightning",
+      "l402",
+      "agents",
+      "affiliate"
+    ],
+    "image": "/blog/images/2026-04-23-browsing-satsback-catalog-with-your-agent.jpg",
+    "imageAlt": "A glowing cyan-green agent node on the left wired to a grid of small merchant-glyph tiles on the right, with a lightning bolt pipeline arcing back to the agent carrying coin dots, on a dark navy background."
+  },
+  {
     "slug": "2026-04-21-search-twitter-with-lightning-ppq-data-enrichment",
     "title": "Search Twitter with Lightning: PPQ.ai's X Data Enrichment API",
     "description": "PPQ.ai lets AI agents search live X/Twitter data for $0.01 per query, paid via a bitcoin lightning invoice — no account, no OAuth, no API keys required.",
