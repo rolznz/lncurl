@@ -1,5 +1,23 @@
 [
   {
+    "slug": "2026-04-23-jamie-pull-agent-multi-tool-podcast-search",
+    "title": "Jamie Pull Agent: Multi-Tool Podcast Search for $0.10 a Call",
+    "description": "Pull That Up Jamie wrapped its L402 podcast-search primitives in an agent. One plain-English request, one lightning payment, and it plans and calls the primitives for you.",
+    "date": "2026-04-23",
+    "isoDate": "2026-04-23T00:00:00Z",
+    "displayDate": "April 23, 2026",
+    "tags": [
+      "bitcoin",
+      "lightning",
+      "L402",
+      "podcast",
+      "agents",
+      "orchestration"
+    ],
+    "image": "/blog/images/2026-04-23-jamie-pull-agent-multi-tool-podcast-search.jpg",
+    "imageAlt": "A glowing cyan speech bubble feeds a hexagonal orchestrator node marked with a lightning bolt, which fans out through circuit lines to four podcast-search tool icons — a magnifying glass, a chapter list, a microphone waveform, and a radar sweep — on a dark navy background."
+  },
+  {
     "slug": "2026-04-21-search-twitter-with-lightning-ppq-data-enrichment",
     "title": "Search Twitter with Lightning: PPQ.ai's X Data Enrichment API",
     "description": "PPQ.ai lets AI agents search live X/Twitter data for $0.01 per query, paid via a bitcoin lightning invoice — no account, no OAuth, no API keys required.",
