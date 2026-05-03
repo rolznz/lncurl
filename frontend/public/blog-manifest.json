@@ -1,5 +1,23 @@
 [
   {
+    "slug": "2026-05-03-weather-questions-mpp-lightning-oracle",
+    "title": "Weather Questions: 33 Sats per Forecast Over Lightning + MPP",
+    "description": "Ask a weather oracle when it will rain, snow, or hit a high — and pay 33 sats per answer over the bitcoin lightning network using the MPP protocol.",
+    "date": "2026-05-03",
+    "isoDate": "2026-05-03T00:00:00Z",
+    "displayDate": "May 3, 2026",
+    "tags": [
+      "bitcoin",
+      "lightning",
+      "402",
+      "mpp",
+      "agents",
+      "oracle"
+    ],
+    "image": "/blog/images/2026-05-03-weather-questions-mpp-lightning-oracle.jpg",
+    "imageAlt": "A glowing cyan-green cloud icon pierced by a lightning bolt, with small coins flowing in along circuit lines from the left and three distinct geometric question-mark nodes on the right, on a dark navy background."
+  },
+  {
     "slug": "2026-04-23-jamie-pull-agent-multi-tool-podcast-search",
     "title": "Jamie Pull Agent: Multi-Tool Podcast Search for $0.10 a Call",
     "description": "Pull That Up Jamie wrapped its L402 podcast-search primitives in an agent. One plain-English request, one lightning payment, and it plans and calls the primitives for you.",
