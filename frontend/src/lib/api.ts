@@ -83,6 +83,7 @@ export interface GraveEntry {
   totalCharged: number;
   epitaph: string | null;
   flowers: number;
+  closureEventId: string | null;
 }
 
 export async function fetchGraveyard(
@@ -93,6 +94,24 @@ export async function fetchGraveyard(
   const res = await fetch(
     `${BASE}/api/graveyard?sort=${sort}&offset=${offset}&limit=${limit}`,
   );
+  return res.json();
+}
+
+export interface NostrEvent {
+  id: string;
+  pubkey: string;
+  created_at: number;
+  kind: number;
+  tags: string[][];
+  content: string;
+  sig: string;
+}
+
+export async function fetchGraveClosureEvent(name: string): Promise<NostrEvent> {
+  const res = await fetch(
+    `${BASE}/api/graveyard/${encodeURIComponent(name)}/nostr-event`,
+  );
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
   return res.json();
 }
 

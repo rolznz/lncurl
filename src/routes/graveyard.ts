@@ -2,6 +2,33 @@ import type { FastifyInstance } from "fastify";
 import { prisma } from "../db.js";
 
 export async function graveyardRoutes(fastify: FastifyInstance) {
+  fastify.get("/api/graveyard/:name/nostr-event", async (request, reply) => {
+    const { name } = request.params as { name: string };
+    const grave = await prisma.graveyard.findUnique({
+      where: { name },
+      select: { closureEventId: true },
+    });
+
+    if (!grave?.closureEventId) {
+      return reply.status(404).send({ error: "No Nostr closure event found" });
+    }
+
+    const publication = await prisma.nostrPublish.findUnique({
+      where: { id: grave.closureEventId },
+      select: { eventJson: true },
+    });
+
+    if (!publication) {
+      return reply.status(404).send({ error: "Nostr closure event is unavailable" });
+    }
+
+    try {
+      return JSON.parse(publication.eventJson);
+    } catch {
+      return reply.status(500).send({ error: "Stored Nostr closure event is invalid" });
+    }
+  });
+
   fastify.get("/api/graveyard", async (request) => {
     const query = request.query as { sort?: string; offset?: string; limit?: string };
     const sort = query.sort === "oldest" ? "oldest" : "recent";
@@ -17,6 +44,7 @@ export async function graveyardRoutes(fastify: FastifyInstance) {
       total_charged: number;
       epitaph: string | null;
       flowers: number;
+      closure_event_id: string | null;
     };
 
     const [rawGraves, total] = await Promise.all([
@@ -40,6 +68,7 @@ export async function graveyardRoutes(fastify: FastifyInstance) {
               total_charged: g.totalCharged,
               epitaph: g.epitaph,
               flowers: g.flowers,
+              closure_event_id: g.closureEventId,
             }))
           ),
       prisma.graveyard.count(),
@@ -57,6 +86,7 @@ export async function graveyardRoutes(fastify: FastifyInstance) {
         totalCharged: g.total_charged,
         epitaph: g.epitaph,
         flowers: g.flowers,
+        closureEventId: g.closure_event_id,
       })),
     };
   });
