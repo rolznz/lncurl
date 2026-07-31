@@ -26,13 +26,16 @@ const CHARGE_INTERVAL_MS = parseInt(
   process.env.CHARGE_INTERVAL_MS || "3600000",
   10,
 );
-const GRACE_PERIOD_SECS = 3600; // 1 hour grace period for new wallets
+const GRACE_PERIOD_SECS = parseInt(
+  process.env.GRACE_PERIOD_SECS || "3600",
+  10,
+);
 
 let chargeTimer: ReturnType<typeof setTimeout> | null = null;
 let isRunning = false;
 
 function getNextAlignedTime(): number {
-  if (CHARGE_INTERVAL_MS < 60000) {
+  if (CHARGE_INTERVAL_MS <= 60000) {
     // For testing with short intervals, don't align
     return Date.now() + CHARGE_INTERVAL_MS;
   }
@@ -253,6 +256,7 @@ export async function startChargeLoop() {
   // Check if overdue on startup
   const stats = await prisma.serviceStats.findUnique({ where: { id: 1 } });
   const now = Math.floor(Date.now() / 1000);
+  const useShortTestCadence = CHARGE_INTERVAL_MS <= 60000;
 
   if (stats?.nextChargeRunAt && stats.nextChargeRunAt <= now) {
     console.log(
@@ -260,7 +264,7 @@ export async function startChargeLoop() {
     );
     await runChargeLoop();
   } else {
-    const nextRun = stats?.nextChargeRunAt
+    const nextRun = !useShortTestCadence && stats?.nextChargeRunAt
       ? stats.nextChargeRunAt * 1000
       : getNextAlignedTime();
     console.log(
