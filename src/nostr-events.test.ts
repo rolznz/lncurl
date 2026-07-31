@@ -44,6 +44,7 @@ test("signs an immutable expired NWC closure with a p tag", () => {
     identity,
     walletPubkey,
     "expired",
+    "Lived fast, died broke",
     1_785_528_000,
   );
 
@@ -51,7 +52,7 @@ test("signs an immutable expired NWC closure with a p tag", () => {
   assert.equal(event.kind, NWC_CLOSURE_EVENT_KIND);
   assert.equal(event.pubkey, identity.publicKey);
   assert.equal(event.created_at, 1_785_528_000);
-  assert.equal(event.content, "");
+  assert.equal(event.content, "Lived fast, died broke");
   assert.deepEqual(event.tags, [
     ["p", walletPubkey],
     ["status", "closed"],
@@ -66,11 +67,19 @@ test("supports revoked closures and rejects malformed wallet pubkeys", () => {
     identity,
     "3".repeat(64),
     "revoked",
+    "Farewell cruel blockchain",
     1,
   );
+  assert.equal(event.content, "Farewell cruel blockchain");
   assert.deepEqual(event.tags[2], ["reason", "revoked"]);
   assert.throws(
-    () => createNwcClosureEvent(identity, "not-a-pubkey", "expired"),
+    () =>
+      createNwcClosureEvent(
+        identity,
+        "not-a-pubkey",
+        "expired",
+        "Last words",
+      ),
     /wallet-service pubkey/,
   );
 });

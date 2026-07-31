@@ -44,7 +44,8 @@ relay from the NWC URI for a kind `3194` event authored by lncurl with a `p` tag
 equal to the wallet-service pubkey in the URI. A valid event with
 `status=closed` means the connection is permanently dead; do not send kind
 `23194` requests. `reason=expired` means the wallet died under the service's
-lifecycle policy. Cache a valid closure permanently.
+lifecycle policy. The event content contains the wallet's public last words.
+Cache a valid closure permanently.
 
 ## What's Next
 

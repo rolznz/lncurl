@@ -94,8 +94,9 @@ export function Privacy() {
               When a wallet dies, lncurl publishes a signed event to its NWC
               relay. The event publicly associates lncurl with that wallet's
               NWC wallet-service public key and says whether the connection
-              expired or was revoked. It does not include the wallet's balance,
-              epitaph, IP address, or transaction history.
+              expired or was revoked. Its content contains the wallet's public
+              epitaph (last words). It does not include the wallet's balance,
+              IP address, or transaction history.
             </p>
           </div>
 

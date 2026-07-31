@@ -109,6 +109,7 @@ export function createNwcClosureEvent(
   identity: NostrIdentity,
   walletPubkey: string,
   reason: NwcClosureReason,
+  lastWords: string,
   createdAt = Math.floor(Date.now() / 1000),
 ): VerifiedEvent {
   const normalizedWalletPubkey = walletPubkey.toLowerCase();
@@ -125,7 +126,7 @@ export function createNwcClosureEvent(
         ["status", "closed"],
         ["reason", reason],
       ],
-      content: "",
+      content: lastWords,
     },
     identity.secretKey,
   );

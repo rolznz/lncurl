@@ -43,7 +43,8 @@ curl -X POST https://lncurl.lol -d 'message=YOLO'
 lncurl publishes `_@lncurl.lol` as its root-domain NIP-05 identity. When a
 wallet dies, lncurl signs a permanent kind `3194` event on the wallet's NWC
 relay. The event tags the dead NWC wallet-service pubkey with `p`, has
-`status=closed`, and uses `reason=expired`.
+`status=closed`, uses `reason=expired`, and carries the wallet's last words in
+its content.
 
 Set a stable `NOSTR_PRIVATE_KEY` in production. Changing this key changes the
 service identity and prevents clients pinned to the previous key from trusting

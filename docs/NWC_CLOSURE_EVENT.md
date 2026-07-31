@@ -25,7 +25,7 @@ Kind `3194` is a regular, immutable `NWC Connection Closed` event:
     ["status", "closed"],
     ["reason", "expired"]
   ],
-  "content": "",
+  "content": "Lived fast, died broke",
   "id": "<event id>",
   "sig": "<lncurl signature>"
 }
@@ -33,8 +33,9 @@ Kind `3194` is a regular, immutable `NWC Connection Closed` event:
 
 The event MUST contain exactly one tag of each type shown above. The `p` value
 MUST be the wallet-service pubkey in the base of the NWC URI. The author MUST be
-the pubkey resolved and pinned from `_@lncurl.lol`. Content MUST be empty and
-the event MUST NOT contain an `expiration` tag.
+the pubkey resolved and pinned from `_@lncurl.lol`. Content MUST contain the
+wallet's last words (the same epitaph stored in the graveyard), and the event
+MUST NOT contain an `expiration` tag.
 
 Supported reasons are:
 
@@ -53,8 +54,9 @@ Failed relay publications are retried without regenerating the event. Alby Hub
 deletion is independent and never receives the lncurl private key.
 
 The public event intentionally reveals that the tagged NWC wallet-service
-pubkey was issued by lncurl and is closed. It does not include the wallet name,
-balance, epitaph, IP address, lifetime, or charge history.
+pubkey was issued by lncurl and is closed, together with the wallet's public
+last words. It does not include the wallet name, balance, IP address, lifetime,
+or charge history.
 
 ## Client lookup
 

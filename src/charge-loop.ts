@@ -102,6 +102,7 @@ async function doChargeLoop() {
         wallet.createdAt,
         wallet.totalCharged,
       );
+      const lastWords = wallet.epitaph || getRandomEpitaph();
 
       try {
         if (!walletPubkey) {
@@ -121,6 +122,7 @@ async function doChargeLoop() {
           getNostrIdentity(),
           walletPubkey,
           "expired",
+          lastWords,
           deletedAt,
         );
 
@@ -139,7 +141,7 @@ async function doChargeLoop() {
               causeOfDeath: "insufficient_funds",
               causeOfDeathFlavor,
               totalCharged: wallet.totalCharged,
-              epitaph: wallet.epitaph || getRandomEpitaph(),
+              epitaph: lastWords,
             },
           }),
           prisma.nostrPublish.create({
