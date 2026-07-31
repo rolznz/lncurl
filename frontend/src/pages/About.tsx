@@ -1,6 +1,14 @@
+import { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { fetchNostrIdentity, type NostrIdentity } from "@/lib/api";
 
 export function About() {
+  const [nostrIdentity, setNostrIdentity] = useState<NostrIdentity | null>(null);
+
+  useEffect(() => {
+    fetchNostrIdentity().then(setNostrIdentity).catch(() => {});
+  }, []);
+
   return (
     <div className="space-y-8">
       <div>
@@ -95,6 +103,44 @@ export function About() {
         </CardContent>
       </Card>
 
+      <Card>
+        <CardHeader className="pb-2">
+          <CardTitle className="text-sm font-mono text-muted-foreground">
+            NOSTR IDENTITY
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-2 text-sm">
+          <p>
+            Lncurl signs permanent wallet-closure events as the root-domain
+            NIP-05 identity{" "}
+            <a
+              href="/.well-known/nostr.json?name=_"
+              className="text-terminal hover:underline font-mono"
+            >
+              lncurl.lol
+            </a>
+            .
+          </p>
+          {nostrIdentity && (
+            <div className="space-y-1">
+              <p className="text-muted-foreground">
+                NIP-05: <code className="text-foreground">{nostrIdentity.nip05}</code>
+              </p>
+              <p className="text-muted-foreground break-all">
+                npub: <code className="text-foreground">{nostrIdentity.npub}</code>
+              </p>
+              <p className="text-muted-foreground">
+                Dead NWC connections are announced with regular event kind{" "}
+                <code className="text-foreground">
+                  {nostrIdentity.closureEventKind}
+                </code>
+                .
+              </p>
+            </div>
+          )}
+        </CardContent>
+      </Card>
+
       {/* FAQ */}
       <Card>
         <CardHeader className="pb-2">
@@ -167,8 +213,9 @@ export function About() {
             <p className="font-bold">What happens when my wallet dies?</p>
             <p className="text-muted-foreground">
               It moves to the Graveyard with its epitaph. The lightning address
-              and NWC connection stop working. Any remaining balance was already
-              zero.
+              and NWC connection stop working. Lncurl also publishes a signed,
+              permanent Nostr closure event on the wallet's NWC relay so aware
+              clients can fail immediately. Any remaining balance was already zero.
             </p>
           </div>
 

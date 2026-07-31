@@ -11,8 +11,11 @@ import { walletRoutes } from "./routes/wallet.js";
 import { feedRoutes } from "./routes/feed.js";
 import { statsRoutes } from "./routes/stats.js";
 import { graveyardRoutes } from "./routes/graveyard.js";
+import { nostrRoutes } from "./routes/nostr.js";
 import { startChargeLoop } from "./charge-loop.js";
 import { initNodeStats } from "./node-stats.js";
+import { getNostrIdentity } from "./nostr-events.js";
+import { startNostrPublisher } from "./nostr-publisher.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -25,7 +28,11 @@ fastify.register(fastifyCors, { origin: "*" });
 fastify.get("/llms.txt", async (_request, reply) => {
   const llmsPath = path.join(__dirname, "llms.txt");
   if (fs.existsSync(llmsPath)) {
-    reply.type("text/plain").send(fs.readFileSync(llmsPath, "utf-8"));
+    const identity = getNostrIdentity();
+    const content = fs
+      .readFileSync(llmsPath, "utf-8")
+      .replaceAll("{{LNCURL_NPUB}}", identity.npub);
+    reply.type("text/plain").send(content);
   } else {
     reply.status(404).send("llms.txt not found");
   }
@@ -36,6 +43,7 @@ fastify.register(walletRoutes);
 fastify.register(feedRoutes);
 fastify.register(statsRoutes);
 fastify.register(graveyardRoutes);
+fastify.register(nostrRoutes);
 
 // Serve frontend static files
 const frontendDist = path.join(__dirname, "..", "frontend", "dist");
@@ -102,7 +110,9 @@ if (fs.existsSync(frontendDist)) {
 
 const start = async () => {
   try {
+    getNostrIdentity();
     initNodeStats();
+    await startNostrPublisher();
     await startChargeLoop();
 
     await fastify.listen({

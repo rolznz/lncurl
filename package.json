@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "tsx watch src/app.ts",
     "build": "prisma generate && tsc && cp src/llms.txt dist/ && cp src/index.html dist/ 2>/dev/null || true",
+    "test": "tsx --test src/*.test.ts",
     "typecheck": "tsc --noEmit",
     "start": "node dist/app.js",
     "prisma:generate": "prisma generate",
@@ -23,6 +24,7 @@
     "@prisma/client": "^7.4.0",
     "dotenv": "^17.2.3",
     "fastify": "^5.6.2",
+    "nostr-tools": "2.17.0",
     "prisma": "^7.4.0"
   },
   "devDependencies": {
@@ -30,5 +32,8 @@
     "@types/node": "^22.0.0",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3"
+  },
+  "resolutions": {
+    "nostr-tools": "2.17.0"
   }
 }

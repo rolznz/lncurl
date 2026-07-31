@@ -24,6 +24,7 @@ curl -X POST https://lncurl.lol -d 'message=YOLO'
 - **Rate limit**: 10 wallets per hour per IP
 - **Deletion**: Wallets that cannot pay the hourly charge are permanently deleted
 - **Protocol**: Nostr Wallet Connect (NWC) — NIP-47
+- **Nostr identity**: `_@lncurl.lol` (`{{LNCURL_NPUB}}`)
 
 ## API Endpoints
 
@@ -33,6 +34,17 @@ curl -X POST https://lncurl.lol -d 'message=YOLO'
 - `GET /api/leaderboard` — Top 20 longest-lived wallets
 - `GET /api/graveyard` — Last 100 dead wallets
 - `GET /api/feed` — Server-Sent Events (SSE) live activity feed
+- `GET /api/nostr` — lncurl Nostr identity and closure event kind
+- `GET /.well-known/nostr.json?name=_` — root-domain NIP-05 identity
+
+## Detecting a Dead Wallet
+
+At NWC session start, resolve `_@lncurl.lol`, pin its hex pubkey, and query the
+relay from the NWC URI for a kind `3194` event authored by lncurl with a `p` tag
+equal to the wallet-service pubkey in the URI. A valid event with
+`status=closed` means the connection is permanently dead; do not send kind
+`23194` requests. `reason=expired` means the wallet died under the service's
+lifecycle policy. Cache a valid closure permanently.
 
 ## What's Next
 

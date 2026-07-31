@@ -5,6 +5,11 @@ import { sanitizeEpitaph, getRandomEpitaph } from "../epitaphs.js";
 import { checkRateLimit } from "../rate-limit.js";
 import { prisma } from "../db.js";
 import { emitActivity } from "../activity.js";
+import { parseNwcConnectionInfo } from "../nostr-events.js";
+import {
+  ensureLncurlMetadataEvent,
+  kickNostrPublisher,
+} from "../nostr-publisher.js";
 
 export async function walletRoutes(fastify: FastifyInstance) {
   async function handleCreateWallet(request: any, reply: any) {
@@ -46,12 +51,22 @@ export async function walletRoutes(fastify: FastifyInstance) {
     await updateAppName(newApp.pairingPublicKey, name);
 
     const now = Math.floor(Date.now() / 1000);
+    const parsedConnection = parseNwcConnectionInfo(newApp.pairingUri);
+    if (
+      newApp.walletPubkey &&
+      newApp.walletPubkey.toLowerCase() !== parsedConnection.walletPubkey
+    ) {
+      throw new Error("Hub returned inconsistent NWC wallet pubkeys");
+    }
+    const { walletPubkey, relayUrls } = parsedConnection;
 
     await prisma.wallet.create({
       data: {
         name,
         appId: newApp.id,
         appPubkey: newApp.pairingPublicKey,
+        walletPubkey,
+        relaysJson: JSON.stringify(relayUrls),
         createdAt: now,
         epitaph,
         lastKnownBalance: 0,
@@ -77,6 +92,13 @@ export async function walletRoutes(fastify: FastifyInstance) {
     }
 
     await emitActivity("wallet_created", name, undefined, `${name} was born`);
+
+    try {
+      await ensureLncurlMetadataEvent(relayUrls);
+      kickNostrPublisher();
+    } catch (err) {
+      console.error("[wallet] Failed to queue lncurl Nostr metadata:", err);
+    }
 
     const nwcUri = `${newApp.pairingUri}&lud16=${name}@getalby.com`;
 

@@ -11,6 +11,8 @@ model Wallet {
   name             String    @id
   appId            Int       @map("app_id")
   appPubkey        String    @default("") @map("app_pubkey")
+  walletPubkey     String    @default("") @map("wallet_pubkey")
+  relaysJson       String    @default("[]") @map("relays_json")
   createdAt        Int       @map("created_at")
   lastChargedAt    Int?      @map("last_charged_at")
   totalCharged     Int       @default(0) @map("total_charged")
@@ -23,6 +25,8 @@ model Wallet {
 
 model Graveyard {
   name              String  @id
+  walletPubkey      String? @map("wallet_pubkey")
+  closureEventId    String? @map("closure_event_id")
   createdAt         Int     @map("created_at")
   deletedAt         Int     @map("deleted_at")
   causeOfDeath      String  @map("cause_of_death")
@@ -32,6 +36,21 @@ model Graveyard {
   flowers           Int     @default(0)
 
   @@map("graveyard")
+}
+
+model NostrPublish {
+  id                  String  @id
+  kind                Int
+  eventJson           String  @map("event_json")
+  relaysJson          String  @map("relays_json")
+  publishedRelaysJson String  @default("[]") @map("published_relays_json")
+  attempts            Int     @default(0)
+  createdAt           Int     @map("created_at")
+  lastAttemptAt       Int?    @map("last_attempt_at")
+  lastError           String? @map("last_error")
+
+  @@index([kind])
+  @@map("nostr_publishes")
 }
 
 model Activity {

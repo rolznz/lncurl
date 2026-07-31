@@ -34,7 +34,21 @@ curl -X POST https://lncurl.lol -d 'message=YOLO'
 - `GET /api/leaderboard` — Top 20 longest-lived wallets
 - `GET /api/graveyard` — Last 100 dead wallets
 - `GET /api/feed` — Server-Sent Events (SSE) live activity feed
+- `GET /api/nostr` — lncurl NIP-05 identity and closure event kind
+- `GET /.well-known/nostr.json?name=_` — root-domain NIP-05 document
 - `GET /llms.txt` — Agent documentation
+
+## Nostr identity and wallet closure
+
+lncurl publishes `_@lncurl.lol` as its root-domain NIP-05 identity. When a
+wallet dies, lncurl signs a permanent kind `3194` event on the wallet's NWC
+relay. The event tags the dead NWC wallet-service pubkey with `p`, has
+`status=closed`, and uses `reason=expired`.
+
+Set a stable `NOSTR_PRIVATE_KEY` in production. Changing this key changes the
+service identity and prevents clients pinned to the previous key from trusting
+new closure events. See [`docs/NWC_CLOSURE_EVENT.md`](docs/NWC_CLOSURE_EVENT.md)
+for the event and client lookup contract.
 
 ## Development
 

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
-const LAST_UPDATED = "June 21, 2026";
+const LAST_UPDATED = "July 31, 2026";
 
 export function Privacy() {
   return (
@@ -85,6 +85,17 @@ export function Privacy() {
               when the wallet dies, along with the wallet's generated name and
               how long it survived. Do not put anything sensitive or personal in
               an epitaph.
+            </p>
+          </div>
+
+          <div>
+            <p className="font-bold">Nostr closure events</p>
+            <p className="text-muted-foreground">
+              When a wallet dies, lncurl publishes a signed event to its NWC
+              relay. The event publicly associates lncurl with that wallet's
+              NWC wallet-service public key and says whether the connection
+              expired or was revoked. It does not include the wallet's balance,
+              epitaph, IP address, or transaction history.
             </p>
           </div>
 
@@ -183,7 +194,9 @@ export function Privacy() {
             When a wallet runs out of sats it is destroyed and its connection
             stops working. A record of the dead wallet — its name, epitaph, and
             lifespan — is kept on the public Graveyard for posterity. We retain
-            aggregate, non-identifying service statistics indefinitely.
+            aggregate, non-identifying service statistics indefinitely. The
+            corresponding Nostr closure event is intended to remain available
+            permanently, subject to each relay's retention policy.
           </p>
         </CardContent>
       </Card>

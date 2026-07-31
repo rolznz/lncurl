@@ -72,6 +72,8 @@ export async function createApp() {
   const newApp = (await newAppResponse.json()) as {
     pairingUri: string;
     pairingPublicKey: string;
+    walletPubkey?: string;
+    relayUrls?: string[];
     id: number;
     name: string;
   };
@@ -177,7 +179,11 @@ export async function getAppBalance(
 
 export async function getAppById(
   appId: number,
-): Promise<{ balanceSats: number; lud16: string | null }> {
+): Promise<{
+  balanceSats: number;
+  lud16: string | null;
+  walletPubkey: string;
+}> {
   const response = await fetchWithTimeout(
     new URL(`/api/v2/apps/${appId}`, getAlbyHubUrl()),
     { headers: getHeaders() },
@@ -187,12 +193,29 @@ export async function getAppById(
   }
   const app = (await response.json()) as {
     balance: number;
+    walletPubkey?: string;
     metadata?: { lud16?: string };
   };
   return {
     balanceSats: Math.floor(app.balance / 1000),
     lud16: app.metadata?.lud16 ?? null,
+    walletPubkey: app.walletPubkey ?? "",
   };
+}
+
+export async function getHubRelayUrls(): Promise<string[]> {
+  const response = await fetchWithTimeout(
+    new URL("/api/info", getAlbyHubUrl()),
+    { headers: getHeaders() },
+  );
+  if (!response.ok) {
+    throw new Error("Failed to get Hub relays: " + (await response.text()));
+  }
+
+  const info = (await response.json()) as {
+    relays?: { url: string }[];
+  };
+  return (info.relays ?? []).map((relay) => relay.url);
 }
 
 export async function createLightningAddress(

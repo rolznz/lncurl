@@ -44,6 +44,19 @@ export async function fetchStats(): Promise<Stats> {
   return res.json();
 }
 
+export interface NostrIdentity {
+  nip05: string;
+  npub: string;
+  pubkey: string;
+  closureEventKind: number;
+}
+
+export async function fetchNostrIdentity(): Promise<NostrIdentity> {
+  const res = await fetch(`${BASE}/api/nostr`);
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  return res.json();
+}
+
 export interface LeaderboardEntry {
   rank: number;
   name: string;

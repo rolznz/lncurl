@@ -1,8 +1,25 @@
 import { prisma } from "./db.js";
-import { transferFromApp, getAppBalance, deleteApp } from "./hub.js";
+import {
+  transferFromApp,
+  getAppBalance,
+  deleteApp,
+  getAppById,
+  getHubRelayUrls,
+} from "./hub.js";
 import { emitActivity } from "./activity.js";
 import { getRandomEpitaph, generateCauseOfDeathFlavor } from "./epitaphs.js";
 import { checkAchievements } from "./achievements.js";
+import {
+  createNwcClosureEvent,
+  getNostrIdentity,
+  normalizeRelayUrls,
+} from "./nostr-events.js";
+import {
+  ensureLncurlMetadataEvent,
+  makeNostrPublishData,
+  parseRelayList,
+  publishStoredNostrEvent,
+} from "./nostr-publisher.js";
 
 const CHARGE_AMOUNT = parseInt(process.env.CHARGE_AMOUNT_SATS || "1", 10);
 const CHARGE_INTERVAL_MS = parseInt(
@@ -79,24 +96,67 @@ async function doChargeLoop() {
         `[charge-loop] Wallet ${wallet.name} has 0 balance, reaping...`,
       );
 
+      let walletPubkey = wallet.walletPubkey;
+      let relayUrls = parseRelayList(wallet.relaysJson);
       const causeOfDeathFlavor = generateCauseOfDeathFlavor(
         wallet.createdAt,
         wallet.totalCharged,
       );
 
-      await prisma.graveyard.create({
-        data: {
-          name: wallet.name,
-          createdAt: wallet.createdAt,
-          deletedAt: Math.floor(Date.now() / 1000),
-          causeOfDeath: "insufficient_funds",
-          causeOfDeathFlavor,
-          totalCharged: wallet.totalCharged,
-          epitaph: wallet.epitaph || getRandomEpitaph(),
-        },
-      });
+      try {
+        if (!walletPubkey) {
+          const hubApp = await getAppById(wallet.appId);
+          walletPubkey = hubApp.walletPubkey;
+        }
+        if (relayUrls.length === 0) {
+          relayUrls = await getHubRelayUrls();
+        }
+        relayUrls = normalizeRelayUrls(relayUrls);
+        if (!walletPubkey || relayUrls.length === 0) {
+          throw new Error("Missing NWC wallet pubkey or relay URL");
+        }
 
-      await prisma.wallet.delete({ where: { name: wallet.name } });
+        const deletedAt = Math.floor(Date.now() / 1000);
+        const closureEvent = createNwcClosureEvent(
+          getNostrIdentity(),
+          walletPubkey,
+          "expired",
+          deletedAt,
+        );
+
+        const metadataEventId = await ensureLncurlMetadataEvent(relayUrls);
+        if (metadataEventId) {
+          await publishStoredNostrEvent(metadataEventId);
+        }
+        await prisma.$transaction([
+          prisma.graveyard.create({
+            data: {
+              name: wallet.name,
+              walletPubkey,
+              closureEventId: closureEvent.id,
+              createdAt: wallet.createdAt,
+              deletedAt,
+              causeOfDeath: "insufficient_funds",
+              causeOfDeathFlavor,
+              totalCharged: wallet.totalCharged,
+              epitaph: wallet.epitaph || getRandomEpitaph(),
+            },
+          }),
+          prisma.nostrPublish.create({
+            data: makeNostrPublishData(closureEvent, relayUrls),
+          }),
+          prisma.wallet.delete({ where: { name: wallet.name } }),
+        ]);
+
+        // Try immediately. Any relay failure remains persisted for the retry loop.
+        await publishStoredNostrEvent(closureEvent.id);
+      } catch (err) {
+        console.error(
+          `[charge-loop] Failed to record closure for ${wallet.name}, leaving wallet active:`,
+          err,
+        );
+        continue;
+      }
 
       try {
         await deleteApp(wallet.appPubkey);
