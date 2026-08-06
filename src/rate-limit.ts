@@ -1,24 +1,26 @@
-const MAX_WALLETS_PER_HOUR = 10;
+import { getRuntimeSettings } from "./settings.js";
+
 const WINDOW_MS = 60 * 60 * 1000; // 1 hour
-const CLEANUP_INTERVAL_MS = 10 * 60 * 1000; // 10 minutes
 
 const ipTimestamps = new Map<string, number[]>();
+let cleanupTimer: ReturnType<typeof setTimeout> | null = null;
 
 export function checkRateLimit(ip: string): { allowed: boolean; remaining: number } {
+  const maxWallets = getRuntimeSettings().rateLimitPerHour;
   const now = Date.now();
   const cutoff = now - WINDOW_MS;
 
   let timestamps = ipTimestamps.get(ip) || [];
   timestamps = timestamps.filter((t) => t > cutoff);
 
-  if (timestamps.length >= MAX_WALLETS_PER_HOUR) {
+  if (timestamps.length >= maxWallets) {
     ipTimestamps.set(ip, timestamps);
     return { allowed: false, remaining: 0 };
   }
 
   timestamps.push(now);
   ipTimestamps.set(ip, timestamps);
-  return { allowed: true, remaining: MAX_WALLETS_PER_HOUR - timestamps.length };
+  return { allowed: true, remaining: maxWallets - timestamps.length };
 }
 
 function cleanupStaleEntries() {
@@ -35,5 +37,14 @@ function cleanupStaleEntries() {
   }
 }
 
-// Start cleanup interval
-setInterval(cleanupStaleEntries, CLEANUP_INTERVAL_MS);
+function scheduleCleanup() {
+  cleanupTimer = setTimeout(() => {
+    cleanupStaleEntries();
+    scheduleCleanup();
+  }, getRuntimeSettings().rateLimitCleanupMs);
+}
+
+export function rescheduleRateLimitCleanup() {
+  if (cleanupTimer) clearTimeout(cleanupTimer);
+  scheduleCleanup();
+}

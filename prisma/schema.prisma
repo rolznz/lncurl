@@ -65,3 +65,12 @@ model ServiceStats {
 
   @@map("service_stats")
 }
+
+model Setting {
+  key            String @id
+  encryptedValue String @map("encrypted_value")
+  createdAt      Int    @map("created_at")
+  updatedAt      Int    @map("updated_at")
+
+  @@map("settings")
+}

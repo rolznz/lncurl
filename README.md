@@ -92,3 +92,27 @@ cd frontend && yarn build
 cd ..
 yarn start
 ```
+
+## Umbrel
+
+`umbrel/lncurl` is the canonical Umbrel package. It depends on Alby Hub and
+keeps LNCurl data under its own app directory; it does not mount Alby Hub data.
+The Umbrel-proxy-only settings page exposes charge, grace-period, and rate-limit
+controls when `UNSAFE_PUBLIC_SETTINGS=true`.
+
+### Publish an official image
+
+After merging the Umbrel integration into `rolznz/lncurl`, publish the initial
+package image with `v0.1.0` (then use later version tags for updates):
+
+```bash
+git tag v0.1.0
+git push origin v0.1.0
+```
+
+The existing `Publish container image` workflow publishes `linux/amd64` and
+`linux/arm64` images to `ghcr.io/rolznz/lncurl`. Copy the digest shown in that
+workflow into `umbrel/lncurl/docker-compose.yml` as
+`ghcr.io/rolznz/lncurl:X.Y.Z@sha256:…`, bump `umbrel-app.yml`'s version, and
+submit that package to the official Umbrel App Store. The LaWallet store is a
+temporary test deployment and is not the canonical publisher.

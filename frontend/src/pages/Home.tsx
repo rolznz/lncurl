@@ -9,6 +9,7 @@ import { NodeStats } from "@/components/node-stats";
 import { StatCard } from "@/components/stat-card";
 import { LeaderboardTable } from "@/components/leaderboard-table";
 import { AchievementShelf } from "@/components/achievement-shelf";
+import { AlbySetup } from "@/components/alby-setup";
 import { useStats } from "@/hooks/use-stats";
 import { fetchLeaderboard, type LeaderboardEntry } from "@/lib/api";
 
@@ -32,6 +33,8 @@ export function Home() {
         </h1>
         <p className="text-muted-foreground">One curl. That's it.</p>
       </section>
+
+      <AlbySetup />
 
       {/* Create wallet */}
       <section className="max-w-lg mx-auto">

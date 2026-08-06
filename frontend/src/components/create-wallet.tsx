@@ -51,8 +51,8 @@ export function CreateWallet() {
   const [curlCopied, setCurlCopied] = useState(false);
 
   const curlCommand = message
-    ? `curl -X POST https://lncurl.lol -d "message=${message}"`
-    : "curl -X POST https://lncurl.lol";
+    ? `curl -X POST ${window.location.origin} -d "message=${message}"`
+    : `curl -X POST ${window.location.origin}`;
 
   async function handleCreate() {
     setLoading(true);

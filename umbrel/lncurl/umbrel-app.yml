@@ -1,0 +1,23 @@
+manifestVersion: 1
+id: lncurl
+name: LNCurl
+tagline: Create isolated Lightning wallets with one curl
+category: bitcoin
+version: "0.1.0"
+port: 59001
+description: >-
+  LNCurl provisions isolated Nostr Wallet Connect wallets through your own Alby Hub while keeping the existing public curl API and dashboard unchanged.
+
+
+  If no API token is provided through the environment, LNCurl prompts for a full-access token from Alby Hub's Developer Settings and stores it encrypted in its own database. LNCurl never reads or mounts Alby Hub's database.
+
+
+  The package uses Alby Hub's internal Umbrel hostname and keeps all LNCurl data in its own persistent app directory.
+developer: rolznz
+website: https://github.com/rolznz/lncurl
+submitter: rolznz
+repo: https://github.com/rolznz/lncurl
+support: https://github.com/rolznz/lncurl/issues
+gallery: []
+dependencies:
+  - albyhub

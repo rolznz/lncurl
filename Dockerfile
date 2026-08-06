@@ -12,7 +12,10 @@ WORKDIR /app
 # Set production environment
 ENV NODE_ENV="production"
 ARG YARN_VERSION=1.22.22
-RUN npm install -g yarn@$YARN_VERSION --force
+RUN apt-get update -qq && \
+    apt-get install --no-install-recommends -y openssl && \
+    rm -rf /var/lib/apt/lists/* && \
+    npm install -g yarn@$YARN_VERSION --force
 
 # Build stage
 FROM base AS build
@@ -47,13 +50,13 @@ RUN yarn install --production=true
 FROM base
 
 # Copy built application
-COPY --from=build /app/dist /app/dist
-COPY --from=build /app/frontend/dist /app/frontend/dist
-COPY --from=build /app/node_modules /app/node_modules
-COPY --from=build /app/prisma /app/prisma
-COPY --from=build /app/prisma.config.ts /app/prisma.config.ts
-COPY --from=build /app/package.json /app/package.json
-COPY --from=build /app/src/generated /app/src/generated
+COPY --from=build --chown=1000:1000 /app/dist /app/dist
+COPY --from=build --chown=1000:1000 /app/frontend/dist /app/frontend/dist
+COPY --from=build --chown=1000:1000 /app/node_modules /app/node_modules
+COPY --from=build --chown=1000:1000 /app/prisma /app/prisma
+COPY --from=build --chown=1000:1000 /app/prisma.config.ts /app/prisma.config.ts
+COPY --from=build --chown=1000:1000 /app/package.json /app/package.json
+COPY --from=build --chown=1000:1000 /app/src/generated /app/src/generated
 
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000

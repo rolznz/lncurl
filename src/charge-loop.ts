@@ -3,27 +3,18 @@ import { transferFromApp, getAppBalance, deleteApp } from "./hub.js";
 import { emitActivity } from "./activity.js";
 import { getRandomEpitaph, generateCauseOfDeathFlavor } from "./epitaphs.js";
 import { checkAchievements } from "./achievements.js";
-
-const CHARGE_AMOUNT = parseInt(process.env.CHARGE_AMOUNT_SATS || "1", 10);
-const CHARGE_INTERVAL_MS = parseInt(
-  process.env.CHARGE_INTERVAL_MS || "3600000",
-  10,
-);
-const GRACE_PERIOD_SECS = 3600; // 1 hour grace period for new wallets
+import { getRuntimeSettings } from "./settings.js";
 
 let chargeTimer: ReturnType<typeof setTimeout> | null = null;
 let isRunning = false;
 
 function getNextAlignedTime(): number {
-  if (CHARGE_INTERVAL_MS < 60000) {
+  const intervalMs = getRuntimeSettings().chargeIntervalMs;
+  if (intervalMs < 60000) {
     // For testing with short intervals, don't align
-    return Date.now() + CHARGE_INTERVAL_MS;
+    return Date.now() + intervalMs;
   }
-  const now = new Date();
-  const next = new Date(now);
-  next.setMinutes(0, 0, 0);
-  next.setHours(next.getHours() + 1);
-  return next.getTime();
+  return Math.ceil((Date.now() + 1) / intervalMs) * intervalMs;
 }
 
 async function runChargeLoop() {
@@ -43,6 +34,7 @@ async function runChargeLoop() {
 
 async function doChargeLoop() {
   console.log("[charge-loop] Starting charge run...");
+  const settings = getRuntimeSettings();
   const wallets = await prisma.wallet.findMany();
   let charged = 0;
   let died = 0;
@@ -50,7 +42,7 @@ async function doChargeLoop() {
   for (const wallet of wallets) {
     // Skip wallets still in their grace period
     const ageSeconds = Math.floor(Date.now() / 1000) - wallet.createdAt;
-    if (ageSeconds < GRACE_PERIOD_SECS) {
+    if (ageSeconds < settings.gracePeriodSeconds) {
       console.log(`[charge-loop] Wallet ${wallet.name} is ${ageSeconds}s old, still in grace period, skipping`);
       continue;
     }
@@ -73,7 +65,7 @@ async function doChargeLoop() {
       data: { lastKnownBalance: balance },
     });
 
-    if (balance < CHARGE_AMOUNT) {
+    if (balance < settings.chargeAmountSats) {
       // Wallet is empty — reap it
       console.log(
         `[charge-loop] Wallet ${wallet.name} has 0 balance, reaping...`,
@@ -123,14 +115,14 @@ async function doChargeLoop() {
 
     // Wallet has funds — charge it
     try {
-      await transferFromApp(wallet.appId, CHARGE_AMOUNT);
+      await transferFromApp(wallet.appId, settings.chargeAmountSats);
 
       await prisma.wallet.update({
         where: { name: wallet.name },
         data: {
           lastChargedAt: Math.floor(Date.now() / 1000),
-          totalCharged: { increment: CHARGE_AMOUNT },
-          lastKnownBalance: balance - CHARGE_AMOUNT,
+          totalCharged: { increment: settings.chargeAmountSats },
+          lastKnownBalance: balance - settings.chargeAmountSats,
         },
       });
       charged++;
@@ -146,15 +138,15 @@ async function doChargeLoop() {
     await emitActivity(
       "charge_collected",
       undefined,
-      charged * CHARGE_AMOUNT,
-      `${CHARGE_AMOUNT} sat collected from ${charged} wallets`,
+      charged * settings.chargeAmountSats,
+      `${settings.chargeAmountSats} sat collected from ${charged} wallets`,
     );
 
     await prisma.serviceStats.upsert({
       where: { id: 1 },
-      create: { id: 1, totalChargesCollected: charged * CHARGE_AMOUNT },
+      create: { id: 1, totalChargesCollected: charged * settings.chargeAmountSats },
       update: {
-        totalChargesCollected: { increment: charged * CHARGE_AMOUNT },
+        totalChargesCollected: { increment: charged * settings.chargeAmountSats },
       },
     });
   }
@@ -213,4 +205,16 @@ export function stopChargeLoop() {
     clearTimeout(chargeTimer);
     chargeTimer = null;
   }
+}
+
+export async function rescheduleChargeLoop() {
+  stopChargeLoop();
+  if (isRunning) return;
+  const nextRun = getNextAlignedTime();
+  await prisma.serviceStats.upsert({
+    where: { id: 1 },
+    create: { id: 1, nextChargeRunAt: Math.floor(nextRun / 1000) },
+    update: { nextChargeRunAt: Math.floor(nextRun / 1000) },
+  });
+  scheduleNext(nextRun);
 }

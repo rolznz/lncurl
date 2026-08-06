@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Home } from "@/pages/Home";
@@ -8,6 +9,7 @@ import { Blog } from "@/pages/Blog";
 import { BlogPost } from "@/pages/BlogPost";
 import { Privacy } from "@/pages/Privacy";
 import { Terms } from "@/pages/Terms";
+import { Settings } from "@/pages/Settings";
 import { NotFound } from "@/pages/NotFound";
 
 function Nav() {
@@ -46,6 +48,15 @@ function Nav() {
 }
 
 function Footer() {
+  const [settingsEnabled, setSettingsEnabled] = useState(false);
+
+  useEffect(() => {
+    fetch("/api/config")
+      .then((response) => response.json())
+      .then((config) => setSettingsEnabled(config.unsafePublicSettings === true))
+      .catch(() => {});
+  }, []);
+
   return (
     <footer className="border-t border-border mt-12 py-6 text-center text-sm text-muted-foreground space-y-3">
       <div>
@@ -75,6 +86,11 @@ function Footer() {
         <Link to="/terms" className="hover:text-foreground transition-colors">
           Terms
         </Link>
+        {settingsEnabled && (
+          <Link to="/settings" className="hover:text-foreground transition-colors">
+            Settings
+          </Link>
+        )}
       </div>
     </footer>
   );
@@ -96,6 +112,7 @@ export default function App() {
               <Route path="/blog/:slug" element={<BlogPost />} />
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/terms" element={<Terms />} />
+              <Route path="/settings" element={<Settings />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>

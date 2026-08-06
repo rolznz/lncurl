@@ -5,6 +5,7 @@ import { sanitizeEpitaph, getRandomEpitaph } from "../epitaphs.js";
 import { checkRateLimit } from "../rate-limit.js";
 import { prisma } from "../db.js";
 import { emitActivity } from "../activity.js";
+import { getRuntimeSettings } from "../settings.js";
 
 export async function walletRoutes(fastify: FastifyInstance) {
   async function handleCreateWallet(request: any, reply: any) {
@@ -14,7 +15,9 @@ export async function walletRoutes(fastify: FastifyInstance) {
 
     const { allowed, remaining } = checkRateLimit(ip);
     if (!allowed) {
-      reply.status(429).send("Rate limit exceeded. Max 10 wallets per hour.");
+      reply
+        .status(429)
+        .send(`Rate limit exceeded. Max ${getRuntimeSettings().rateLimitPerHour} wallets per hour.`);
       return;
     }
 

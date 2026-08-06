@@ -1,3 +1,5 @@
+import { getAlbyToken } from "./settings.js";
+
 const APP_NAME_PREFIX = "lncurl";
 
 function removeTrailingSlash(url: string): string {
@@ -16,9 +18,11 @@ function fetchWithTimeout(
   );
 }
 
-function getHeaders() {
+async function getHeaders(tokenOverride?: string) {
+  const token = tokenOverride || (await getAlbyToken()).token;
+  if (!token) throw new Error("Alby Hub API token is not configured");
   return {
-    Authorization: `Bearer ${process.env.AUTH_TOKEN}`,
+    Authorization: `Bearer ${token}`,
     "AlbyHub-Name": process.env.ALBY_HUB_NAME || "",
     "AlbyHub-Region": process.env.ALBY_HUB_REGION || "",
     "Content-Type": "application/json",
@@ -26,12 +30,40 @@ function getHeaders() {
   };
 }
 
-function getAlbyHubUrl() {
+export function getAlbyHubUrl() {
   const albyHubUrl = process.env.ALBY_HUB_URL;
   if (!albyHubUrl) {
     throw new Error("No ALBY_HUB_URL set");
   }
   return removeTrailingSlash(albyHubUrl);
+}
+
+export async function validateAlbyToken(token: string): Promise<void> {
+  const claimsPart = token.split(".")[1];
+  if (claimsPart) {
+    try {
+      const claims = JSON.parse(
+        Buffer.from(claimsPart, "base64url").toString("utf8"),
+      ) as { exp?: number; permission?: string };
+      if (claims.exp && claims.exp <= Math.floor(Date.now() / 1000)) {
+        throw new Error("The Alby Hub token has expired.");
+      }
+      if (claims.permission && claims.permission.toLowerCase() !== "full") {
+        throw new Error("LNCurl requires a full-access Alby Hub token.");
+      }
+    } catch (error) {
+      if (error instanceof SyntaxError) {
+        throw new Error("The Alby Hub token is invalid.");
+      }
+      throw error;
+    }
+  }
+
+  const response = await fetchWithTimeout(
+    new URL("/api/apps", getAlbyHubUrl()),
+    { headers: await getHeaders(token) },
+  );
+  if (!response.ok) throw new Error("Alby Hub rejected this token.");
 }
 
 // --- Wallet operations ---
@@ -58,10 +90,10 @@ export async function createApp() {
         returnTo: "",
         isolated: true,
         metadata: {
-          app_store_app_id: "uncle-jim",
+          app_store_app_id: "lncurl",
         },
       }),
-      headers: getHeaders(),
+      headers: await getHeaders(),
     },
   );
 
@@ -87,7 +119,7 @@ export async function listApps() {
   const response = await fetchWithTimeout(
     new URL("/api/apps", getAlbyHubUrl()),
     {
-      headers: getHeaders(),
+      headers: await getHeaders(),
     },
   );
 
@@ -109,7 +141,7 @@ export async function updateAppName(
       new URL(`/api/apps/${appPubkey}`, getAlbyHubUrl()),
       {
         method: "PATCH",
-        headers: getHeaders(),
+        headers: await getHeaders(),
         body: JSON.stringify({ name }),
       },
     );
@@ -126,7 +158,7 @@ export async function deleteApp(appPubkey: string): Promise<void> {
     new URL(`/api/apps/${appPubkey}`, getAlbyHubUrl()),
     {
       method: "DELETE",
-      headers: getHeaders(),
+      headers: await getHeaders(),
     },
   );
 
@@ -143,7 +175,7 @@ export async function transferFromApp(
     new URL("/api/transfers", getAlbyHubUrl()),
     {
       method: "POST",
-      headers: getHeaders(),
+      headers: await getHeaders(),
       body: JSON.stringify({
         fromAppId: appId,
         amountSat,
@@ -163,7 +195,7 @@ export async function getAppBalance(
   const response = await fetchWithTimeout(
     new URL(`/api/apps/${appPubkey}`, getAlbyHubUrl()),
     {
-      headers: getHeaders(),
+      headers: await getHeaders(),
     },
   );
 
@@ -180,7 +212,7 @@ export async function getAppById(
 ): Promise<{ balanceSats: number; lud16: string | null }> {
   const response = await fetchWithTimeout(
     new URL(`/api/v2/apps/${appId}`, getAlbyHubUrl()),
-    { headers: getHeaders() },
+    { headers: await getHeaders() },
   );
   if (!response.ok) {
     throw new Error("Failed to get app by id: " + (await response.text()));
@@ -203,7 +235,7 @@ export async function createLightningAddress(
     new URL("/api/lightning-addresses", getAlbyHubUrl()),
     {
       method: "POST",
-      headers: getHeaders(),
+      headers: await getHeaders(),
       body: JSON.stringify({
         address,
         appId,
@@ -224,7 +256,7 @@ export async function listChannels() {
   const response = await fetchWithTimeout(
     new URL("/api/channels", getAlbyHubUrl()),
     {
-      headers: getHeaders(),
+      headers: await getHeaders(),
     },
   );
 
@@ -244,13 +276,13 @@ export async function listChannels() {
 export async function getNodeInfo() {
   const [infoRes, connRes, channelsRes] = await Promise.all([
     fetchWithTimeout(new URL("/api/info", getAlbyHubUrl()), {
-      headers: getHeaders(),
+      headers: await getHeaders(),
     }),
     fetchWithTimeout(new URL("/api/node/connection-info", getAlbyHubUrl()), {
-      headers: getHeaders(),
+      headers: await getHeaders(),
     }),
     fetchWithTimeout(new URL("/api/channels", getAlbyHubUrl()), {
-      headers: getHeaders(),
+      headers: await getHeaders(),
     }),
   ]);
 
@@ -279,7 +311,7 @@ export async function getNodeBalance() {
   const response = await fetchWithTimeout(
     new URL("/api/balances", getAlbyHubUrl()),
     {
-      headers: getHeaders(),
+      headers: await getHeaders(),
     },
   );
 

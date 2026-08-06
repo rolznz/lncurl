@@ -1,0 +1,35 @@
+version: "3.7"
+
+services:
+  app_proxy:
+    container_name: lncurl_app_proxy_1
+    environment:
+      APP_HOST: lncurl_server_1
+      APP_PORT: 3000
+      PROXY_AUTH_ADD: "true"
+      PROXY_AUTH_WHITELIST: "/*"
+      PROXY_AUTH_BLACKLIST: "/api/setup,/api/setup/*,/settings,/settings/*,/api/settings,/api/settings/*"
+
+  server:
+    container_name: lncurl_server_1
+    image: ghcr.io/rolznz/lncurl:0.1.0
+    user: "1000:1000"
+    volumes:
+      - ${APP_DATA_DIR}/data:/data
+    environment:
+      NODE_ENV: "production"
+      PORT: "3000"
+      DATABASE_URL: "file:/data/lncurl.db"
+      ALBY_HUB_URL: "${APP_LNCURL_ALBY_HUB_URL:-http://albyhub_server_1:8080}"
+      AUTH_TOKEN: "${APP_LNCURL_AUTH_TOKEN:-}"
+      LNCURL_ENCRYPTION_SECRET: "${APP_SEED}"
+      DEV: "false"
+      UNSAFE_PUBLIC_SETTINGS: "true"
+      UMBREL_APP_PROXY_HOST: "lncurl_app_proxy_1"
+      CHARGE_AMOUNT_SATS: "1"
+      CHARGE_INTERVAL_MS: "3600000"
+      GRACE_PERIOD_SECS: "3600"
+      RATE_LIMIT_PER_HOUR: "10"
+      RATE_LIMIT_CLEANUP_MS: "600000"
+    restart: on-failure
+    stop_grace_period: 30s
